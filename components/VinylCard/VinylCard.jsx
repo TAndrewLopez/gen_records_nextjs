@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { formatToUSD, popularityToStart } from "../helperFuncs";
 import { StarIcon } from "../assets";
-// import { addLineItem, addItemLocally } from "../../redux/features/authSlice";
+import { addLineItem, addItemLocally } from "../../redux/features/authSlice";
 
 const VinylCard = ({ vinyl }) => {
   const dispatch = useDispatch();

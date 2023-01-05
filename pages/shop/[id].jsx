@@ -21,7 +21,6 @@ const SingleVinylPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { id } = router.query;
-  console.log(id, "sir???/");
 
   const {
     shopReducer: { singleVinyl },
@@ -60,9 +59,3 @@ const SingleVinylPage = () => {
 };
 
 export default SingleVinylPage;
-
-export async function getServerSideProps(context) {
-  return {
-    props: {}, // will be passed to the page component as props
-  };
-}
