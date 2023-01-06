@@ -20,11 +20,11 @@ const Layout = ({ children }) => {
     }
   }, []);
 
-  useEffect(() => {
-    if (id) {
-      dispatch(getUserOrders(id));
-    }
-  }, [id]);
+  // useEffect(() => {
+  //   if (id) {
+  //     dispatch(getUserOrders(id));
+  //   }
+  // }, [id]);
 
   return <div>{children}</div>;
 };

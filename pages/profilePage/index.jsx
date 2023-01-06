@@ -48,7 +48,7 @@ const ProfilePage = () => {
         </div>
       </div>
       <Footer twClass={"p-5 text-white flex justify-center bg-shade-9"} />
-      {message && (
+      {/* {message && (
         <ToastNotification
           clear={() => dispatch(clearSuccessMessage())}
           type="success"
@@ -62,7 +62,7 @@ const ProfilePage = () => {
           type="error"
           toastMessage={message}
         />
-      )}
+      )} */}
     </div>
   );
 };

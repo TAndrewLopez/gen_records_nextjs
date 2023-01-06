@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Link from "next/link";
 
 //COMPONENTS
-import NavLinks from "./NavLinks";
+import { NavLinks, UserCartDropDown } from "../../components";
 import { CartIcon, ProfileIcon, Hamburger } from "../assets";
 
 const Header = ({ headerClass }) => {
@@ -63,9 +63,10 @@ const Header = ({ headerClass }) => {
         className="relative z-30 text-white sm:hidden flex">
         <Hamburger visible={overlay} />
       </div>
+      {toggleCart ? <UserCartDropDown cart={cart} /> : <></>}
       {/* FIXME: DOESN'T WORK WITH SSR
       {overlay ? <MobileNavOverlay links={linkInfo} /> : <></>}
-      {toggleCart ? <UserCartDropDown cart={cart} /> : <></>} */}
+    */}
     </header>
   );
 };

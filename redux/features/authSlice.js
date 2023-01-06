@@ -132,7 +132,6 @@ const authSlice = createSlice({
     });
     builder.addCase(changeLineItemQty.fulfilled, (state, action) => {
       const { payload } = action;
-
       if (!payload) {
         state.error = true;
         state.message = "Unable to modify line item. Please try again.";
@@ -156,7 +155,7 @@ const authSlice = createSlice({
 //AUTH
 export const me = createAsyncThunk("me", async (thunkAPI) => {
   const authorization = localStorage.getItem("authorization");
-  const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/me`, {
+  const response = await fetch("/api/auth/me", {
     method: "GET",
     headers: { authorization },
   })
@@ -166,17 +165,13 @@ export const me = createAsyncThunk("me", async (thunkAPI) => {
 });
 
 export const login = createAsyncThunk("login", async (form, thunkAPI) => {
-  const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
+  const response = await fetch("/api/auth/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(form),
   })
     .then((res) => res.json())
     .catch((err) => console.error(err));
-
-  if (typeof response === "string") {
-    console.log("invalid credentials");
-  }
 
   if (response.authorization) {
     localStorage.setItem("authorization", response.authorization);
@@ -200,15 +195,11 @@ export const demoLogin = createAsyncThunk(
         password: "visitorPassword",
       };
     }
-
-    const { authorization } = await fetch(
-      `${import.meta.env.VITE_API_URL}/auth/login`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(demoForm),
-      }
-    )
+    const { authorization } = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(demoForm),
+    })
       .then((res) => res.json())
       .catch((err) => console.error(err));
 
@@ -223,14 +214,11 @@ export const demoLogin = createAsyncThunk(
 export const createUser = createAsyncThunk(
   "createUser",
   async (form, thunkAPI) => {
-    const { authorization } = await fetch(
-      `${import.meta.env.VITE_API_URL}/auth/signUp`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      }
-    )
+    const { authorization } = await fetch("/api/auth/signUp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    })
       .then((res) => res.json())
       .catch((err) => console.error(err));
 
@@ -246,18 +234,14 @@ export const updateUser = createAsyncThunk(
   "updateUser",
   async (form, thunkAPI) => {
     const authorization = localStorage.getItem("authorization");
-
-    const { user } = await fetch(
-      `${import.meta.env.VITE_API_URL}/auth/${form.id}`,
-      {
-        method: "PUT",
-        headers: {
-          authorization,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      }
-    )
+    const { user } = await fetch(`/api/auth/${form.id}`, {
+      method: "PUT",
+      headers: {
+        authorization,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    })
       .then((res) => res.json())
       .catch((err) => console.error(err));
 
@@ -270,16 +254,12 @@ export const getUserOrders = createAsyncThunk(
   "getUserOrders",
   async (userId, thunkAPI) => {
     const authorization = localStorage.getItem("authorization");
-
-    const { userOrders } = await fetch(
-      `${import.meta.env.VITE_API_URL}/shop/cart/${userId}`,
-      {
-        method: "GET",
-        headers: {
-          authorization,
-        },
-      }
-    )
+    const { userOrders } = await fetch(`/api/shop/cart/${userId}`, {
+      method: "GET",
+      headers: {
+        authorization,
+      },
+    })
       .then((res) => res.json())
       .catch((err) => console.error(err));
     return userOrders;
@@ -290,16 +270,12 @@ export const addLineItem = createAsyncThunk(
   "addLineItem",
   async (vinylId, thunkAPI) => {
     const authorization = localStorage.getItem("authorization");
-
-    const { itemWithContents } = await fetch(
-      `${import.meta.env.VITE_API_URL}/shop/cart/${vinylId}`,
-      {
-        method: "PUT",
-        headers: {
-          authorization,
-        },
-      }
-    )
+    const { itemWithContents } = await fetch(`/api/shop/cart/${vinylId}`, {
+      method: "PUT",
+      headers: {
+        authorization,
+      },
+    })
       .then((res) => res.json())
       .catch((err) => console.error(err));
     return itemWithContents;
@@ -310,18 +286,14 @@ export const changeLineItemQty = createAsyncThunk(
   "changeLineItemQty",
   async (item, thunkAPI) => {
     const authorization = localStorage.getItem("authorization");
-
-    const { updatedItem, error } = await fetch(
-      `${import.meta.env.VITE_API_URL}/shop/cart/qty`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          authorization,
-        },
-        body: JSON.stringify({ id: item.id, qty: item.qty }),
-      }
-    )
+    const { updatedItem, error } = await fetch(`/api/shop/cart/qty`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        authorization,
+      },
+      body: JSON.stringify({ id: item.id, qty: item.qty }),
+    })
       .then((res) => res.json())
       .catch((err) => console.error(err));
     if (error) {
@@ -336,16 +308,12 @@ export const removeLineItem = createAsyncThunk(
   "removeLineItem",
   async (lineItemId, thunkAPI) => {
     const authorization = localStorage.getItem("authorization");
-
-    const { deletedItem } = await fetch(
-      `${import.meta.env.VITE_API_URL}/shop/cart/${lineItemId}`,
-      {
-        method: "DELETE",
-        headers: {
-          authorization,
-        },
-      }
-    )
+    const { deletedItem } = await fetch(`/api/shop/cart/${lineItemId}`, {
+      method: "DELETE",
+      headers: {
+        authorization,
+      },
+    })
       .then((res) => res.json())
       .catch((err) => console.error(err));
     return deletedItem;

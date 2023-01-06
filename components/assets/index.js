@@ -1,8 +1,14 @@
+export { default as AdminIcon } from "./AdminIcon";
 export { default as CartIcon } from "./CartIcon";
+export { default as ErrorIcon } from "./ErrorIcon";
 export { default as GithubIcon } from "./GithubIcon";
 export { default as Hamburger } from "./Hamburger";
+export { default as LockIcon } from "./LockIcon";
 export { default as MagnifyingGlassIcon } from "./MagnifyingGlassIcon";
+export { default as PlayIcon } from "./PlayIcon";
 export { default as ProfileIcon } from "./ProfileIcon";
 export { default as SpinnerLoader } from "./SpinnerLoader";
 export { default as SpotifyIcon } from "./SpotifyIcon";
 export { default as StarIcon } from "./StarIcon";
+export { default as StopIcon } from "./StopIcon";
+export { default as UsersIcon } from "./UsersIcon";
