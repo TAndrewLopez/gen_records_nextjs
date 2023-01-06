@@ -2,8 +2,10 @@ import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/features/authSlice";
 import defaultProfileImage from "../../public/defaultProfileImage.png";
+import { useRouter } from "next/router";
 
 const UserProfileCard = ({ user: { firstName, lastName, username, img } }) => {
+  const router = useRouter();
   // console.log(img);
   const dispatch = useDispatch();
   return (
@@ -28,7 +30,11 @@ const UserProfileCard = ({ user: { firstName, lastName, username, img } }) => {
           </a>
 
           <a
-            onClick={() => dispatch(logout())}
+            onClick={(evt) => {
+              evt.preventDefault();
+              dispatch(logout());
+              router.push("/auth");
+            }}
             href="#"
             className="inline-flex items-center px-4 py-2 text-sm
             font-medium text-center text-shade-9 bg-white rounded-lg

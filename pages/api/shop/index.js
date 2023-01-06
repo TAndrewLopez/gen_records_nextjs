@@ -5,10 +5,15 @@ const handler = async (req, res) => {
     const vinyls = await Vinyl.findAll({
       include: Artist,
     });
+
     vinyls.sort((a, b) => a.id - b.id);
-    return res.json({ vinyls });
+
+    return res.json({ success: true, vinyls });
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).json({
+      success: false,
+      message: "An error has occurred. Unable to fetch vinyls from shop.",
+    });
   }
 };
 

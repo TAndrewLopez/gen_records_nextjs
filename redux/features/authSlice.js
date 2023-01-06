@@ -17,7 +17,7 @@ const authSlice = createSlice({
     message: null,
   },
   reducers: {
-    logout(state) {
+    oldLogOut(state) {
       localStorage.removeItem("authorization");
       state.id = 0;
       state.firstName = "";
@@ -101,6 +101,22 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.error = null;
     });
+    builder.addCase(logout.fulfilled, (state, action) => {
+      localStorage.removeItem("authorization");
+      state.id = 0;
+      state.firstName = "";
+      state.lastName = "";
+      state.username = "";
+      state.email = "";
+      state.orders = [];
+      state.cart = [];
+      state.img = "";
+      state.isAdmin = false;
+      state.loggedIn = false;
+      state.error = null;
+      state.message = null;
+      state.cart = JSON.parse(localStorage.getItem("localCart"));
+    });
     builder.addCase(updateUser.fulfilled, (state, { payload }) => {
       if (!payload) {
         state.error = true;
@@ -180,6 +196,15 @@ export const login = createAsyncThunk("login", async (form, thunkAPI) => {
     thunkAPI.dispatch(me());
   }
   return response.authorization;
+});
+
+export const logout = createAsyncThunk("logout", async (thunkAPI) => {
+  const response = await fetch("/api/auth/logout", {
+    method: "GET",
+  })
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
+  return response;
 });
 
 export const demoLogin = createAsyncThunk(
@@ -324,7 +349,7 @@ export const removeLineItem = createAsyncThunk(
 
 export default authSlice.reducer;
 export const {
-  logout,
+  oldLogOut,
   clearErrorMessage,
   clearSuccessMessage,
   getLocalOrder,

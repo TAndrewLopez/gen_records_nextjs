@@ -1,9 +1,10 @@
-import { NextResponse } from "next/server";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ErrorIcon, ProfileIcon, LockIcon } from "../../components/assets";
 
 const LoginForm = ({ toggle }) => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const { loggedIn } = useSelector((state) => state.authReducer);
 
@@ -20,7 +21,9 @@ const LoginForm = ({ toggle }) => {
   });
 
   const handleSubmit = async (evt) => {
+    console.log("login", router);
     evt.preventDefault();
+    router.push("/profilePage");
   };
 
   return (

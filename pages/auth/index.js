@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import {
   Header,
   CreateAccountForm,
@@ -8,6 +10,14 @@ import {
 
 const Auth = () => {
   const [form, setForm] = useState(false);
+  const { loggedIn } = useSelector((state) => state.authReducer);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (loggedIn) {
+      router.push("/profilePage");
+    }
+  }, [loggedIn]);
 
   return (
     <div className="h-screen w-full flex flex-col">

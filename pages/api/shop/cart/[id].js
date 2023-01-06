@@ -19,10 +19,12 @@ const handler = async (req, res) => {
       // },
     });
     userOrders.sort((a, b) => a.id - b.id);
-    res.status(200).json({ userOrders });
+    res.status(200).json({ success: true, userOrders });
   } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+    res.status(500).json({
+      success: false,
+      message: `An error has occurred. Unable to fetch user order id# ${req.query.id}.`,
+    });
   }
 };
 

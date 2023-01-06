@@ -99,7 +99,7 @@ const UserCart = ({ cart, title, images, controls, orders }) => {
               <div className="flex items-center space-x-4">
                 {images ? (
                   <Link
-                    to={`/singleVinyl/${item.vinyl.id}`}
+                    href={`/singleVinyl/${item.vinyl.id}`}
                     className="flex-shrink-0 border-highlight border p-1 border-opacity-50 hover:border-opacity-100 rounded-full cursor-pointer ease-in-out duration-300 group">
                     <img
                       className="w-8 h-8 rounded-full opacity-50 group-hover:opacity-100 ease-in-out duration-300"
@@ -111,7 +111,7 @@ const UserCart = ({ cart, title, images, controls, orders }) => {
                 )}
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-shade-1 truncate hover:text-sec ease-in-out duration-300">
-                    <Link to={`/singleVinyl/${item.vinyl.id}`}>
+                    <Link href={`/singleVinyl/${item.vinyl.id}`}>
                       {`${item?.vinyl.name} by ${item?.vinyl.artist.name}`}
                     </Link>
                   </p>

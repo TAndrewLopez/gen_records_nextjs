@@ -1,13 +1,35 @@
 import { User } from "../../../server/models";
+import cookie from "cookie";
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
     try {
       const { username, password } = req.body;
-      const token = await User.authenticate({ username, password });
-      res.status(202).json({ authorization: token });
+      const authorization = await User.authenticate({ username, password });
+
+      if (!authorization) {
+        return res
+          .status(401)
+          .json({ success: false, message: "Invalid credentials." });
+      }
+
+      res.setHeader(
+        "Set-Cookie",
+        cookie.serialize("genRecords", authorization, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV !== "development",
+          sameSite: "strict",
+          maxAge: 60 * 60 * 24 * 30,
+          path: "/",
+        })
+      );
+
+      res.status(202).json({ success: true, authorization });
     } catch (error) {
-      res.status(500).json({ authorization: null, error });
+      res.status(500).json({
+        success: false,
+        message: "Unauthorized Request",
+      });
     }
   }
 };

@@ -11,7 +11,7 @@ const handler = async (req, res) => {
         enabled: true,
       },
     });
-    res.send({ clientSecret: paymentIntent.client_secret });
+    res.send({ success: true, clientSecret: paymentIntent.client_secret });
   } catch (error) {
     res.status(500).json({
       success: false,

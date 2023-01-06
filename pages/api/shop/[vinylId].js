@@ -5,9 +5,12 @@ const handler = async (req, res) => {
     const vinyl = await Vinyl.findByPk(req.query.vinylId, {
       include: [Artist, Track],
     });
-    res.json({ vinyl });
+    res.json({ success: true, vinyl });
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).json({
+      success: false,
+      message: `An error has occurred. Unable to fetch vinyl id# ${req.query.vinylId}`,
+    });
   }
 };
 

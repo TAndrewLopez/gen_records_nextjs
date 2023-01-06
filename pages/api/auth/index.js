@@ -6,6 +6,7 @@ const handler = async (req, res) => {
     try {
       const user = await User.findByPk(req.user.id);
       const { firstName, lastName, username, email, password, img } = req.body;
+
       await user.update({
         firstName: firstName || req.user.firstName,
         lastName: lastName || req.user.lastName,
@@ -14,9 +15,13 @@ const handler = async (req, res) => {
         password: password || req.user.password,
         img: img || req.user.img,
       });
-      res.json({ user });
+
+      res.json({ success: true, user });
     } catch (error) {
-      next(error);
+      res.status(500).json({
+        success: false,
+        message: "An error has occurred. Unable to update user.",
+      });
     }
   }
 };

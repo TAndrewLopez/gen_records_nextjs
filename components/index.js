@@ -20,6 +20,6 @@ export { default as Layout } from "./Utils/Layout";
 export { default as Pagination } from "./Utils/Pagination";
 export { default as SearchField } from "./Utils/SearchField";
 
-export { default as VinylCard } from "./VinylCard/VinylCard";
-export { default as TrackList } from "./VinylCard/TrackList";
 export { default as DetailedVinylCard } from "./VinylCard/DetailedVinylCard";
+export { default as TrackList } from "./VinylCard/TrackList";
+export { default as VinylCard } from "./VinylCard/VinylCard";
