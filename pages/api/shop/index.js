@@ -1,6 +1,6 @@
-import { Artist, LineItem, Order, Track, Vinyl } from "../../../server";
+import { Artist, Vinyl } from "../../../server";
 
-export default async function handler(req, res) {
+const handler = async (req, res) => {
   try {
     const vinyls = await Vinyl.findAll({
       include: Artist,
@@ -10,4 +10,6 @@ export default async function handler(req, res) {
   } catch (error) {
     res.status(500).send(error);
   }
-}
+};
+
+export default handler;

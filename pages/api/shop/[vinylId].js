@@ -1,6 +1,6 @@
 import { Artist, Track, Vinyl } from "../../../server";
 
-export default async function handler(req, res) {
+const handler = async (req, res) => {
   try {
     const vinyl = await Vinyl.findByPk(req.query.vinylId, {
       include: [Artist, Track],
@@ -9,4 +9,6 @@ export default async function handler(req, res) {
   } catch (error) {
     res.status(500).send(error);
   }
-}
+};
+
+export default handler;

@@ -1,6 +1,6 @@
 const { User } = require("../../../server/models");
 
-export default async function handler(req, res) {
+const handler = async (req, res) => {
   if (req.method === "POST") {
     try {
       const { username, password, email, firstName, lastName } = req.body;
@@ -16,4 +16,5 @@ export default async function handler(req, res) {
       res.status(500).json({ authorization: null, error });
     }
   }
-}
+};
+export default handler;

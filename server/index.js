@@ -1,7 +1,7 @@
 const conn = require("./conn");
 const { Artist, LineItem, Order, Track, User, Vinyl } = require("./models");
 
-// ASSOCIATIONS
+//ASSOCIATIONS
 User.hasMany(Order);
 Order.belongsTo(User);
 
