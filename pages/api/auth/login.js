@@ -1,6 +1,6 @@
-const { User } = require("../../../server/models");
+import { User } from "../../../server/models";
 
-const handler = async () => {
+const handler = async (req, res) => {
   if (req.method === "POST") {
     try {
       const { username, password } = req.body;

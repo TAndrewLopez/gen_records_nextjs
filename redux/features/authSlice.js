@@ -86,7 +86,8 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(me.fulfilled, (state, { payload }) => {
+    builder.addCase(me.fulfilled, (state, action) => {
+      const { payload } = action;
       const { id, firstName, lastName, username, email, img, isAdmin } =
         payload;
       state.id = id;
@@ -115,7 +116,8 @@ const authSlice = createSlice({
       state.error = null;
       state.message = "Information has been saved!";
     });
-    builder.addCase(getUserOrders.fulfilled, (state, { payload }) => {
+    builder.addCase(getUserOrders.fulfilled, (state, action) => {
+      const { payload } = action;
       const [openOrder] = payload.filter((order) => order.complete === false);
       state.orders = [...payload];
       state.cart = [...openOrder.lineItems.sort((a, b) => a.id - b.id)];

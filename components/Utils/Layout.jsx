@@ -20,6 +20,7 @@ const Layout = ({ children }) => {
     }
   }, []);
 
+  // FIXME: LINE ITEMS AREN'T ASSOCIATED?
   // useEffect(() => {
   //   if (id) {
   //     dispatch(getUserOrders(id));

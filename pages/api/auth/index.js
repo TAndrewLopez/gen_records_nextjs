@@ -1,5 +1,5 @@
 import { User } from "../../../server/models";
-import { requireToken } from "../../../middleware";
+import { requireToken } from "../../../customMiddleware";
 
 const handler = async (req, res) => {
   if (req.method === "PUT") {
