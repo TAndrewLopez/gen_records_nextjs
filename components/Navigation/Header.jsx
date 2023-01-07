@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Link from "next/link";
 
 //COMPONENTS
-import { NavLinks, UserCartDropDown } from "../../components";
+import { NavLinks, UserCartDropDown, MobileNavOverlay } from "../../components";
 import { CartIcon, ProfileIcon, Hamburger } from "../assets";
 
 const Header = ({ headerClass }) => {
@@ -17,12 +17,13 @@ const Header = ({ headerClass }) => {
     { path: "/shop", name: "Shop" },
   ];
 
-  // FIXME: DOESN'T WORK WITH SSR
-  // if (overlay && document) {
-  //   document.getElementById("__next").style.overflow = "hidden";
-  // } else {
-  //   document.getElementById("__next").style.overflow = "auto";
-  // }
+  if (window) {
+    if (overlay && document) {
+      document.getElementById("__next").style.overflow = "hidden";
+    } else {
+      document.getElementById("__next").style.overflow = "auto";
+    }
+  }
 
   return (
     <header className={headerClass}>
@@ -64,9 +65,7 @@ const Header = ({ headerClass }) => {
         <Hamburger visible={overlay} />
       </div>
       {toggleCart ? <UserCartDropDown cart={cart} /> : <></>}
-      {/* FIXME: DOESN'T WORK WITH SSR
       {overlay ? <MobileNavOverlay links={linkInfo} /> : <></>}
-    */}
     </header>
   );
 };
