@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed": "SPOTIFY_ID=b2358f59719841718217b4976e89bda1 SPOTIFY_SECRET=e9765e122b354ff8af75120e38c5fae1 node server/seed.js"
   },
   "dependencies": {
     "@next/font": "13.1.1",

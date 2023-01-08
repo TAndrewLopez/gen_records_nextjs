@@ -80,9 +80,7 @@ export default function Shop() {
                   <VinylCard vinyl={vinyl} key={vinyl.id} />
                 ))
               ) : (
-                <p className="text-shade-1 text-3xl m-auto">
-                  Unfortunately, no results.
-                </p>
+                <p className="text-shade-1 text-3xl m-auto">No results.</p>
               )}
             </div>
             <div className="mb-5">

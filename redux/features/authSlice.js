@@ -17,22 +17,6 @@ const authSlice = createSlice({
     message: null,
   },
   reducers: {
-    oldLogOut(state) {
-      localStorage.removeItem("authorization");
-      state.id = 0;
-      state.firstName = "";
-      state.lastName = "";
-      state.username = "";
-      state.email = "";
-      state.orders = [];
-      state.cart = [];
-      state.img = "";
-      state.isAdmin = false;
-      state.loggedIn = false;
-      state.error = null;
-      state.message = null;
-      state.cart = JSON.parse(localStorage.getItem("localCart"));
-    },
     clearErrorMessage(state) {
       state.error = null;
       state.message = null;
@@ -134,9 +118,11 @@ const authSlice = createSlice({
     });
     builder.addCase(getUserOrders.fulfilled, (state, action) => {
       const { payload } = action;
-      const [openOrder] = payload.filter((order) => order.complete === false);
-      state.orders = [...payload];
-      state.cart = [...openOrder.lineItems.sort((a, b) => a.id - b.id)];
+      if (payload) {
+        const [openOrder] = payload.filter((order) => order.complete === false);
+        state.orders = [...payload];
+        state.cart = [...openOrder.lineItems.sort((a, b) => a.id - b.id)];
+      }
     });
     builder.addCase(addLineItem.fulfilled, (state, { payload }) => {
       if (!payload) {
@@ -349,7 +335,6 @@ export const removeLineItem = createAsyncThunk(
 
 export default authSlice.reducer;
 export const {
-  oldLogOut,
   clearErrorMessage,
   clearSuccessMessage,
   getLocalOrder,
