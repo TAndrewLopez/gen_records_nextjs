@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "SPOTIFY_ID=b2358f59719841718217b4976e89bda1 SPOTIFY_SECRET=e9765e122b354ff8af75120e38c5fae1 node server/seed.js"
+    "seed": "node server/seed.js"
   },
   "dependencies": {
     "@next/font": "13.1.1",
@@ -17,6 +17,7 @@
     "bcryptjs": "^2.4.3",
     "cookie": "^0.5.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "jose": "^4.11.2",
     "jsonwebtoken": "^9.0.0",
     "next": "13.1.1",

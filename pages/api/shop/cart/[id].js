@@ -1,5 +1,5 @@
-import { Order, LineItem, Vinyl, Artist } from "../../../../server/models";
-import { requireToken } from "../../../../customMiddleware";
+import { Order, LineItem, Vinyl, Artist } from "@/server";
+import { requireToken } from "@/customMiddleware";
 
 const handler = async (req, res) => {
   if (req.method === "GET") {

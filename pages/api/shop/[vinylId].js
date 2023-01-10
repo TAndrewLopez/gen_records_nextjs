@@ -1,4 +1,4 @@
-import { Artist, Track, Vinyl } from "../../../server";
+import { Artist, Track, Vinyl } from "@/server";
 
 const handler = async (req, res) => {
   try {
