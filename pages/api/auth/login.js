@@ -1,4 +1,4 @@
-import { User } from "@/server";
+import { User } from "../../../server";
 import cookie from "cookie";
 
 const handler = async (req, res) => {

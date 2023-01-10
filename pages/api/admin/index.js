@@ -1,5 +1,5 @@
-import { User } from "@/server";
-import { requireToken, isAdmin } from "@/customMiddleware";
+import { User } from "../../../server";
+import { requireToken, isAdmin } from "../../../customMiddleware";
 
 const handler = async (req, res) => {
   try {

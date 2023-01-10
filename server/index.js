@@ -1,5 +1,11 @@
 const conn = require("./conn");
-const { Artist, LineItem, Order, Track, User, Vinyl } = require("./models");
+
+const Artist = require("./models/Artist");
+const LineItem = require("./models/LineItem");
+const Order = require("./models/Order");
+const Track = require("./models/Track");
+const User = require("./models/User");
+const Vinyl = require("./models/Vinyl");
 
 //ASSOCIATIONS
 User.hasMany(Order);

@@ -1,13 +1,13 @@
 require("dotenv").config();
 
 const conn = require("./conn");
-const { User, Artist, Track, Vinyl } = require("./models");
-const { randomUsers, specificUsers } = require("./dummyData.json");
+const { User, Artist, Track, Vinyl } = require("../server");
+const { randomUsers, specificUsers } = require("./helpers/dummyData.json");
 const { getAlbumData } = require("./helpers/spotifyAPI");
 
 const seed = async () => {
   try {
-    console.log("Connecting to db");
+    console.log("Seeding database...");
     await conn.sync({ force: true });
 
     // LOADING USERS
@@ -16,6 +16,7 @@ const seed = async () => {
 
     //LOADING ALBUMS
     const [albums, artists] = await getAlbumData();
+
     await Promise.all(
       albums.map(async (album) => {
         //find artist to assign to product

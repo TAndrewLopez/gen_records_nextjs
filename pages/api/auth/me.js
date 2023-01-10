@@ -1,4 +1,4 @@
-import { requireToken } from "@/customMiddleware";
+import { requireToken } from "../../../customMiddleware";
 
 const handler = async (req, res) => {
   try {
