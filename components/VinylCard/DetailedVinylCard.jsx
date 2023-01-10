@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
 import { formatToUSD } from "../helperFuncs";
 import { CartIcon } from "../assets";
 import {
@@ -13,6 +14,7 @@ import {
 
 const DetailedVinylCard = ({ singleVinyl, cart }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const { orders } = useSelector((state) => state.authReducer);
   const [lineItem] = cart.filter((item) => item?.vinyl.id === singleVinyl?.id);
   const [userQuantity, setUserQuantity] = useState(0);
@@ -108,7 +110,7 @@ const DetailedVinylCard = ({ singleVinyl, cart }) => {
       <div className="flex-1 relative flex items-center">
         <button
           onClick={() => {
-            navigate(-1);
+            router.back();
           }}
           className="absolute top-3 left-0 px-6 py-2 rounded-r text-shade-1 hover:text-shade-9 bg-shade-9 hover:bg-highlight ease-in-out duration-300">
           Back

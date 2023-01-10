@@ -321,7 +321,7 @@ export const removeLineItem = createAsyncThunk(
   "removeLineItem",
   async (lineItemId, thunkAPI) => {
     const authorization = localStorage.getItem("authorization");
-    const { deletedItem } = await fetch(`/api/shop/cart/${lineItemId}`, {
+    const { lineItem } = await fetch(`/api/shop/cart/${lineItemId}`, {
       method: "DELETE",
       headers: {
         authorization,
@@ -329,7 +329,8 @@ export const removeLineItem = createAsyncThunk(
     })
       .then((res) => res.json())
       .catch((err) => console.error(err));
-    return deletedItem;
+
+    return lineItem;
   }
 );
 

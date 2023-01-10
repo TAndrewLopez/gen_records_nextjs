@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux";
 import { CartSuccess, CartFailure } from "../assets";
+import { formatToUSD } from "../helperFuncs";
+
 const OrderHistory = () => {
   const { orders } = useSelector((state) => state.authReducer);
 
@@ -79,7 +81,10 @@ const getLocalDateFromOrderDbCreatedDate = (str) => {
     "Dec",
   ];
   const year = str.slice(0, 4);
-  const month = str.slice(5, 7);
+  let month = str.slice(5, 7);
+  if (Number(month[0]) === 0) {
+    month = month[1];
+  }
   const day = str.slice(8, 10);
   return `${months[month]} ${day}, ${year}`;
 };

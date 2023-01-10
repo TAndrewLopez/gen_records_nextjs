@@ -7,9 +7,10 @@ const handler = async (req, res) => {
     });
     res.json({ success: true, vinyl });
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       success: false,
-      message: `An error has occurred. Unable to fetch vinyl id# ${req.query.vinylId}`,
+      message: error.message,
     });
   }
 };

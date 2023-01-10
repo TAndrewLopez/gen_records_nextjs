@@ -18,9 +18,10 @@ const handler = async (req, res) => {
 
       res.json({ success: true, user });
     } catch (error) {
+      console.log(error);
       res.status(500).json({
         success: false,
-        message: "An error has occurred. Unable to update user.",
+        message: error.message,
       });
     }
   }

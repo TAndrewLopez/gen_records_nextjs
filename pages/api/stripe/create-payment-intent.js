@@ -13,9 +13,10 @@ const handler = async (req, res) => {
     });
     res.send({ success: true, clientSecret: paymentIntent.client_secret });
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       success: false,
-      message: "An error has occurred creating payment intents.",
+      message: error.message,
     });
   }
 };

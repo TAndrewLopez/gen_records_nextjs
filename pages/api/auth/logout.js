@@ -16,9 +16,10 @@ const handler = async (req, res) => {
       .status(201)
       .json({ success: true, message: "Logout successful." });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       success: false,
-      message: "An error has occurred. Unable to log user out.",
+      message: error.message,
     });
   }
 };

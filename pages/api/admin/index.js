@@ -16,9 +16,10 @@ const handler = async (req, res) => {
     users.sort((a, b) => a.id - b.id);
     return res.status(200).json({ success: true, users });
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       success: false,
-      message: "An error has occurred. Unable to fetch user attributes.",
+      message: error.message,
     });
   }
 };

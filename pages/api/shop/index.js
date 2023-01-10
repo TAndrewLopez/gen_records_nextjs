@@ -8,6 +8,7 @@ const handler = async (req, res) => {
     vinyls.sort((a, b) => a.id - b.id);
     return res.json({ success: true, vinyls });
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       success: false,
       message: error.message,

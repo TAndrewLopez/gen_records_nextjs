@@ -14,9 +14,10 @@ const handler = async (req, res) => {
       img,
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       success: false,
-      message: "An error has occurred. Failed to authenticate user.",
+      message: error.message,
     });
   }
 };
