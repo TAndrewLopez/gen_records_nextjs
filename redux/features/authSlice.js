@@ -156,7 +156,8 @@ const authSlice = createSlice({
     builder.addCase(checkoutItems.fulfilled, (state, { payload }) => {
       if (payload.success) {
         if (state.loggedIn) {
-          console.log("change state for logged in user");
+          state.orders.push(payload.order);
+          state.cart = [];
         } else {
           localStorage.setItem("localCart", JSON.stringify([]));
           state.cart = [];

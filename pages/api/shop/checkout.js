@@ -24,9 +24,10 @@ const handler = async (req, res) => {
       });
 
       await order.update({ complete: true });
-      await Order.create({ userId: req.user.id });
+      const newOrder = await Order.create({ userId: req.user.id });
       res.status(200).json({
         success: true,
+        order: newOrder,
       });
     } catch (error) {
       console.log(error);
