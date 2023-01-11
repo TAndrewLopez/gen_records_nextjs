@@ -13,11 +13,9 @@ const Auth = () => {
   const { loggedIn } = useSelector((state) => state.authReducer);
   const router = useRouter();
 
-  useEffect(() => {
-    if (loggedIn) {
-      router.push("/profilePage");
-    }
-  }, [loggedIn]);
+  if (loggedIn) {
+    router.push("/profilePage");
+  }
 
   return (
     <div className="h-screen w-full flex flex-col">
