@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Header,
@@ -16,6 +17,7 @@ import {
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const {
     firstName,
     lastName,
@@ -26,7 +28,12 @@ const ProfilePage = () => {
     img,
     error,
     message,
+    loggedIn,
   } = useSelector((state) => state.authReducer);
+
+  if (!loggedIn) {
+    router.push("/auth");
+  }
 
   return (
     <div className="h-screen w-full flex flex-col">
