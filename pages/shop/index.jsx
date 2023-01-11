@@ -4,10 +4,9 @@ import Head from "next/head";
 import {
   Header,
   Footer,
-  DropDown,
-  SearchField,
   Pagination,
   VinylCard,
+  SubHeader,
 } from "../../components";
 import { SpinnerLoader } from "../../components/assets";
 import { getShopVinyls } from "../../redux/features/shopSlice";
@@ -49,7 +48,7 @@ export default function Shop() {
       </Head>
       <Header headerClass={"flex text-xl justify-between p-5 bg-shade-9"} />
       <div className="flex-1 flex flex-col justify-center bg-shade-7">
-        <ul className="p-3 flex flex-col gap-5 sm:gap-0 sm:flex-row justify-between bg-shade-8">
+        {/* <ul className="p-3 flex flex-col gap-5 sm:gap-0 sm:flex-row justify-between bg-shade-8">
           <li>
             <SearchField
               setInput={setUserInput}
@@ -63,7 +62,13 @@ export default function Shop() {
               vinyls={filteredVinyls}
             />
           </li>
-        </ul>
+        </ul> */}
+        <SubHeader
+          setUserInput={setUserInput}
+          allVinyls={allVinyls}
+          setFilterVinyls={setFilterVinyls}
+          filteredVinyls={filteredVinyls}
+        />
 
         {isLoading ? (
           <div className="flex flex-1 items-center justify-center">

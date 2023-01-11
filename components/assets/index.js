@@ -12,6 +12,8 @@ export { default as MinusIcon } from "./MinusIcon";
 export { default as PlayIcon } from "./PlayIcon";
 export { default as PlusIcon } from "./PlusIcon";
 export { default as ProfileIcon } from "./ProfileIcon";
+export { default as SortDownArrow } from "./SortDownArrow";
+export { default as SortUpArrow } from "./SortUpArrow";
 export { default as SpinnerLoader } from "./SpinnerLoader";
 export { default as SpotifyIcon } from "./SpotifyIcon";
 export { default as StarIcon } from "./StarIcon";

@@ -4,7 +4,6 @@ import { AdminIcon, UsersIcon } from "../assets";
 import { demoLogin } from "../../redux/features/authSlice";
 import { useRouter } from "next/router";
 
-// TODO: AUTH API ROUTE ISN'T CONFIGURED
 const DemoLoginButtons = () => {
   const dispatch = useDispatch();
   const router = useRouter();

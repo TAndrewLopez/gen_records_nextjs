@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { SortDownArrow, SortUpArrow } from "../assets";
 import {
   sortAlbumNames,
   sortArtistName,
@@ -107,15 +108,18 @@ const DropDown = ({ vinyls, setFilterVinyl }) => {
                   setFilterVinyl(option.sort(vinyls, sortNameDir));
                   setSortDropDown(!sortDropDown);
                 }}
-                className="cursor-pointer"
+                className="cursor-pointer flex items-center"
                 key={option + i}>
+                {/* <div className="pl-2">
+                  <SortUpArrow twClass={"w-3 fill-shade-1"} />
+                </div> */}
                 <a
                   className="
                   hover:bg-shade-2
                   dropdown-item
+                  text-center
                   text-sm
                   py-2
-                  px-4
                   font-normal
                   block
                   w-full
@@ -125,6 +129,9 @@ const DropDown = ({ vinyls, setFilterVinyl }) => {
                   ">
                   {option.method}
                 </a>
+                {/* <div className="pr-2">
+                  <SortDownArrow twClass={"w-3 fill-shade-1"} />
+                </div> */}
               </li>
             ))}
           </ul>
