@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ErrorIcon, ProfileIcon, LockIcon } from "../../components/assets";
+import { login } from "../../redux/features/authSlice";
 
 const LoginForm = ({ toggle }) => {
   const router = useRouter();
@@ -21,9 +22,8 @@ const LoginForm = ({ toggle }) => {
   });
 
   const handleSubmit = async (evt) => {
-    console.log("login", router);
     evt.preventDefault();
-    router.push("/profilePage");
+    dispatch(login(form));
   };
 
   return (
