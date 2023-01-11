@@ -23,11 +23,21 @@ const handler = async (req, res) => {
         await product.update({ stock: product.stock - item.qty });
       });
 
-      await order.update({ complete: true });
-      const newOrder = await Order.create({ userId: req.user.id });
+      const prevOrder = await order.update({ complete: true });
+      const newOrder = await Order.create({
+        userId: req.user.id,
+      });
+
+      const orderWithContents = await Order.findByPk(newOrder.id, {
+        include: {
+          model: LineItem,
+        },
+      });
+
       res.status(200).json({
         success: true,
-        order: newOrder,
+        order: orderWithContents,
+        prevOrder,
       });
     } catch (error) {
       console.log(error);

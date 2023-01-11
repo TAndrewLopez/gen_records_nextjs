@@ -4,7 +4,6 @@ import { formatToUSD } from "../helperFuncs";
 
 const OrderHistory = () => {
   const { orders } = useSelector((state) => state.authReducer);
-
   return (
     <div
       id="orderHistory"
@@ -57,9 +56,10 @@ const OrderHistory = () => {
 export default OrderHistory;
 
 const totalOrderLineItems = (arr) => {
-  const total = arr.lineItems.reduce((acc, item) => {
-    return (acc += item.vinyl.price);
-  }, 0);
+  const total = arr.lineItems.reduce(
+    (acc, lineItem) => (acc += lineItem.vinyl.price * lineItem.qty),
+    0
+  );
 
   return `$${total ? formatToUSD(total) : "0.00"}`;
 };

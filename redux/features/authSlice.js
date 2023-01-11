@@ -156,6 +156,12 @@ const authSlice = createSlice({
     builder.addCase(checkoutItems.fulfilled, (state, { payload }) => {
       if (payload.success) {
         if (state.loggedIn) {
+          state.orders.map((order) => {
+            if (payload.prevOrder.id === order.id) {
+              order.complete = true;
+            }
+            return order;
+          });
           state.orders.push(payload.order);
           state.cart = [];
         } else {

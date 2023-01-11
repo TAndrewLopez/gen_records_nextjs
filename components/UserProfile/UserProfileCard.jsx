@@ -24,9 +24,9 @@ const UserProfileCard = ({ user: { firstName, lastName, username, img } }) => {
         <span className="text-sm text-shade-5">{username}</span>
         <div className="flex mt-4 space-x-3 md:mt-6">
           <a
-            href="#"
+            href="/checkout"
             className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-accent rounded-lg hover:text-shade-9 hover:bg-highlight focus:ring-4 focus:outline-none focus:ring-blue-300 ease-in-out duration-300">
-            Edit Profile
+            Checkout
           </a>
 
           <a
