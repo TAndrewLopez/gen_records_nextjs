@@ -50,7 +50,7 @@ const Header = ({ headerClass }) => {
               twClass={`w-4 fill-white hover:fill-sec cursor-pointer ease-in-out duration-300`}
             />
           </div>
-          <Link className="flex" href={"/profilePage"}>
+          <Link className="flex" href={"/auth"}>
             <ProfileIcon
               twClass={
                 "w-4 fill-white hover:fill-sec cursor-pointer ease-in-out duration-300"
