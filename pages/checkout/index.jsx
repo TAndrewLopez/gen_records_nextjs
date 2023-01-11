@@ -13,7 +13,7 @@ const Checkout = () => {
   const dispatch = useDispatch();
   const { cart, orders } = useSelector((state) => state.authReducer);
 
-  const [processed, setProcessed] = useState(false);
+  const [paid, setPaid] = useState(false);
 
   return (
     <div className="h-screen w-full flex flex-col">
@@ -23,19 +23,19 @@ const Checkout = () => {
           Checkout
         </h1>
 
-        {cart.length && !processed ? (
+        {cart.length && !paid ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-0">
             <div className="rounded m-5 p-5">
               <UserCart orders={orders} cart={cart} controls images />
             </div>
             <div className="bg-shade-2 rounded m-5 p-5">
-              <StripePayment cart={cart} paid={setProcessed} />
+              <StripePayment cart={cart} paid={setPaid} />
             </div>
           </div>
         ) : (
           ""
         )}
-        {processed ? <StripeSuccess cart={cart} /> : ""}
+        {paid ? <StripeSuccess cart={cart} /> : ""}
       </div>
       <Footer twClass={"p-5 text-white flex justify-center bg-shade-9 "} />
     </div>

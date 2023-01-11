@@ -1,7 +1,9 @@
+import { useRouter } from "next/router";
 import { CheckIcon } from "../assets";
 import { formatToUSD } from "../helperFuncs";
 
 const StripeSuccess = ({ cart }) => {
+  const router = useRouter();
   return (
     <div className="sm:max-w-xl rounded flex flex-col items-center bg-shade-2 p-5 m-auto shadow-xl text-center">
       <CheckIcon twClass={"w-12 fill-green-600"} />
@@ -23,9 +25,9 @@ const StripeSuccess = ({ cart }) => {
       )}`}</p>
       <span className="h-2"></span>
       <button
-        onClick={() => console.log("go somewhere")}
+        onClick={() => router.push("/shop")}
         className="md:w-32 mt-2 px-6 py-2 rounded bg-accent text-shade-1 hover:bg-highlight hover:text-shade-9 duration-300 ease-in-out">
-        Somewhere
+        Shop
       </button>
     </div>
   );

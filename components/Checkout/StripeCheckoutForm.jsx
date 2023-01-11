@@ -6,18 +6,17 @@ import {
 } from "@stripe/react-stripe-js";
 import { formatToUSD } from "../helperFuncs";
 
-const StripeCheckoutForm = ({ cart }) => {
-  const stripe = useStripe();
-  const elements = useElements();
-
-  const [message, setMessage] = useState(null);
+const StripeCheckoutForm = ({ cart, paid }) => {
+  // const stripe = useStripe();
+  // const elements = useElements();
   const [isProcessing, setIsProcessing] = useState(false);
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     setIsProcessing(true);
-
+    paid(true);
     console.log("process payment");
+    setIsProcessing(false);
   };
 
   return (
@@ -43,7 +42,6 @@ const StripeCheckoutForm = ({ cart }) => {
               )
             )}`}
       </button>
-      {message && <div id="payment-message">{message}</div>}
     </form>
   );
 };
