@@ -19,6 +19,19 @@ const CreateAccountForm = ({ toggle }) => {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
+    if (form.password !== form.confirm) {
+      setErrMessage("passwords must match");
+      setFormError(true);
+      return;
+    }
+    dispatch(createUser(form));
+    setErrMessage("");
+    setForm({
+      username: "",
+      email: "",
+      password: "",
+      confirm: "",
+    });
   };
 
   return (

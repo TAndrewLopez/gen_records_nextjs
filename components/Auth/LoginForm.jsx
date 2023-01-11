@@ -23,7 +23,15 @@ const LoginForm = ({ toggle }) => {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
+
+    if (!form.username || !form.password) {
+      return;
+    }
     dispatch(login(form));
+    setForm({
+      username: "",
+      password: "",
+    });
   };
 
   return (
