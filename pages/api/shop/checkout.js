@@ -1,5 +1,5 @@
 import { requireToken } from "../../../customMiddleware";
-import { LineItem, Order, User, Vinyl } from "../../../server";
+import { LineItem, Order, Vinyl } from "../../../server";
 
 const handler = async (req, res) => {
   if (req.method === "PUT") {

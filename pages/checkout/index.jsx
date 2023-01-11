@@ -12,7 +12,6 @@ import {
 const Checkout = () => {
   const dispatch = useDispatch();
   const { cart, orders } = useSelector((state) => state.authReducer);
-
   const [paid, setPaid] = useState(false);
 
   return (
