@@ -52,19 +52,19 @@ const authSlice = createSlice({
     changeQuantityLocally(state, action) {
       const cart = JSON.parse(localStorage.getItem("localCart"));
       const adjustedCart = cart.map((item) => {
-        if (action.payload.qty > item.vinyl.stock || action.payload.qty < 1) {
-          state.error = true;
-          state.message = "Unable to modify line item. Please try again.";
-          return item;
-        }
         if (action.payload.id === item.vinyl.id) {
-          state.error = null;
-          item.qty = action.payload.qty;
-          state.message = "Changes saved.";
+          if (action.payload.qty > item.vinyl.stock || action.payload.qty < 1) {
+            state.error = true;
+            state.message = "Unable to modify line item. Please try again.";
+            return item;
+          } else {
+            state.error = null;
+            item.qty = action.payload.qty;
+            state.message = "Changes saved.";
+          }
         }
         return item;
       });
-
       state.cart = [...adjustedCart];
       localStorage.setItem("localCart", JSON.stringify(adjustedCart));
     },
@@ -334,7 +334,15 @@ export const removeLineItem = createAsyncThunk(
   }
 );
 
+export const checkoutItems = createAsyncThunk(
+  "checkoutItems",
+  async (thunkAPI) => {
+    const authorization = localStorage.getItem("authorization");
+  }
+);
+
 export default authSlice.reducer;
+
 export const {
   clearErrorMessage,
   clearSuccessMessage,

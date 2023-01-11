@@ -39,6 +39,7 @@ const UserCart = ({ cart, title, images, controls, orders }) => {
                 changeQuantityLocally({
                   id: item.vinyl.id,
                   qty: item.qty + 1,
+                  vinyl: item.vinyl,
                 })
               );
             }
@@ -70,6 +71,7 @@ const UserCart = ({ cart, title, images, controls, orders }) => {
                 changeQuantityLocally({
                   id: item.vinyl.id,
                   qty: item.qty - 1,
+                  vinyl: item.vinyl,
                 })
               );
             }

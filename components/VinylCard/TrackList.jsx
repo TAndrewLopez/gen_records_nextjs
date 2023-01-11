@@ -18,11 +18,22 @@ const TrackList = ({ vinyl }) => {
     currentTrack.volume = 0.3;
     currentTrack.play();
   };
+
   return (
     <div className="mx-5 p-5">
-      <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
-        Track List:
-      </h2>
+      <div className="mb-3 flex flex-col sm:flex-row item-center gap-3">
+        <h2 className="text-lg font-semibold text-shade-1">Track List:</h2>
+        <p className="text-sm text-shade-4 flex items-center">
+          {"("}
+          Select <PlayIcon twClass={"w-4 h-4 mx-1.5 fill-green-400"} /> to
+          preview song.
+        </p>{" "}
+        <p className="text-sm text-shade-4 flex items-center">
+          Select <StopIcon twClass={"w-4 h-4 mx-1.5 fill-shade-1"} /> to stop
+          preview.
+          {")"}
+        </p>
+      </div>
       <ul className="text-shade-5 grid grid-cols-1 sm:grid-cols-2 gap-x-8">
         {vinyl?.tracks.map((track) => (
           <li key={track.id} className="flex items-center my-2">
