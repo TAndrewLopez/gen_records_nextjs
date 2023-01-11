@@ -13,11 +13,11 @@ const Auth = () => {
   const { loggedIn } = useSelector((state) => state.authReducer);
   const router = useRouter();
 
-  if (loggedIn) {
-    router.push("/profilePage");
-  } else {
-    router.push("/auth");
-  }
+  // if (loggedIn) {
+  //   router.push("/profilePage");
+  // } else {
+  //   router.push("/auth");
+  // }
 
   return (
     <div className="h-screen w-full flex flex-col">
