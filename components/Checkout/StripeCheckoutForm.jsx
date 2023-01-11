@@ -1,12 +1,16 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   useStripe,
   useElements,
   PaymentElement,
 } from "@stripe/react-stripe-js";
 import { formatToUSD } from "../helperFuncs";
+import { checkoutItems } from "../../redux/features/authSlice";
 
 const StripeCheckoutForm = ({ cart, paid }) => {
+  const dispatch = useDispatch();
+  const { loggedIn } = useSelector((state) => state.authReducer);
   // const stripe = useStripe();
   // const elements = useElements();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -14,8 +18,8 @@ const StripeCheckoutForm = ({ cart, paid }) => {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     setIsProcessing(true);
+    dispatch(checkoutItems());
     paid(true);
-    console.log("process payment");
     setIsProcessing(false);
   };
 

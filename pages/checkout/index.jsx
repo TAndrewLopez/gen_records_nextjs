@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { formatToUSD } from "../../components/helperFuncs";
 import {
   Header,
   Footer,

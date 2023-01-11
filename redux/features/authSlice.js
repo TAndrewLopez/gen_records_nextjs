@@ -153,6 +153,16 @@ const authSlice = createSlice({
         state.message = "Item removed from cart.";
       }
     });
+    builder.addCase(checkoutItems.fulfilled, (state, { payload }) => {
+      if (payload.success) {
+        if (state.loggedIn) {
+          console.log("change state for logged in user");
+        } else {
+          localStorage.setItem("localCart", JSON.stringify([]));
+          state.cart = [];
+        }
+      }
+    });
   },
 });
 
@@ -338,6 +348,33 @@ export const checkoutItems = createAsyncThunk(
   "checkoutItems",
   async (thunkAPI) => {
     const authorization = localStorage.getItem("authorization");
+    const localCart = JSON.parse(localStorage.getItem("localCart"));
+
+    let response;
+
+    if (authorization) {
+      //API CALL TO CHECKOUT
+      response = await fetch("/api/shop/checkout", {
+        method: "PUT",
+        headers: {
+          authorization,
+        },
+      })
+        .then((res) => res.json())
+        .catch((err) => console.error(err));
+    } else {
+      //API CALL TO GUEST CHECKOUT
+      response = await fetch("/api/shop/guestCheckout", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ cart: localCart }),
+      })
+        .then((res) => res.json())
+        .catch((err) => console.error(err));
+    }
+    return response;
   }
 );
 
