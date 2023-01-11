@@ -15,6 +15,8 @@ const Auth = () => {
 
   if (loggedIn) {
     router.push("/profilePage");
+  } else {
+    router.push("/auth");
   }
 
   return (
