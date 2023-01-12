@@ -5,31 +5,21 @@ const adminSlice = createSlice({
   initialState: {
     users: [],
     vinyls: [],
-    adminError: null,
   },
   extraReducers: (builder) => {
     //VINYLS THUNK
     builder.addCase(adminGetVinyls.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(adminGetVinyls.rejected, (state, action) => {
-      state.isLoading = false;
-      state.vinyls = [];
-      state.adminError = action.payload;
-    });
     builder.addCase(adminGetVinyls.fulfilled, (state, action) => {
       const { vinyls } = action.payload;
       state.isLoading = false;
       state.vinyls = [...vinyls.sort((a, b) => a.id - b.id)];
     });
+
     //USERS THUNK
     builder.addCase(adminGetUsers.pending, (state) => {
       state.isLoading = true;
-    });
-    builder.addCase(adminGetUsers.rejected, (state, { payload }) => {
-      state.isLoading = false;
-      state.users = [];
-      state.adminError = payload;
     });
     builder.addCase(adminGetUsers.fulfilled, (state, action) => {
       const { users } = action.payload;
@@ -42,7 +32,7 @@ const adminSlice = createSlice({
 export const adminGetVinyls = createAsyncThunk(
   "adminGetVinyls",
   async (thunkAPI) => {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/shop`, {
+    const response = await fetch("/api/shop", {
       method: "GET",
     })
       .then((res) => res.json())
@@ -55,7 +45,7 @@ export const adminGetUsers = createAsyncThunk(
   "adminGetUsers",
   async (thunkAPI) => {
     const authorization = localStorage.getItem("authorization");
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/auth`, {
+    const response = await fetch("/api/admin", {
       method: "GET",
       headers: {
         authorization,

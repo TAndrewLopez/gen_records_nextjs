@@ -14,7 +14,7 @@
 
 <!-- BRIEF DESCRIPTION -->
 <p align="center">
-Gen Records is an E-commerce website. It fetches album and artist data from Spotify's API to represent Vinyl Records. Equipped with user and administrator experiences.
+Gen Records is an E-commerce website. It fetches album and artist data from Spotify's API to represent Vinyl Records. Website is equipped with user and administrator experiences.
 </p>
 
 <!-- VIDEO LINK -->

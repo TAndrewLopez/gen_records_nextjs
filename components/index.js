@@ -1,3 +1,5 @@
+export { default as AdminTable } from "./Admin/AdminTable";
+
 export { default as CreateAccountForm } from "./Auth/CreateAccountForm";
 export { default as DemoLoginButtons } from "./Auth/DemoLoginButtons";
 export { default as LoginForm } from "./Auth/LoginForm";
