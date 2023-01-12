@@ -48,21 +48,6 @@ export default function Shop() {
       </Head>
       <Header headerClass={"flex text-xl justify-between p-5 bg-shade-9"} />
       <div className="flex-1 flex flex-col justify-center bg-shade-7">
-        {/* <ul className="p-3 flex flex-col gap-5 sm:gap-0 sm:flex-row justify-between bg-shade-8">
-          <li>
-            <SearchField
-              setInput={setUserInput}
-              vinyls={allVinyls}
-              filter={setFilterVinyls}
-            />
-          </li>
-          <li>
-            <DropDown
-              setFilterVinyl={setFilterVinyls}
-              vinyls={filteredVinyls}
-            />
-          </li>
-        </ul> */}
         <SubHeader
           setUserInput={setUserInput}
           allVinyls={allVinyls}

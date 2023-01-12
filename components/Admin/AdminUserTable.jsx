@@ -1,11 +1,13 @@
-const AdminTable = () => {
+import { formatToUSD } from "../helperFuncs";
+
+const AdminUserTable = ({ users, vinyls }) => {
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left text-gray-500">
         <thead className="text-xs text-shade-1 uppercase bg-shade-9">
           <tr>
             <th scope="col" className="px-6 py-3">
-              Vinyl Name
+              Name
             </th>
             <th scope="col" className="px-6 py-3">
               Price
@@ -14,15 +16,33 @@ const AdminTable = () => {
               Stock
             </th>
             <th scope="col" className="px-6 py-3">
-              Price
-            </th>
-            <th scope="col" className="px-6 py-3">
               Action
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr className="bg-white border-b">
+          {vinyls.map((vinyl, i) => {
+            const color = i % 2 ? "bg-shade-5 border-b" : "border-b bg-shade-4";
+            return (
+              <tr className={color} key={vinyl.id}>
+                <th
+                  scope="row"
+                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                  {vinyl.name}
+                </th>
+                <td className="px-6 py-4">{`$${formatToUSD(vinyl.price)}`}</td>
+                <td className="px-6 py-4">{vinyl.stock}</td>
+                <td className="px-6 py-4">
+                  <a
+                    href="#"
+                    className="font-medium text-blue-600 hover:underline hover:text-highlight">
+                    Edit
+                  </a>
+                </td>
+              </tr>
+            );
+          })}
+          {/* <tr className="bg-white border-b">
             <th
               scope="row"
               className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
@@ -51,11 +71,11 @@ const AdminTable = () => {
                 Edit
               </a>
             </td>
-          </tr>
+          </tr> */}
         </tbody>
       </table>
     </div>
   );
 };
 
-export default AdminTable;
+export default AdminUserTable;

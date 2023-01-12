@@ -1,8 +1,14 @@
 import { useEffect } from "react";
-import { Header, Footer, AdminTable } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
-import { adminGetUsers, adminGetVinyls } from "../../redux/features/adminSlice";
+import {
+  Header,
+  Footer,
+  AdminVinylTable,
+  AdminUserTable,
+  SubHeader,
+} from "../../components";
 import { SpinnerLoader } from "../../components/assets";
+import { adminGetUsers, adminGetVinyls } from "../../redux/features/adminSlice";
 
 const Admin = () => {
   const dispatch = useDispatch();
@@ -21,8 +27,9 @@ const Admin = () => {
     <div className="h-screen w-full flex flex-col">
       <Header headerClass={"flex text-xl justify-between p-5 bg-shade-9"} />
       <div className="flex-1 bg-shade-7">
+        <SubHeader />
         <div className="m-5">
-          <AdminTable />
+          <AdminVinylTable vinyls={vinyls} />
         </div>
       </div>
       <Footer twClass={"p-5 text-white flex justify-center bg-shade-9"} />
