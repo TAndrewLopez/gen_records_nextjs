@@ -8,10 +8,28 @@ import {
   StripePayment,
   StripeSuccess,
 } from "../../components";
+import { SpinnerLoader } from "../../components/assets";
 
 const Checkout = () => {
-  const { cart, orders } = useSelector((state) => state.authReducer);
+  const { cart, orders, loading } = useSelector((state) => state.authReducer);
   const [paid, setPaid] = useState(false);
+
+  if (loading) {
+    return (
+      <div className="h-screen w-full flex flex-col">
+        <Header headerClass={"flex text-xl justify-between p-5 bg-shade-9"} />
+        <div className="flex-1 bg-shade-7">
+          <h1 className="text-center text-5xl my-5 text-shade-1 whitespace-nowrap after:content=[''] after:block after:h-1 after:mt-2 after:m-auto after:max-w-xs after:bg-accent">
+            Checkout
+          </h1>
+          <div className="flex flex-1 items-center justify-center">
+            <SpinnerLoader />
+          </div>
+        </div>
+        <Footer twClass={"p-5 text-white flex justify-center bg-shade-9 "} />
+      </div>
+    );
+  }
 
   return (
     <div className="h-screen w-full flex flex-col">
@@ -31,6 +49,9 @@ const Checkout = () => {
             </div>
           </div>
         ) : (
+          ""
+        )}
+        {!cart.length && !paid ? (
           <div className="text-shade-1 text-xl flex flex-col justify-center items-center">
             <span className="h-3"></span>
             <p>Cart is empty. </p>
@@ -53,8 +74,10 @@ const Checkout = () => {
               </Link>
             </div>
           </div>
+        ) : (
+          ""
         )}
-        {paid ? <StripeSuccess cart={cart} /> : ""}
+        {paid && <StripeSuccess />}
       </div>
       <Footer twClass={"p-5 text-white flex justify-center bg-shade-9 "} />
     </div>

@@ -1,8 +1,7 @@
 import { useRouter } from "next/router";
 import { CheckIcon } from "../assets";
-import { formatToUSD } from "../helperFuncs";
 
-const StripeSuccess = ({ cart }) => {
+const StripeSuccess = () => {
   const router = useRouter();
   return (
     <div className="sm:max-w-xl rounded flex flex-col items-center bg-shade-2 p-5 m-auto shadow-xl text-center">

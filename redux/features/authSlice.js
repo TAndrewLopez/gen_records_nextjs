@@ -15,6 +15,7 @@ const authSlice = createSlice({
     loggedIn: false,
     error: null,
     message: null,
+    loading: false,
   },
   reducers: {
     clearErrorMessage(state) {
@@ -153,6 +154,9 @@ const authSlice = createSlice({
         state.message = "Item removed from cart.";
       }
     });
+    builder.addCase(checkoutItems.pending, (state, { payload }) => {
+      state.loading = true;
+    });
     builder.addCase(checkoutItems.fulfilled, (state, { payload }) => {
       if (payload.success) {
         if (state.loggedIn) {
@@ -169,6 +173,7 @@ const authSlice = createSlice({
           state.cart = [];
         }
       }
+      state.loading = false;
     });
   },
 });
