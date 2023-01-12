@@ -11,13 +11,21 @@ const UserProfileCard = ({ user: { firstName, lastName, username, img } }) => {
   return (
     <div className="w-full max-w-sm bg-shade-9 rounded-lg shadow-md">
       <div className="flex flex-col items-center py-10">
-        <Image
-          className="w-24 aspect-square mb-3 rounded-full shadow-lg object-cover"
-          src={defaultProfileImage}
-          alt="profile-image"
-          loading="eager"
-          priority={true}
-        />
+        {img ? (
+          <img
+            src={img}
+            className="w-24 aspect-square mb-3 rounded-full shadow-lg object-cover"
+          />
+        ) : (
+          <Image
+            className="w-24 aspect-square mb-3 rounded-full shadow-lg object-cover"
+            src={defaultProfileImage}
+            alt="profile-image"
+            loading="eager"
+            priority={true}
+          />
+        )}
+
         <h5 className="mb-1 text-xl font-medium text-shade-1">
           {`${firstName} ${lastName}`}
         </h5>

@@ -5,7 +5,9 @@ const Footer = ({ twClass }) => {
     <footer className={twClass}>
       <a
         className="flex cursor-pointer"
-        onClick={() => openInNewTab("https://github.com/TAndrewLopez")}>
+        onClick={() =>
+          openInNewTab("https://github.com/TAndrewLopez/gen_records_nextjs")
+        }>
         <GithubIcon
           twClass={
             "w-6 sm:w-8 fill-white hover:fill-sec ease-in-out duration-300"
