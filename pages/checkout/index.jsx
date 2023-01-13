@@ -77,6 +77,7 @@ const Checkout = () => {
         ) : (
           ""
         )}
+
         {paid && <StripeSuccess />}
       </div>
       <Footer twClass={"p-5 text-white flex justify-center bg-shade-9 "} />

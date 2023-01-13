@@ -7,16 +7,11 @@ import {
   Footer,
   DetailedVinylCard,
   TrackList,
-  // ToastNotification,
+  ToastNotification,
 } from "../../components";
 import { SpinnerLoader } from "../../components/assets";
-
 import { getSingleVinyl } from "../../redux/features/shopSlice";
-
-import {
-  clearErrorMessage,
-  clearSuccessMessage,
-} from "../../redux/features/authSlice";
+import { clearToast } from "../../redux/features/authSlice";
 
 const SingleVinylPage = () => {
   const dispatch = useDispatch();
@@ -50,22 +45,21 @@ const SingleVinylPage = () => {
           </div>
         )}
       </div>
-      <Footer twClass={"p-5 text-white flex justify-center bg-shade-9 "} />
-      {/* {message && (
+      {message && (
         <ToastNotification
-          clear={() => dispatch(clearSuccessMessage())}
-          type="success"
+          type={"success"}
           toastMessage={message}
+          clear={() => dispatch(clearToast())}
         />
       )}
-
       {error && message && (
         <ToastNotification
-          clear={() => dispatch(clearErrorMessage())}
+          clear={() => dispatch(clearToast())}
           type="error"
           toastMessage={message}
         />
-      )} */}
+      )}
+      <Footer twClass={"p-5 text-white flex justify-center bg-shade-9 "} />
     </div>
   );
 };

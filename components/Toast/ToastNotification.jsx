@@ -33,7 +33,9 @@ const ToastNotification = ({ type, toastMessage, clear }) => {
       </svg>
       <span className="sr-only">{type}</span>
       <div>
-        <span className="font-medium capitalize">{type}! </span>
+        <span className="font-medium capitalize">
+          {type === "dark" ? "Hello" : type}!{" "}
+        </span>
         {toastMessage}
       </div>
     </div>

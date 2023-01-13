@@ -18,11 +18,7 @@ const authSlice = createSlice({
     loading: false,
   },
   reducers: {
-    clearErrorMessage(state) {
-      state.error = null;
-      state.message = null;
-    },
-    clearSuccessMessage(state) {
+    clearToast(state) {
       state.error = null;
       state.message = null;
     },
@@ -59,8 +55,8 @@ const authSlice = createSlice({
             state.message = "Unable to modify line item. Please try again.";
             return item;
           } else {
-            state.error = null;
             item.qty = action.payload.qty;
+            state.error = null;
             state.message = "Changes saved.";
           }
         }
@@ -83,7 +79,7 @@ const authSlice = createSlice({
       state.isAdmin = isAdmin;
       state.img = img;
       state.loggedIn = true;
-      state.isLoading = false;
+      state.loading = false;
       state.error = null;
     });
     builder.addCase(logout.fulfilled, (state, action) => {
@@ -113,7 +109,7 @@ const authSlice = createSlice({
       state.username = payload.username;
       state.email = payload.email;
       state.img = payload.img;
-      state.isLoading = false;
+      state.loading = false;
       state.error = null;
       state.message = "Information has been saved!";
     });
@@ -146,6 +142,7 @@ const authSlice = createSlice({
       existingItems.push(payload);
       state.cart = [...existingItems.sort((a, b) => a.id - b.id)];
       state.error = null;
+      state.message = "Changes saved.";
     });
     builder.addCase(removeLineItem.fulfilled, (state, { payload }) => {
       if (payload) {
@@ -393,8 +390,7 @@ export const checkoutItems = createAsyncThunk(
 export default authSlice.reducer;
 
 export const {
-  clearErrorMessage,
-  clearSuccessMessage,
+  clearToast,
   getLocalOrder,
   addItemLocally,
   removeItemLocally,

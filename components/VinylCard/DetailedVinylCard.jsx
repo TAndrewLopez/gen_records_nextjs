@@ -133,7 +133,7 @@ const DetailedVinylCard = ({ singleVinyl, cart }) => {
           <p className="text-2xl font-normal text-shade-1">
             {`$${formatToUSD(singleVinyl?.price)}`}
           </p>
-
+          {/* FIXME USE COMPONENTS AND DON'T CALL FUNCTION */}
           <p className="text-shade-1 font-light text-sm">{`Ships on ${date.toDateString()}`}</p>
           {cart?.some((item) => item?.vinyl.id === singleVinyl?.id)
             ? AddRemoveLineItemButton(false, lineItem?.id)

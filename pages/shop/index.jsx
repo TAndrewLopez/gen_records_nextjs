@@ -7,9 +7,11 @@ import {
   Pagination,
   VinylCard,
   SubHeader,
+  ToastNotification,
 } from "../../components";
 import { SpinnerLoader } from "../../components/assets";
 import { getShopVinyls } from "../../redux/features/shopSlice";
+import { clearToast } from "../../redux/features/authSlice";
 
 export default function Shop() {
   const dispatch = useDispatch();
@@ -32,6 +34,9 @@ export default function Shop() {
   useEffect(() => {
     if (!allVinyls.length) {
       dispatch(getShopVinyls());
+    }
+    if (message) {
+      dispatch(clearToast());
     }
   }, []);
 
@@ -84,6 +89,20 @@ export default function Shop() {
           </>
         )}
       </div>
+      {message && (
+        <ToastNotification
+          type={"success"}
+          toastMessage={message}
+          clear={() => dispatch(clearToast())}
+        />
+      )}
+      {error && message && (
+        <ToastNotification
+          clear={() => dispatch(clearToast())}
+          type="error"
+          toastMessage={message}
+        />
+      )}
       <Footer twClass={"p-5 text-white flex justify-center bg-shade-9"} />
     </div>
   );

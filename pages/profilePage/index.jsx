@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -5,15 +6,11 @@ import {
   Footer,
   OrderHistory,
   UserCart,
-  UserCartDropDown,
   UserProfileCard,
   UserProfileForm,
+  ToastNotification,
 } from "../../components";
-
-import {
-  clearErrorMessage,
-  clearSuccessMessage,
-} from "../../redux/features/authSlice";
+import { clearToast } from "../../redux/features/authSlice";
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
@@ -54,22 +51,21 @@ const ProfilePage = () => {
           </div>
         </div>
       </div>
-      <Footer twClass={"p-5 text-white flex justify-center bg-shade-9"} />
-      {/* {message && (
+      <Footer twClass={"p-5 text-white flex justify-center bg-shade-9"} />{" "}
+      {message && (
         <ToastNotification
-          clear={() => dispatch(clearSuccessMessage())}
-          type="success"
+          type={"success"}
           toastMessage={message}
+          clear={() => dispatch(clearToast())}
         />
       )}
-
       {error && message && (
         <ToastNotification
-          clear={() => dispatch(clearErrorMessage())}
+          clear={() => dispatch(clearToast())}
           type="error"
           toastMessage={message}
         />
-      )} */}
+      )}
     </div>
   );
 };
