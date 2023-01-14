@@ -47,11 +47,11 @@ const AdminVinylTable = ({ vinyls }) => {
                 )}`}</td>
                 <td className="px-6 py-4 text-shade-8">{vinyl.stock}</td>
                 <td className="px-6 py-4 text-shade-8">
-                  <a
-                    href="#"
+                  <Link
+                    href={`admin/${vinyl.id}`}
                     className="font-medium text-blue-600 hover:underline hover:text-blue-800">
                     Edit
-                  </a>
+                  </Link>
                 </td>
               </tr>
             );

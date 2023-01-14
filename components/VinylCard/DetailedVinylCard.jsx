@@ -107,7 +107,7 @@ const DetailedVinylCard = ({ singleVinyl, cart }) => {
 
   return (
     <div className="flex sm:gap-5 flex-col sm:flex-row mx-5 p-5 rounded-lg">
-      <div className="flex-1 relative flex items-center">
+      <div className="flex-1 relative flex items-center justify-center">
         <button
           onClick={() => {
             router.back();
@@ -117,7 +117,7 @@ const DetailedVinylCard = ({ singleVinyl, cart }) => {
         </button>
 
         <img
-          className="object-cover w-full"
+          className="object-cover w-full sm:max-w-2xl"
           src={singleVinyl?.img}
           alt="vinyl-image"
         />

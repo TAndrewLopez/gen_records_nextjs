@@ -5,6 +5,7 @@ const adminSlice = createSlice({
   initialState: {
     users: [],
     vinyls: [],
+    artists: [],
   },
   extraReducers: (builder) => {
     //VINYLS THUNK
@@ -13,18 +14,19 @@ const adminSlice = createSlice({
     });
     builder.addCase(adminGetVinyls.fulfilled, (state, action) => {
       const { vinyls } = action.payload;
-      state.isLoading = false;
       state.vinyls = [...vinyls.sort((a, b) => a.id - b.id)];
+      state.isLoading = false;
     });
 
     //USERS THUNK
-    builder.addCase(adminGetUsers.pending, (state) => {
+    builder.addCase(getAdminContent.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(adminGetUsers.fulfilled, (state, action) => {
-      const { users } = action.payload;
+    builder.addCase(getAdminContent.fulfilled, (state, action) => {
+      const { users, artists } = action.payload;
+      state.users = users;
+      state.artists = artists;
       state.isLoading = false;
-      state.users = users.sort((a, b) => a.id - b.id);
     });
   },
 });
@@ -41,8 +43,8 @@ export const adminGetVinyls = createAsyncThunk(
   }
 );
 
-export const adminGetUsers = createAsyncThunk(
-  "adminGetUsers",
+export const getAdminContent = createAsyncThunk(
+  "getAdminContent",
   async (thunkAPI) => {
     const authorization = localStorage.getItem("authorization");
     const response = await fetch("/api/admin", {

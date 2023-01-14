@@ -1,5 +1,6 @@
 export { default as AdminUserTable } from "./Admin/AdminUserTable";
 export { default as AdminVinylTable } from "./Admin/AdminVinylTable";
+export { default as AdminVinylForm } from "./Admin/AdminVinylForm";
 
 export { default as CreateAccountForm } from "./Auth/CreateAccountForm";
 export { default as DemoLoginButtons } from "./Auth/DemoLoginButtons";
