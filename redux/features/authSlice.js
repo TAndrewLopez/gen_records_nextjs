@@ -262,29 +262,26 @@ export const createUser = createAsyncThunk(
   }
 );
 
-export const updateUser = createAsyncThunk(
-  "updateUser",
-  async (form, thunkAPI) => {
-    const authorization = localStorage.getItem("authorization");
-    const { user } = await fetch(`/api/auth/${form.id}`, {
-      method: "PUT",
-      headers: {
-        authorization,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(form),
-    })
-      .then((res) => res.json())
-      .catch((err) => console.error(err));
+export const updateUser = createAsyncThunk("updateUser", async (form) => {
+  const authorization = localStorage.getItem("authorization");
+  const { user } = await fetch(`/api/auth/${form.id}`, {
+    method: "PUT",
+    headers: {
+      authorization,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(form),
+  })
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
 
-    return user;
-  }
-);
+  return user;
+});
 
 //USER SPECIFIC ORDER
 export const getUserOrders = createAsyncThunk(
   "getUserOrders",
-  async (userId, thunkAPI) => {
+  async (userId) => {
     const authorization = localStorage.getItem("authorization");
     const { userOrders } = await fetch(`/api/shop/cart/${userId}`, {
       method: "GET",
@@ -298,25 +295,22 @@ export const getUserOrders = createAsyncThunk(
   }
 );
 
-export const addLineItem = createAsyncThunk(
-  "addLineItem",
-  async (vinylId, thunkAPI) => {
-    const authorization = localStorage.getItem("authorization");
-    const { itemWithContents } = await fetch(`/api/shop/cart/${vinylId}`, {
-      method: "PUT",
-      headers: {
-        authorization,
-      },
-    })
-      .then((res) => res.json())
-      .catch((err) => console.error(err));
-    return itemWithContents;
-  }
-);
+export const addLineItem = createAsyncThunk("addLineItem", async (vinylId) => {
+  const authorization = localStorage.getItem("authorization");
+  const { itemWithContents } = await fetch(`/api/shop/cart/${vinylId}`, {
+    method: "PUT",
+    headers: {
+      authorization,
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
+  return itemWithContents;
+});
 
 export const changeLineItemQty = createAsyncThunk(
   "changeLineItemQty",
-  async (item, thunkAPI) => {
+  async (item) => {
     const authorization = localStorage.getItem("authorization");
     const { updatedItem, error } = await fetch(`/api/shop/cart/qty`, {
       method: "PUT",
@@ -338,7 +332,7 @@ export const changeLineItemQty = createAsyncThunk(
 
 export const removeLineItem = createAsyncThunk(
   "removeLineItem",
-  async (lineItemId, thunkAPI) => {
+  async (lineItemId) => {
     const authorization = localStorage.getItem("authorization");
     const { lineItem } = await fetch(`/api/shop/cart/${lineItemId}`, {
       method: "DELETE",
@@ -353,39 +347,36 @@ export const removeLineItem = createAsyncThunk(
   }
 );
 
-export const checkoutItems = createAsyncThunk(
-  "checkoutItems",
-  async (thunkAPI) => {
-    const authorization = localStorage.getItem("authorization");
-    const localCart = JSON.parse(localStorage.getItem("localCart"));
+export const checkoutItems = createAsyncThunk("checkoutItems", async () => {
+  const authorization = localStorage.getItem("authorization");
+  const localCart = JSON.parse(localStorage.getItem("localCart"));
 
-    let response;
+  let response;
 
-    if (authorization) {
-      //API CALL TO CHECKOUT
-      response = await fetch("/api/shop/checkout", {
-        method: "PUT",
-        headers: {
-          authorization,
-        },
-      })
-        .then((res) => res.json())
-        .catch((err) => console.error(err));
-    } else {
-      //API CALL TO GUEST CHECKOUT
-      response = await fetch("/api/shop/guestCheckout", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ cart: localCart }),
-      })
-        .then((res) => res.json())
-        .catch((err) => console.error(err));
-    }
-    return response;
+  if (authorization) {
+    //API CALL TO CHECKOUT
+    response = await fetch("/api/shop/checkout", {
+      method: "PUT",
+      headers: {
+        authorization,
+      },
+    })
+      .then((res) => res.json())
+      .catch((err) => console.error(err));
+  } else {
+    //API CALL TO GUEST CHECKOUT
+    response = await fetch("/api/shop/guestCheckout", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ cart: localCart }),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.error(err));
   }
-);
+  return response;
+});
 
 export default authSlice.reducer;
 

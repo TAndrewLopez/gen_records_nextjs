@@ -8,23 +8,17 @@ import {
   SubHeader,
 } from "../../components";
 import { SpinnerLoader } from "../../components/assets";
-import {
-  getAdminContent,
-  adminGetVinyls,
-} from "../../redux/features/adminSlice";
+import { getAdminContent } from "../../redux/features/adminSlice";
 
 const Admin = () => {
   const dispatch = useDispatch();
-  const { users, vinyls, isLoading } = useSelector(
+  const { users, vinyls, artists, isLoading } = useSelector(
     (state) => state.adminReducer
   );
 
   useEffect(() => {
-    if (!users.length) {
+    if (!users.length || !vinyls.length || artists.length) {
       dispatch(getAdminContent());
-    }
-    if (!vinyls.length) {
-      dispatch(adminGetVinyls());
     }
   }, []);
 

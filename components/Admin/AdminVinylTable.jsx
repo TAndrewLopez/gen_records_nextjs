@@ -1,6 +1,14 @@
-import { formatToUSD } from "../helperFuncs";
 import Link from "next/link";
+import { useState } from "react";
+import { formatToUSD } from "../helperFuncs";
+import { AdminDeleteModal } from "../../components";
+import { TrashIcon } from "../assets";
+
 const AdminVinylTable = ({ vinyls }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [delID, setDelID] = useState(-1);
+  const selection = vinyls.find((item) => item.id === delID);
+
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left">
@@ -30,9 +38,7 @@ const AdminVinylTable = ({ vinyls }) => {
           {vinyls.map((vinyl, i) => {
             const color = i % 2 ? "bg-shade-5 border-b" : "border-b bg-shade-4";
             return (
-              <tr
-                className={`${color} hover:bg-highlight hover:cursor-pointer`}
-                key={vinyl.id}>
+              <tr className={`${color}`} key={vinyl.id}>
                 <td className="px-6 py-4 text-shade-8">{vinyl.id}</td>
                 <th
                   scope="row"
@@ -46,18 +52,26 @@ const AdminVinylTable = ({ vinyls }) => {
                   vinyl.price
                 )}`}</td>
                 <td className="px-6 py-4 text-shade-8">{vinyl.stock}</td>
-                <td className="px-6 py-4 text-shade-8">
-                  <Link
-                    href={`admin/${vinyl.id}`}
-                    className="font-medium text-blue-600 hover:underline hover:text-blue-800">
-                    Edit
-                  </Link>
+                <td
+                  onClick={() => {
+                    setDelID(vinyl.id);
+                    setShowModal(true);
+                  }}
+                  className="px-6 py-4 text-shade-8 text-center group hover:cursor-pointer">
+                  <button>
+                    <TrashIcon twClass="w-4 fill-shade-9 group-hover:fill-errorRed" />
+                  </button>
                 </td>
               </tr>
             );
           })}
         </tbody>
       </table>
+      {showModal ? (
+        <AdminDeleteModal vinyl={selection} setShowModal={setShowModal} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

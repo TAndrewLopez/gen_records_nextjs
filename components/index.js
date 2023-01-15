@@ -1,3 +1,4 @@
+export { default as AdminDeleteModal } from "./Admin/AdminDeleteModal";
 export { default as AdminUserTable } from "./Admin/AdminUserTable";
 export { default as AdminVinylTable } from "./Admin/AdminVinylTable";
 export { default as AdminVinylForm } from "./Admin/AdminVinylForm";

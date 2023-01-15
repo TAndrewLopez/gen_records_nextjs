@@ -6,57 +6,108 @@ const adminSlice = createSlice({
     users: [],
     vinyls: [],
     artists: [],
+    tracks: [],
+    isLoading: false,
+    error: false,
+    message: "",
+  },
+  reducers: {
+    clearToast(state) {
+      state.error = null;
+      state.message = null;
+    },
   },
   extraReducers: (builder) => {
-    //VINYLS THUNK
-    builder.addCase(adminGetVinyls.pending, (state) => {
-      state.isLoading = true;
-    });
-    builder.addCase(adminGetVinyls.fulfilled, (state, action) => {
-      const { vinyls } = action.payload;
-      state.vinyls = [...vinyls.sort((a, b) => a.id - b.id)];
-      state.isLoading = false;
-    });
-
-    //USERS THUNK
     builder.addCase(getAdminContent.pending, (state) => {
       state.isLoading = true;
     });
+
     builder.addCase(getAdminContent.fulfilled, (state, action) => {
-      const { users, artists } = action.payload;
+      const { users, vinyls, artists, tracks } = action.payload;
+      state.vinyls = vinyls;
       state.users = users;
-      state.artists = artists;
+      state.tracks = tracks;
+      state.artists = artists.sort((a, b) => {
+        if (a.name < b.name) {
+          return -1;
+        }
+        if (a.name > b.name) {
+          return 1;
+        }
+      });
+      state.isLoading = false;
+    });
+
+    builder.addCase(deleteVinyl.pending, (state, action) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(deleteVinyl.fulfilled, (state, { payload }) => {
+      console.log(payload);
+      const filteredVinyls = state.vinyls.filter(
+        (vinyl) => vinyl.id !== payload.vinyl.id
+      );
+      state.vinyls = filteredVinyls;
+      state.isLoading = false;
+    });
+
+    builder.addCase(updateVinyl.pending, (state) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(updateVinyl.fulfilled, (state, { payload }) => {
+      const { updatedVinyl } = payload;
+      const updatedVinyls = state.vinyls.map((vinyl) => {
+        if (vinyl.id === updatedVinyl.id) {
+          vinyl = { ...updatedVinyl };
+        }
+        return vinyl;
+      });
+      state.vinyls = updatedVinyls;
       state.isLoading = false;
     });
   },
 });
 
-export const adminGetVinyls = createAsyncThunk(
-  "adminGetVinyls",
-  async (thunkAPI) => {
-    const response = await fetch("/api/shop", {
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .catch((err) => console.error(err));
-    return response;
-  }
-);
+export const getAdminContent = createAsyncThunk("getAdminContent", async () => {
+  const authorization = localStorage.getItem("authorization");
+  const response = await fetch("/api/admin", {
+    method: "GET",
+    headers: {
+      authorization,
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
+  return response;
+});
 
-export const getAdminContent = createAsyncThunk(
-  "getAdminContent",
-  async (thunkAPI) => {
-    const authorization = localStorage.getItem("authorization");
-    const response = await fetch("/api/admin", {
-      method: "GET",
-      headers: {
-        authorization,
-      },
-    })
-      .then((res) => res.json())
-      .catch((err) => console.error(err));
-    return response;
-  }
-);
+export const updateVinyl = createAsyncThunk("updateVinyl", async (form) => {
+  const authorization = localStorage.getItem("authorization");
+  const response = await fetch(`/api/admin/vinyls/${form.id}`, {
+    method: "PUT",
+    headers: {
+      authorization,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(form),
+  })
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
+  return response;
+});
+
+export const deleteVinyl = createAsyncThunk("deleteVinyl", async (id) => {
+  const authorization = localStorage.getItem("authorization");
+  const response = await fetch(`/api/admin/vinyls/${id}`, {
+    method: "DELETE",
+    headers: {
+      authorization,
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
+  return response;
+});
 
 export default adminSlice.reducer;

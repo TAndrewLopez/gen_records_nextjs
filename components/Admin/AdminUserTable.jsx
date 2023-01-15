@@ -1,4 +1,5 @@
 import { formatToUSD } from "../helperFuncs";
+import { TrashIcon } from "../assets";
 
 const AdminUserTable = ({ users, vinyls }) => {
   return (
@@ -33,10 +34,8 @@ const AdminUserTable = ({ users, vinyls }) => {
                 <td className="px-6 py-4">{`$${formatToUSD(vinyl.price)}`}</td>
                 <td className="px-6 py-4">{vinyl.stock}</td>
                 <td className="px-6 py-4">
-                  <a
-                    href="#"
-                    className="font-medium text-blue-600 hover:underline hover:text-highlight">
-                    Edit
+                  <a className="font-medium text-blue-600 hover:underline hover:text-highlight">
+                    <TrashIcon twClass="w-4 fill-shade-9" />
                   </a>
                 </td>
               </tr>
