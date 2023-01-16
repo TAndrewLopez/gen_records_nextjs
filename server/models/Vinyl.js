@@ -1,12 +1,21 @@
 const conn = require("../conn");
 
 const {
-  Sequelize: { STRING, BOOLEAN, INTEGER },
+  Sequelize: { STRING, INTEGER },
 } = conn;
 
+let idNum = 0;
 const Vinyl = conn.define(
   "vinyl",
   {
+    // id: {
+    //   type: STRING,
+    //   primaryKey: true,
+    //   defaultValue: function () {
+    //     idNum++;
+    //     return `VIN-${idNum}`;
+    //   },
+    // },
     name: {
       type: STRING,
       allowNull: false,

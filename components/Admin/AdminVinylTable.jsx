@@ -12,7 +12,7 @@ const AdminVinylTable = ({ vinyls }) => {
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left">
-        <thead className="text-xs text-shade-1 uppercase bg-shade-9">
+        <thead className="text-sm text-shade-1 uppercase bg-shade-9">
           <tr>
             <th scope="col" className="px-6 py-3">
               ID
@@ -38,12 +38,15 @@ const AdminVinylTable = ({ vinyls }) => {
           {vinyls.map((vinyl, i) => {
             const color = i % 2 ? "bg-shade-5 border-b" : "border-b bg-shade-4";
             return (
-              <tr className={`${color}`} key={vinyl.id}>
+              <tr
+                onClick={() => console.log(vinyl)}
+                className={`${color}`}
+                key={vinyl.id}>
                 <td className="px-6 py-4 text-shade-8">{vinyl.id}</td>
                 <th
                   scope="row"
                   className="px-6 py-4 font-medium text-shade-9 whitespace-nowrap">
-                  <Link className="hover:text-sec" href={`/shop/${vinyl.id}`}>
+                  <Link className="hover:text-sec" href={`/admin/${vinyl.id}`}>
                     {vinyl.name}
                   </Link>
                 </th>
@@ -57,9 +60,9 @@ const AdminVinylTable = ({ vinyls }) => {
                     setDelID(vinyl.id);
                     setShowModal(true);
                   }}
-                  className="px-6 py-4 text-shade-8 text-center group hover:cursor-pointer">
-                  <button>
-                    <TrashIcon twClass="w-4 fill-shade-9 group-hover:fill-errorRed" />
+                  className="text-center text-shade-8">
+                  <button className="p-3 group">
+                    <TrashIcon twClass="w-4 fill-errorRed group-hover:fill-highlight" />
                   </button>
                 </td>
               </tr>
@@ -67,10 +70,9 @@ const AdminVinylTable = ({ vinyls }) => {
           })}
         </tbody>
       </table>
-      {showModal ? (
+
+      {showModal && (
         <AdminDeleteModal vinyl={selection} setShowModal={setShowModal} />
-      ) : (
-        <></>
       )}
     </div>
   );

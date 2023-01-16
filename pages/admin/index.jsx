@@ -4,8 +4,7 @@ import {
   Header,
   Footer,
   AdminVinylTable,
-  AdminUserTable,
-  SubHeader,
+  AdminSubHeader,
 } from "../../components";
 import { SpinnerLoader } from "../../components/assets";
 import { getAdminContent } from "../../redux/features/adminSlice";
@@ -26,7 +25,7 @@ const Admin = () => {
     <div className="h-screen w-full flex flex-col">
       <Header headerClass={"flex text-xl justify-between p-5 bg-shade-9"} />
       <div className="flex-1 flex flex-col justify-center bg-shade-7">
-        <SubHeader />
+        <AdminSubHeader />
         {isLoading ? (
           <div className="flex flex-1 items-center justify-center">
             <SpinnerLoader />

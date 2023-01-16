@@ -1,12 +1,21 @@
 const conn = require("../conn");
 
 const {
-  Sequelize: { INTEGER },
+  Sequelize: { STRING, INTEGER },
 } = conn;
 
+let idNum = 0;
 const LineItem = conn.define(
   "lineItem",
   {
+    // id: {
+    //   type: STRING,
+    //   primaryKey: true,
+    //   defaultValue: function () {
+    //     idNum++;
+    //     return `ITM-${idNum}`;
+    //   },
+    // },
     qty: {
       type: INTEGER,
       defaultValue: 1,

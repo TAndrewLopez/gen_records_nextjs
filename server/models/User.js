@@ -1,13 +1,25 @@
+const { UUIDV4 } = require("sequelize");
+
 const conn = require("../conn");
 
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const Order = require("./Order");
+
 const {
-  Sequelize: { STRING, BOOLEAN },
+  Sequelize: { STRING, BOOLEAN, UUID },
 } = conn;
 
+let idNum = 0;
 const User = conn.define("user", {
+  // id: {
+  //   type: STRING,
+  //   primaryKey: true,
+  //   defaultValue: function () {
+  //     idNum++;
+  //     return `USE-${idNum}`;
+  //   },
+  // },
   firstName: {
     type: STRING,
     defaultValue: "New",
