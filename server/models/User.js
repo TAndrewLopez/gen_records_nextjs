@@ -10,16 +10,12 @@ const {
   Sequelize: { STRING, BOOLEAN, UUID },
 } = conn;
 
-let idNum = 0;
 const User = conn.define("user", {
-  // id: {
-  //   type: STRING,
-  //   primaryKey: true,
-  //   defaultValue: function () {
-  //     idNum++;
-  //     return `USE-${idNum}`;
-  //   },
-  // },
+  id: {
+    type: UUID,
+    defaultValue: UUIDV4,
+    primaryKey: true,
+  },
   firstName: {
     type: STRING,
     defaultValue: "New",

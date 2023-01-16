@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { useState } from "react";
 import { formatToUSD } from "../helperFuncs";
-import { AdminDeleteModal } from "../../components";
+import { AdminDeleteModal } from "..";
 import { TrashIcon } from "../assets";
 
-const AdminVinylTable = ({ vinyls }) => {
+const AdminTable = ({ vinyls }) => {
   const [showModal, setShowModal] = useState(false);
   const [delID, setDelID] = useState(-1);
   const selection = vinyls.find((item) => item.id === delID);
@@ -78,4 +78,4 @@ const AdminVinylTable = ({ vinyls }) => {
   );
 };
 
-export default AdminVinylTable;
+export default AdminTable;
