@@ -1,7 +1,7 @@
 const conn = require("../conn");
 
 const {
-  Sequelize: { STRING, BOOLEAN },
+  Sequelize: { BOOLEAN },
 } = conn;
 
 const Order = conn.define("order", {

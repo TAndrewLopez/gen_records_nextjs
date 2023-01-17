@@ -5,6 +5,7 @@ export { default as AdminSearchField } from "./Admin/AdminSearchField";
 export { default as AdminSelections } from "./Admin/AdminSelections";
 export { default as AdminSubHeader } from "./Admin/AdminSubHeader";
 export { default as AdminUserTable } from "./Admin/AdminUserTable";
+export { default as AdminOrdersTable } from "./Admin/AdminOrdersTable";
 export { default as AdminVinylTable } from "./Admin/AdminVinylTable";
 export { default as AdminVinylForm } from "./Admin/AdminVinylForm";
 

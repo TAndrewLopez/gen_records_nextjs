@@ -10,12 +10,12 @@ const AdminSubHeader = () => {
       <li>
         <AdminSearchField />
       </li>
-      <li>
+      {/* <li>
         <AdminSelections />
-      </li>
-      <li>
+      </li> */}
+      {/* <li>
         <AdminDropDown />
-      </li>
+      </li> */}
     </ul>
   );
 };

@@ -85,35 +85,7 @@ const AdminVinylTable = ({ vinyls }) => {
 export default AdminVinylTable;
 
 /*
-    {orders.map((order, i) => {
-            const color = i % 2 ? "bg-shade-5 border-b" : "border-b bg-shade-4";
-            return (
-              <tr
-                onClick={() => console.log(order)}
-                className={`${color}`}
-                key={order.id}>
-                <td className="px-6 py-4 font-bold text-shade-8">{order.id}</td>
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-shade-9 whitespace-nowrap">
-                  <Link className="hover:text-sec" href={`/admin/${order.id}`}>
-                    {`User order: ${order.userId} / Current status: ${order.complete}`}
-                  </Link>
-                </th>
-                <td className="px-6 py-4 text-shade-8">Order</td>
-                <td
-                  onClick={() => {
-                    setDelID(order.id);
-                    setShowModal(true);
-                  }}
-                  className="text-center text-shade-8">
-                  <button className="p-3 group">
-                    <TrashIcon twClass="w-4 fill-errorRed group-hover:fill-highlight" />
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
+
 
           {users.map((user, i) => {
             const color = i % 2 ? "bg-shade-5 border-b" : "border-b bg-shade-4";

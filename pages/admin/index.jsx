@@ -7,6 +7,7 @@ import {
   AdminAccordion,
   AdminVinylTable,
   AdminUserTable,
+  AdminOrdersTable,
 } from "../../components";
 
 import { SpinnerLoader } from "../../components/assets";
@@ -42,6 +43,10 @@ const Admin = () => {
             <AdminAccordion
               name="Users"
               element={<AdminUserTable users={users} />}
+            />
+            <AdminAccordion
+              name="Orders"
+              element={<AdminOrdersTable orders={orders} />}
             />
             {/* <AdminAccordion data={users} />
             <AdminAccordion data={orders} />
