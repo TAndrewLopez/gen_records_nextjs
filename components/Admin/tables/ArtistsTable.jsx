@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { AdminDeleteModal } from "..";
-import { TrashIcon } from "../assets";
+import { DeleteModal } from "../../../components";
+import { EditIcon, TrashIcon } from "../../assets";
 
 const ArtistsTable = ({ artists }) => {
   const [showModal, setShowModal] = useState(false);
@@ -33,21 +33,23 @@ const ArtistsTable = ({ artists }) => {
           {artists.map((artist, i) => {
             const color = i % 2 ? "bg-shade-5 border-b" : "border-b bg-shade-4";
             return (
-              <tr
-                onClick={() => console.log(artist)}
-                className={`${color}`}
-                key={artist.id}>
+              <tr className={`${color}`} key={artist.id}>
                 <th className="px-6 py-4 text-shade-8">{artist.id}</th>
                 <td className="px-6 py-4 text-shade-8">{`${artist.name}`}</td>
                 <td className="px-6 py-4 text-shade-8">{artist.genre}</td>
                 <td className="px-6 py-4 text-shade-8">{artist.spotifyId}</td>
-                <td
-                  onClick={() => {
-                    setSelID(artist.id);
-                    setShowModal(true);
-                  }}
-                  className="text-center text-shade-8">
-                  <button className="p-3 group ">
+                <td className="text-center text-shade-8">
+                  <button
+                    onClick={() => console.log(artist)}
+                    className="p-3 group ">
+                    <EditIcon twClass="w-4 fill-shade-7 group-hover:fill-highlight" />
+                  </button>
+                  <button
+                    onClick={() => {
+                      setSelID(artist.id);
+                      setShowModal(true);
+                    }}
+                    className="p-3 group ">
                     <TrashIcon twClass="w-4 fill-errorRed group-hover:fill-highlight" />
                   </button>
                 </td>
@@ -58,10 +60,10 @@ const ArtistsTable = ({ artists }) => {
       </table>
 
       {showModal && (
-        <AdminDeleteModal
+        <DeleteModal
           selection={selection}
           setShowModal={setShowModal}
-          message={`${selection.id}`}
+          message={`Artist ID #${selection.id} named ${selection.name}`}
         />
       )}
     </div>

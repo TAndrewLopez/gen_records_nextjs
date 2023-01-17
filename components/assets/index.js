@@ -3,6 +3,7 @@ export { default as CartFailure } from "./CartFailure";
 export { default as CartIcon } from "./CartIcon";
 export { default as CartSuccess } from "./CartSuccess";
 export { default as CheckIcon } from "./CheckIcon";
+export { default as EditIcon } from "./EditIcon";
 export { default as ErrorIcon } from "./ErrorIcon";
 export { default as ExclamationIcon } from "./ExclamationIcon";
 export { default as GithubIcon } from "./GithubIcon";

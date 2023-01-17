@@ -38,7 +38,7 @@ const DeleteModal = ({ setShowModal, message }) => {
 
             <button
               onClick={() => {
-                dispatch(deleteVinyl(vinyl.id));
+                // dispatch(deleteVinyl(vinyl.id));
                 setShowModal(false);
               }}
               data-modal-hide="popup-modal"

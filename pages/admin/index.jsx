@@ -40,28 +40,34 @@ const Admin = () => {
           <div className="flex-1 m-5 space-y-3">
             <Accordion
               name="Artists"
+              amount={artists.length}
               element={<ArtistsTable artists={artists} />}
             />
             <Accordion
               name="Line Items"
+              amount={lineItems.length}
               element={<LineItemsTable lineItems={lineItems} />}
             />
             <Accordion
               name="Orders"
+              amount={orders.length}
               element={<OrdersTable orders={orders} />}
             />
             <Accordion
               name="Tracks"
+              amount={tracks.length}
               element={<TracksTable tracks={tracks} />}
             />
-            <Accordion name="Users" element={<UsersTable users={users} />} />
+            <Accordion
+              name="Users"
+              amount={users.length}
+              element={<UsersTable users={users} />}
+            />
             <Accordion
               name="Vinyls"
+              amount={vinyls.length}
               element={<VinylsTable vinyls={vinyls} />}
             />
-            {/* <Accordion data={users} />
-            <Accordion data={orders} />
-            <Accordion data={artists} /> */}
           </div>
         )}
       </div>

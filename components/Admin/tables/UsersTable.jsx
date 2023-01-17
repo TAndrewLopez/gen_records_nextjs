@@ -1,7 +1,6 @@
-import Link from "next/link";
 import { useState } from "react";
-import { AdminDeleteModal } from "..";
-import { TrashIcon } from "../assets";
+import { DeleteModal } from "../../../components";
+import { EditIcon, TrashIcon } from "../../assets";
 
 const UsersTable = ({ users }) => {
   const [showModal, setShowModal] = useState(false);
@@ -40,31 +39,31 @@ const UsersTable = ({ users }) => {
           {users.map((user, i) => {
             const color = i % 2 ? "bg-shade-5 border-b" : "border-b bg-shade-4";
             return (
-              <tr
-                onClick={() => console.log(user)}
-                className={`${color}`}
-                key={user.id}>
+              <tr className={`${color}`} key={user.id}>
                 <th className="px-6 py-4 text-shade-8">{user.id}</th>
                 <td className="px-6 py-4 text-shade-8">{user.firstName}</td>
                 <td className="px-6 py-4 text-shade-8">{user.lastName}</td>
                 <td
                   scope="row"
                   className="px-6 py-4 text-shade-9 whitespace-nowrap">
-                  <Link className="hover:text-sec" href={`/admin/${user.id}`}>
-                    {user.username}
-                  </Link>
+                  {user.username}
                 </td>
                 <td className="px-6 py-4 text-shade-8">{user.email}</td>
                 <td className="px-6 py-4 text-shade-8">
                   {user.isAdmin ? "Administrator" : "User"}
                 </td>
-                <td
-                  onClick={() => {
-                    setSelID(user.id);
-                    setShowModal(true);
-                  }}
-                  className="text-center text-shade-8">
-                  <button className="p-3 group ">
+                <td className="text-center text-shade-8">
+                  <button
+                    onClick={() => console.log(user)}
+                    className="p-3 group ">
+                    <EditIcon twClass="w-4 fill-shade-7 group-hover:fill-highlight" />
+                  </button>
+                  <button
+                    onClick={() => {
+                      setSelID(user.id);
+                      setShowModal(true);
+                    }}
+                    className="p-3 group ">
                     <TrashIcon twClass="w-4 fill-errorRed group-hover:fill-highlight" />
                   </button>
                 </td>
@@ -75,10 +74,10 @@ const UsersTable = ({ users }) => {
       </table>
 
       {showModal && (
-        <AdminDeleteModal
+        <DeleteModal
           selection={selection}
           setShowModal={setShowModal}
-          message={`ID #${selection.id} ${selection.firstName} ${selection.lastName}`}
+          message={`User ID #${selection.id} named ${selection.firstName} ${selection.lastName}`}
         />
       )}
     </div>

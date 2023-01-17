@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { AdminDeleteModal } from "..";
-import { TrashIcon } from "../assets";
+import { DeleteModal } from "../../../components";
+import { EditIcon, TrashIcon } from "../../assets";
 
 const OrdersTable = ({ orders }) => {
   const [showModal, setShowModal] = useState(false);
@@ -33,23 +33,25 @@ const OrdersTable = ({ orders }) => {
           {orders.map((order, i) => {
             const color = i % 2 ? "bg-shade-5 border-b" : "border-b bg-shade-4";
             return (
-              <tr
-                onClick={() => console.log(order)}
-                className={`${color}`}
-                key={order.id}>
+              <tr className={`${color}`} key={order.id}>
                 <th className="px-6 py-4 text-shade-8">{order.id}</th>
                 <td className="px-6 py-4 text-shade-8">{`${order.complete}`}</td>
                 <td className="px-6 py-4 text-shade-8">{order.createdAt}</td>
                 <td className="px-6 py-4 text-shade-8">
                   {order.user.username}
                 </td>
-                <td
-                  onClick={() => {
-                    setSelID(order.id);
-                    setShowModal(true);
-                  }}
-                  className="text-center text-shade-8">
-                  <button className="p-3 group ">
+                <td className="text-center text-shade-8">
+                  <button
+                    onClick={() => console.log(order)}
+                    className="p-3 group ">
+                    <EditIcon twClass="w-4 fill-shade-7 group-hover:fill-highlight" />
+                  </button>
+                  <button
+                    onClick={() => {
+                      setSelID(order.id);
+                      setShowModal(true);
+                    }}
+                    className="p-3 group ">
                     <TrashIcon twClass="w-4 fill-errorRed group-hover:fill-highlight" />
                   </button>
                 </td>
@@ -60,10 +62,10 @@ const OrdersTable = ({ orders }) => {
       </table>
 
       {showModal && (
-        <AdminDeleteModal
+        <DeleteModal
           selection={selection}
           setShowModal={setShowModal}
-          message={`Order ID #${selection.id} by User ID #${selection.userId}`}
+          message={`Order ID #${selection.id} for ${selection.user.username}`}
         />
       )}
     </div>

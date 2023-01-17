@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { AdminDeleteModal } from "..";
-import { TrashIcon } from "../assets";
+import { DeleteModal } from "../../../components";
+import { EditIcon, TrashIcon } from "../../assets";
 
 const TracksTable = ({ tracks }) => {
   const [showModal, setShowModal] = useState(false);
@@ -36,10 +36,7 @@ const TracksTable = ({ tracks }) => {
           {tracks?.map((track, i) => {
             const color = i % 2 ? "bg-shade-5 border-b" : "border-b bg-shade-4";
             return (
-              <tr
-                onClick={() => console.log(track)}
-                className={`${color}`}
-                key={track.id}>
+              <tr className={`${color}`} key={track.id}>
                 <th className="px-6 py-4 text-shade-8">{track.id}</th>
                 <td className="px-6 py-4 text-shade-8">{track.name}</td>
                 <td className="px-6 py-4 text-shade-8">{track.vinyl.name}</td>
@@ -54,13 +51,18 @@ const TracksTable = ({ tracks }) => {
                   )}
                 </td>
 
-                <td
-                  onClick={() => {
-                    setSelID(track.id);
-                    setShowModal(true);
-                  }}
-                  className="text-center text-shade-8">
-                  <button className="p-3 group ">
+                <td className="text-center text-shade-8">
+                  <button
+                    onClick={() => console.log(track)}
+                    className="p-3 group ">
+                    <EditIcon twClass="w-4 fill-shade-7 group-hover:fill-highlight" />
+                  </button>
+                  <button
+                    onClick={() => {
+                      setSelID(track.id);
+                      setShowModal(true);
+                    }}
+                    className="p-3 group ">
                     <TrashIcon twClass="w-4 fill-errorRed group-hover:fill-highlight" />
                   </button>
                 </td>
@@ -71,10 +73,10 @@ const TracksTable = ({ tracks }) => {
       </table>
 
       {showModal && (
-        <AdminDeleteModal
+        <DeleteModal
           selection={selection}
           setShowModal={setShowModal}
-          message={`${selection.id}`}
+          message={`Track ID #${selection.id} on Album ${selection.vinyl.name}`}
         />
       )}
     </div>

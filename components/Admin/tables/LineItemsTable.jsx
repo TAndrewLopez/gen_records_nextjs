@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { AdminDeleteModal } from "..";
-import { TrashIcon } from "../assets";
+import { DeleteModal } from "../../../components";
+import { EditIcon, TrashIcon } from "../../assets";
 
 const LineItemsTable = ({ lineItems }) => {
   const [showModal, setShowModal] = useState(false);
@@ -16,7 +16,13 @@ const LineItemsTable = ({ lineItems }) => {
               Id
             </th>
             <th scope="col" className="px-6 py-3">
+              Vinyl Name
+            </th>
+            <th scope="col" className="px-6 py-3">
               Quantity
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Order ID
             </th>
             <th scope="col" className="px-6 py-3 text-center">
               Action
@@ -27,19 +33,23 @@ const LineItemsTable = ({ lineItems }) => {
           {lineItems?.map((item, i) => {
             const color = i % 2 ? "bg-shade-5 border-b" : "border-b bg-shade-4";
             return (
-              <tr
-                onClick={() => console.log(item)}
-                className={`${color}`}
-                key={item.id}>
+              <tr className={`${color}`} key={item.id}>
                 <th className="px-6 py-4 text-shade-8">{item.id}</th>
+                <td className="px-6 py-4 text-shade-8">{item.vinyl.name}</td>
                 <td className="px-6 py-4 text-shade-8">{item.qty}</td>
-                <td
-                  onClick={() => {
-                    setSelID(item.id);
-                    setShowModal(true);
-                  }}
-                  className="text-center text-shade-8">
-                  <button className="p-3 group ">
+                <td className="px-6 py-4 text-shade-8">{item.order.id}</td>
+                <td className="text-center text-shade-8">
+                  <button
+                    onClick={() => console.log(item)}
+                    className="p-3 group ">
+                    <EditIcon twClass="w-4 fill-shade-7 group-hover:fill-highlight" />
+                  </button>
+                  <button
+                    onClick={() => {
+                      setSelID(item.id);
+                      setShowModal(true);
+                    }}
+                    className="p-3 group ">
                     <TrashIcon twClass="w-4 fill-errorRed group-hover:fill-highlight" />
                   </button>
                 </td>
@@ -50,10 +60,10 @@ const LineItemsTable = ({ lineItems }) => {
       </table>
 
       {showModal && (
-        <AdminDeleteModal
+        <DeleteModal
           selection={selection}
           setShowModal={setShowModal}
-          message={`${selection.id}`}
+          message={`Line Item ID #${selection.id} for Order #${selection.order.id}`}
         />
       )}
     </div>
