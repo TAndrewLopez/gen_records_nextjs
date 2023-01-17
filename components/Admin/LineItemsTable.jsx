@@ -5,7 +5,7 @@ import { TrashIcon } from "../assets";
 const LineItemsTable = ({ lineItems }) => {
   const [showModal, setShowModal] = useState(false);
   const [selID, setSelID] = useState(-1);
-  const selection = lineItems?.find((artist) => artist.id === selID);
+  const selection = lineItems?.find((item) => item.id === selID);
 
   return (
     <div className="relative overflow-x-auto shadow-md border-t border-shade-6">
@@ -24,20 +24,18 @@ const LineItemsTable = ({ lineItems }) => {
           </tr>
         </thead>
         <tbody>
-          {lineItems?.map((artist, i) => {
+          {lineItems?.map((item, i) => {
             const color = i % 2 ? "bg-shade-5 border-b" : "border-b bg-shade-4";
             return (
               <tr
-                onClick={() => console.log(artist)}
+                onClick={() => console.log(item)}
                 className={`${color}`}
-                key={artist.id}>
-                <th className="px-6 py-4 text-shade-8">{artist.id}</th>
-                <td className="px-6 py-4 text-shade-8">{`${artist.name}`}</td>
-                <td className="px-6 py-4 text-shade-8">{artist.genre}</td>
-                <td className="px-6 py-4 text-shade-8">{artist.spotifyId}</td>
+                key={item.id}>
+                <th className="px-6 py-4 text-shade-8">{item.id}</th>
+                <td className="px-6 py-4 text-shade-8">{item.qty}</td>
                 <td
                   onClick={() => {
-                    setSelID(artist.id);
+                    setSelID(item.id);
                     setShowModal(true);
                   }}
                   className="text-center text-shade-8">

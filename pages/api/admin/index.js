@@ -16,7 +16,9 @@ const handler = async (req, res) => {
     const artists = await Artist.findAll({ include: Vinyl });
     artists.sort((a, b) => a.id - b.id);
 
-    const tracks = await Track.findAll();
+    const tracks = await Track.findAll({
+      include: Vinyl,
+    });
     tracks.sort((a, b) => a.id - b.id);
 
     const orders = await Order.findAll({

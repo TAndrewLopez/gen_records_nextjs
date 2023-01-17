@@ -64,12 +64,10 @@ const TrackList = ({ vinyl }) => {
             )}
             <div className="w-full flex items-center justify-between ">
               {track.name}
-              {track.explicit ? (
+              {track.explicit && (
                 <span className="px-2 py-px ml-2 font-light text-sm text-shade-1 rounded border border-errorRed">
                   Explicit
                 </span>
-              ) : (
-                ""
               )}
             </div>
           </li>

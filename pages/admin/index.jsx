@@ -18,9 +18,8 @@ import { getAdminContent } from "../../redux/features/adminSlice";
 
 const Admin = () => {
   const dispatch = useDispatch();
-  const { users, vinyls, artists, orders, isLoading } = useSelector(
-    (state) => state.adminReducer
-  );
+  const { users, vinyls, artists, orders, lineItems, tracks, isLoading } =
+    useSelector((state) => state.adminReducer);
 
   useEffect(() => {
     if (!users.length || !vinyls.length || !artists.length || !orders.length) {
@@ -43,12 +42,18 @@ const Admin = () => {
               name="Artists"
               element={<ArtistsTable artists={artists} />}
             />
-            <Accordion name="Line Items" element={<LineItemsTable />} />
+            <Accordion
+              name="Line Items"
+              element={<LineItemsTable lineItems={lineItems} />}
+            />
             <Accordion
               name="Orders"
               element={<OrdersTable orders={orders} />}
             />
-            <Accordion name="Tracks" element={<TracksTable />} />
+            <Accordion
+              name="Tracks"
+              element={<TracksTable tracks={tracks} />}
+            />
             <Accordion name="Users" element={<UsersTable users={users} />} />
             <Accordion
               name="Vinyls"
