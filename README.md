@@ -32,7 +32,7 @@ Gen Records is an E-commerce website. It fetches album and artist data from Spot
 
 ### Contact
 
-If you are interested in reporting any issues, would like to ask further questions about this project or would just like to connect with us, you may contact the team directly at:
+If you are interested in reporting any issues, would like to ask further questions about this project or would just like to connect, you may contact me directly at:
 
 **Andrew Dobson**
 | [linkedin.com/in/tandrewlopez](https://linkedin.com/in/tandrewlopez) | [github.com/TAndrewLopez](https://github.com/TAndrewLopez) |
