@@ -1,7 +1,7 @@
 const conn = require("../conn");
 
 const {
-  Sequelize: { STRING, INTEGER },
+  Sequelize: { INTEGER },
 } = conn;
 
 const LineItem = conn.define(

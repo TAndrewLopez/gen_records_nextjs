@@ -21,6 +21,9 @@ const ArtistsTable = ({ artists }) => {
             <th scope="col" className="px-6 py-3">
               Genre
             </th>
+            <th scope="col" className="px-6 py-3">
+              Spotify ID
+            </th>
             <th scope="col" className="px-6 py-3 text-center">
               Action
             </th>
@@ -37,6 +40,7 @@ const ArtistsTable = ({ artists }) => {
                 <th className="px-6 py-4 text-shade-8">{artist.id}</th>
                 <td className="px-6 py-4 text-shade-8">{`${artist.name}`}</td>
                 <td className="px-6 py-4 text-shade-8">{artist.genre}</td>
+                <td className="px-6 py-4 text-shade-8">{artist.spotifyId}</td>
                 <td
                   onClick={() => {
                     setSelID(artist.id);

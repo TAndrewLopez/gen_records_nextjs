@@ -24,7 +24,7 @@ const handler = async (req, res) => {
     });
     orders.sort((a, b) => a.id - b.id);
 
-    const lineItems = await LineItem.findAll();
+    const lineItems = await LineItem.findAll({ include: [Order, Vinyl] });
     lineItems.sort((a, b) => a.id - b.id);
 
     return res.status(200).json({
