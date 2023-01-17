@@ -1,4 +1,4 @@
-const AdminSelections = () => {
+const Selections = () => {
   return (
     <div className="flex flex-col sm:flex-row">
       <div className="text-shade-1 font-semibold mb-2 sm:mb-0 sm:mr-5 text-center">
@@ -49,4 +49,4 @@ const AdminSelections = () => {
   );
 };
 
-export default AdminSelections;
+export default Selections;

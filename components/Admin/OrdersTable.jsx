@@ -1,12 +1,11 @@
-import Link from "next/link";
 import { useState } from "react";
 import { AdminDeleteModal } from "..";
 import { TrashIcon } from "../assets";
 
-const AdminUserTable = ({ users }) => {
+const OrdersTable = ({ orders }) => {
   const [showModal, setShowModal] = useState(false);
   const [selID, setSelID] = useState(-1);
-  const selection = users.find((user) => user.id === selID);
+  const selection = orders.find((order) => order.id === selID);
 
   return (
     <div className="relative overflow-x-auto shadow-md border-t border-shade-6">
@@ -17,50 +16,36 @@ const AdminUserTable = ({ users }) => {
               Id
             </th>
             <th scope="col" className="px-6 py-3">
-              First Name
+              Complete Status
             </th>
             <th scope="col" className="px-6 py-3">
-              Last Name
+              Created At
             </th>
             <th scope="col" className="px-6 py-3">
-              Username
+              User
             </th>
-            <th scope="col" className="px-6 py-3">
-              Email
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Privileges
-            </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 text-center">
               Action
             </th>
           </tr>
         </thead>
         <tbody>
-          {users.map((user, i) => {
+          {orders.map((order, i) => {
             const color = i % 2 ? "bg-shade-5 border-b" : "border-b bg-shade-4";
             return (
               <tr
-                onClick={() => console.log(user)}
+                onClick={() => console.log(order)}
                 className={`${color}`}
-                key={user.id}>
-                <th className="px-6 py-4 text-shade-8">{user.id}</th>
-                <td className="px-6 py-4 text-shade-8">{user.firstName}</td>
-                <td className="px-6 py-4 text-shade-8">{user.lastName}</td>
-                <td
-                  scope="row"
-                  className="px-6 py-4 text-shade-9 whitespace-nowrap">
-                  <Link className="hover:text-sec" href={`/admin/${user.id}`}>
-                    {user.username}
-                  </Link>
-                </td>
-                <td className="px-6 py-4 text-shade-8">{user.email}</td>
+                key={order.id}>
+                <th className="px-6 py-4 text-shade-8">{order.id}</th>
+                <td className="px-6 py-4 text-shade-8">{`${order.complete}`}</td>
+                <td className="px-6 py-4 text-shade-8">{order.createdAt}</td>
                 <td className="px-6 py-4 text-shade-8">
-                  {user.isAdmin ? "Administrator" : "User"}
+                  {order.user.username}
                 </td>
                 <td
                   onClick={() => {
-                    setSelID(user.id);
+                    setSelID(order.id);
                     setShowModal(true);
                   }}
                   className="text-center text-shade-8">
@@ -78,11 +63,11 @@ const AdminUserTable = ({ users }) => {
         <AdminDeleteModal
           selection={selection}
           setShowModal={setShowModal}
-          message={`ID #${selection.id} ${selection.name} by ${selection.artist.name}`}
+          message={`Order ID #${selection.id} by User ID #${selection.userId}`}
         />
       )}
     </div>
   );
 };
 
-export default AdminUserTable;
+export default OrdersTable;

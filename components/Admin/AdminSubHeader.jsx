@@ -1,8 +1,4 @@
-import {
-  AdminSearchField,
-  AdminDropDown,
-  AdminSelections,
-} from "../../components";
+import { AdminSearchField, AdminDropDown, AdminSelections } from "..";
 
 const AdminSubHeader = () => {
   return (

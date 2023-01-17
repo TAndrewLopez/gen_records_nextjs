@@ -4,7 +4,7 @@ import { AdminDeleteModal } from "..";
 import { TrashIcon } from "../assets";
 import { formatToUSD } from "../helperFuncs";
 
-const AdminVinylTable = ({ vinyls }) => {
+const VinylsTable = ({ vinyls }) => {
   const [showModal, setShowModal] = useState(false);
   const [delID, setDelID] = useState(-1);
   const selection = vinyls.find((item) => item.id === delID);
@@ -29,7 +29,7 @@ const AdminVinylTable = ({ vinyls }) => {
             <th scope="col" className="px-6 py-3">
               Stock
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 text-center">
               Action
             </th>
           </tr>
@@ -82,7 +82,7 @@ const AdminVinylTable = ({ vinyls }) => {
   );
 };
 
-export default AdminVinylTable;
+export default VinylsTable;
 
 /*
 

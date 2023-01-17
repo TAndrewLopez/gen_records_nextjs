@@ -4,10 +4,13 @@ import {
   Header,
   Footer,
   AdminSubHeader,
-  AdminAccordion,
-  AdminVinylTable,
-  AdminUserTable,
-  AdminOrdersTable,
+  Accordion,
+  ArtistsTable,
+  LineItemsTable,
+  VinylsTable,
+  UsersTable,
+  OrdersTable,
+  TracksTable,
 } from "../../components";
 
 import { SpinnerLoader } from "../../components/assets";
@@ -29,28 +32,31 @@ const Admin = () => {
     <div className="h-screen w-full flex flex-col">
       <Header headerClass={"flex text-xl justify-between p-5 bg-shade-9"} />
       <div className="flex-1 flex flex-col justify-center bg-shade-7">
-        <AdminSubHeader />
+        {/* <AdminSubHeader /> */}
         {isLoading ? (
           <div className="flex flex-1 items-center justify-center">
             <SpinnerLoader />
           </div>
         ) : (
           <div className="flex-1 m-5 space-y-3">
-            <AdminAccordion
-              name="Vinyls"
-              element={<AdminVinylTable vinyls={vinyls} />}
+            <Accordion
+              name="Artists"
+              element={<ArtistsTable artists={artists} />}
             />
-            <AdminAccordion
-              name="Users"
-              element={<AdminUserTable users={users} />}
-            />
-            <AdminAccordion
+            <Accordion name="Line Items" element={<LineItemsTable />} />
+            <Accordion
               name="Orders"
-              element={<AdminOrdersTable orders={orders} />}
+              element={<OrdersTable orders={orders} />}
             />
-            {/* <AdminAccordion data={users} />
-            <AdminAccordion data={orders} />
-            <AdminAccordion data={artists} /> */}
+            <Accordion name="Tracks" element={<TracksTable />} />
+            <Accordion name="Users" element={<UsersTable users={users} />} />
+            <Accordion
+              name="Vinyls"
+              element={<VinylsTable vinyls={vinyls} />}
+            />
+            {/* <Accordion data={users} />
+            <Accordion data={orders} />
+            <Accordion data={artists} /> */}
           </div>
         )}
       </div>

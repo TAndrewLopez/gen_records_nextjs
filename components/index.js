@@ -1,13 +1,16 @@
-export { default as AdminAccordion } from "./Admin/AdminAccordion";
-export { default as AdminDeleteModal } from "./Admin/AdminDeleteModal";
+export { default as Accordion } from "./Admin/Accordion";
 export { default as AdminDropDown } from "./Admin/AdminDropDown";
 export { default as AdminSearchField } from "./Admin/AdminSearchField";
-export { default as AdminSelections } from "./Admin/AdminSelections";
 export { default as AdminSubHeader } from "./Admin/AdminSubHeader";
-export { default as AdminUserTable } from "./Admin/AdminUserTable";
-export { default as AdminOrdersTable } from "./Admin/AdminOrdersTable";
-export { default as AdminVinylTable } from "./Admin/AdminVinylTable";
-export { default as AdminVinylForm } from "./Admin/AdminVinylForm";
+export { default as ArtistsTable } from "./Admin/ArtistsTable";
+export { default as DeleteModal } from "./Admin/DeleteModal";
+export { default as LineItemsTable } from "./Admin/LineItemsTable";
+export { default as OrdersTable } from "./Admin/OrdersTable";
+export { default as Selections } from "./Admin/Selections";
+export { default as TracksTable } from "./Admin/TracksTable";
+export { default as UsersTable } from "./Admin/UsersTable";
+export { default as VinylForm } from "./Admin/VinylForm";
+export { default as VinylsTable } from "./Admin/VinylsTable";
 
 export { default as CreateAccountForm } from "./Auth/CreateAccountForm";
 export { default as DemoLoginButtons } from "./Auth/DemoLoginButtons";

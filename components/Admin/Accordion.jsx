@@ -1,6 +1,6 @@
 import { SortDownArrow } from "../assets";
 
-const AdminAccordion = ({ name, element }) => {
+const Accordion = ({ name, element }) => {
   return (
     <div className="relative w-full overflow-hidden">
       <input
@@ -12,7 +12,7 @@ const AdminAccordion = ({ name, element }) => {
       </div>
       {/* ICON */}
       <div
-        className="absolute top-3 right-3 text-shade-1 transition-transform duration-300 rotate-0
+        className="absolute top-3 right-3 text-shade-1 transition-transform duration-500 rotate-0
       peer-checked:rotate-180">
         <SortDownArrow twClass="h-6 w-6 fill-shade-1" />
       </div>
@@ -24,4 +24,4 @@ const AdminAccordion = ({ name, element }) => {
   );
 };
 
-export default AdminAccordion;
+export default Accordion;

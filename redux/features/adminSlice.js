@@ -8,6 +8,7 @@ const adminSlice = createSlice({
     artists: [],
     tracks: [],
     orders: [],
+    lineItems: [],
     isLoading: false,
     error: false,
     message: "",
@@ -24,28 +25,22 @@ const adminSlice = createSlice({
     });
 
     builder.addCase(getAdminContent.fulfilled, (state, action) => {
-      const { users, vinyls, artists, tracks, orders } = action.payload;
+      const { users, vinyls, artists, tracks, orders, lineItems } =
+        action.payload;
       state.vinyls = vinyls;
       state.users = users;
       state.tracks = tracks;
       state.orders = orders;
-      state.artists = artists.sort((a, b) => {
-        if (a.name < b.name) {
-          return -1;
-        }
-        if (a.name > b.name) {
-          return 1;
-        }
-      });
+      state.artists = artists;
+      state.lineItems = lineItems;
       state.isLoading = false;
     });
 
-    builder.addCase(deleteVinyl.pending, (state, action) => {
+    builder.addCase(deleteVinyl.pending, (state) => {
       state.isLoading = true;
     });
 
     builder.addCase(deleteVinyl.fulfilled, (state, { payload }) => {
-      console.log(payload);
       const filteredVinyls = state.vinyls.filter(
         (vinyl) => vinyl.id !== payload.vinyl.id
       );

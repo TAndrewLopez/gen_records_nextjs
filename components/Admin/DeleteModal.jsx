@@ -2,7 +2,7 @@ import { ExclamationIcon } from "../assets";
 import { useDispatch } from "react-redux";
 import { deleteVinyl } from "../../redux/features/adminSlice";
 
-const AdminDeleteModal = ({ setShowModal, message }) => {
+const DeleteModal = ({ setShowModal, message }) => {
   const dispatch = useDispatch();
   return (
     <div
@@ -60,4 +60,4 @@ const AdminDeleteModal = ({ setShowModal, message }) => {
   );
 };
 
-export default AdminDeleteModal;
+export default DeleteModal;
