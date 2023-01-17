@@ -2,9 +2,8 @@ import { ExclamationIcon } from "../assets";
 import { useDispatch } from "react-redux";
 import { deleteVinyl } from "../../redux/features/adminSlice";
 
-const AdminDeleteModal = ({ setShowModal, vinyl }) => {
+const AdminDeleteModal = ({ setShowModal, message }) => {
   const dispatch = useDispatch();
-
   return (
     <div
       id="popup-modal"
@@ -35,9 +34,7 @@ const AdminDeleteModal = ({ setShowModal, vinyl }) => {
             <h3 className="mb-3 text-lg font-normal text-shade-5">
               Are you sure you want to delete your selection?
             </h3>
-            <p className="mb-5 text-md font-normal text-highlight">
-              {`ID #${vinyl.id} ${vinyl.name} by ${vinyl.artist.name}`}
-            </p>
+            <p className="mb-5 text-md font-normal text-highlight">{message}</p>
 
             <button
               onClick={() => {

@@ -7,6 +7,7 @@ const adminSlice = createSlice({
     vinyls: [],
     artists: [],
     tracks: [],
+    orders: [],
     isLoading: false,
     error: false,
     message: "",
@@ -23,10 +24,11 @@ const adminSlice = createSlice({
     });
 
     builder.addCase(getAdminContent.fulfilled, (state, action) => {
-      const { users, vinyls, artists, tracks } = action.payload;
+      const { users, vinyls, artists, tracks, orders } = action.payload;
       state.vinyls = vinyls;
       state.users = users;
       state.tracks = tracks;
+      state.orders = orders;
       state.artists = artists.sort((a, b) => {
         if (a.name < b.name) {
           return -1;

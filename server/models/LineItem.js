@@ -4,18 +4,9 @@ const {
   Sequelize: { STRING, INTEGER },
 } = conn;
 
-let idNum = 0;
 const LineItem = conn.define(
   "lineItem",
   {
-    id: {
-      type: STRING,
-      primaryKey: true,
-      defaultValue: function () {
-        idNum++;
-        return `${idNum}-ITM`;
-      },
-    },
     qty: {
       type: INTEGER,
       defaultValue: 1,

@@ -1,21 +1,13 @@
-const { UUIDV4 } = require("sequelize");
-
 const conn = require("../conn");
-
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const Order = require("./Order");
 
 const {
-  Sequelize: { STRING, BOOLEAN, UUID },
+  Sequelize: { STRING, BOOLEAN },
 } = conn;
 
 const User = conn.define("user", {
-  id: {
-    type: UUID,
-    defaultValue: UUIDV4,
-    primaryKey: true,
-  },
   firstName: {
     type: STRING,
     defaultValue: "New",
@@ -72,7 +64,6 @@ User.prototype.generateToken = function () {
 User.authenticate = async function ({ username, password }) {
   const user = await this.findOne({ where: { username } });
 
-  //TODO: RETURNS THE STATUS BUT NOT THE ERROR OBJECT
   if (!user || !(await user.correctPassword(password))) {
     const error = Error("Incorrect Credentials.");
     error.status = 401;

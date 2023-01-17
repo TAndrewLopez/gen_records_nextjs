@@ -4,24 +4,14 @@ const {
   Sequelize: { STRING, INTEGER },
 } = conn;
 
-let idNum = 0;
 const Vinyl = conn.define(
   "vinyl",
   {
-    id: {
-      type: STRING,
-      primaryKey: true,
-      defaultValue: function () {
-        idNum++;
-        return `${idNum}-VIN`;
-      },
-    },
     name: {
       type: STRING,
       allowNull: false,
     },
     price: {
-      //ALLOW DECIMALS?
       type: INTEGER,
       allowNull: false,
     },

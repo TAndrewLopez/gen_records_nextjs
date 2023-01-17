@@ -19,9 +19,12 @@ const handler = async (req, res) => {
     const tracks = await Track.findAll();
     tracks.sort((a, b) => a.id - b.id);
 
+    const orders = await Order.findAll();
+    orders.sort((a, b) => a.id - b.id);
+
     return res
       .status(200)
-      .json({ success: true, users, vinyls, artists, tracks });
+      .json({ success: true, users, vinyls, artists, tracks, orders });
   } catch (error) {
     console.log(error);
     res.status(500).json({

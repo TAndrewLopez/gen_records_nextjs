@@ -3,20 +3,23 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   Header,
   Footer,
-  AdminVinylTable,
   AdminSubHeader,
+  AdminAccordion,
+  AdminVinylTable,
+  AdminUserTable,
 } from "../../components";
+
 import { SpinnerLoader } from "../../components/assets";
 import { getAdminContent } from "../../redux/features/adminSlice";
 
 const Admin = () => {
   const dispatch = useDispatch();
-  const { users, vinyls, artists, isLoading } = useSelector(
+  const { users, vinyls, artists, orders, isLoading } = useSelector(
     (state) => state.adminReducer
   );
 
   useEffect(() => {
-    if (!users.length || !vinyls.length || artists.length) {
+    if (!users.length || !vinyls.length || !artists.length || !orders.length) {
       dispatch(getAdminContent());
     }
   }, []);
@@ -31,8 +34,18 @@ const Admin = () => {
             <SpinnerLoader />
           </div>
         ) : (
-          <div className="m-5">
-            <AdminVinylTable vinyls={vinyls} />
+          <div className="flex-1 m-5 space-y-3">
+            <AdminAccordion
+              name="Vinyls"
+              element={<AdminVinylTable vinyls={vinyls} />}
+            />
+            <AdminAccordion
+              name="Users"
+              element={<AdminUserTable users={users} />}
+            />
+            {/* <AdminAccordion data={users} />
+            <AdminAccordion data={orders} />
+            <AdminAccordion data={artists} /> */}
           </div>
         )}
       </div>
