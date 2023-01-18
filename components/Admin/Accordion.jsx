@@ -7,7 +7,7 @@ const Accordion = ({ name, amount, element }) => {
         type="checkbox"
         className="peer absolute top-0 inset-x-0 w-full h-12 opacity-0 z-10 cursor-pointer"
       />
-      <div className="bg-shade-9 h-12 w-full pl-5 flex items-center">
+      <div className="bg-shade-9 h-12 w-full pl-5 flex items-center rounded-t">
         <h1 className="text-lg font-semibold text-shade-1">{`${name} (${amount})`}</h1>
       </div>
       {/* ICON */}

@@ -38,7 +38,7 @@ const OrdersTable = ({ orders }) => {
                 <td className="px-6 py-4 text-shade-8">{`${order.complete}`}</td>
                 <td className="px-6 py-4 text-shade-8">{order.createdAt}</td>
                 <td className="px-6 py-4 text-shade-8">
-                  {order.user.username}
+                  {order.user?.username || "guest"}
                 </td>
                 <td className="text-center text-shade-8">
                   <button
@@ -65,7 +65,9 @@ const OrdersTable = ({ orders }) => {
         <DeleteModal
           selection={selection}
           setShowModal={setShowModal}
-          message={`Order ID #${selection.id} for ${selection.user.username}`}
+          message={`Order ID #${selection.id} for ${
+            selection.user?.username || "guest account"
+          }`}
         />
       )}
     </div>
