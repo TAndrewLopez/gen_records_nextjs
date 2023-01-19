@@ -59,7 +59,7 @@ const LineItemForm = ({ lineItem }) => {
           {orders.map((order) => (
             <option
               value={order.id}
-              key={order.id}>{`${order.id}. ${order.user.username}`}</option>
+              key={order.id}>{`${order.id}. ${order.user?.username}`}</option>
           ))}
         </select>
       </div>
