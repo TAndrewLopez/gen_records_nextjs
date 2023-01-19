@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 const conn = require("./conn");
-const { User, Artist, Track, Vinyl } = require("../server");
+const { User, Artist, Track, Vinyl, Order, LineItem } = require("../server");
 const { randomUsers, specificUsers } = require("./helpers/dummyData.json");
 const { getAlbumData } = require("./helpers/spotifyAPI");
 
@@ -10,13 +10,10 @@ const seed = async () => {
     console.log("Seeding database...");
     await conn.sync({ force: true });
 
-    // LOADING USERS
-    await Promise.all(specificUsers.map((user) => User.create(user)));
-    await Promise.all(randomUsers.map((user) => User.create(user)));
-
-    //LOADING ALBUMS
+    console.log("Fetching data from spotify...");
     const [albums, artists] = await getAlbumData();
 
+    console.log("Creating product information...");
     await Promise.all(
       albums.map(async (album) => {
         //find artist to assign to product
@@ -63,7 +60,13 @@ const seed = async () => {
       })
     );
 
-    console.log("Seed Successful");
+    console.log("Creating specific users...");
+    await Promise.all(specificUsers.map((user) => User.create(user)));
+
+    console.log("Creating random users...");
+    await Promise.all(randomUsers.map((user) => User.create(user)));
+
+    console.log("Seed Successful.");
   } catch (error) {
     conn.close();
     console.error("An error has occurred while seeding.", error);

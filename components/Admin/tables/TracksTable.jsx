@@ -39,7 +39,7 @@ const TracksTable = ({ tracks }) => {
               <tr className={`${color}`} key={track.id}>
                 <th className="px-6 py-4 text-shade-8">{track.id}</th>
                 <td className="px-6 py-4 text-shade-8">{track.name}</td>
-                <td className="px-6 py-4 text-shade-8">{track.vinyl.name}</td>
+                <td className="px-6 py-4 text-shade-8">{track.vinyl?.name}</td>
                 <td className="px-6 py-4 text-shade-8">
                   {track.preview ? "Yes" : "N/A"}
                 </td>
@@ -76,7 +76,7 @@ const TracksTable = ({ tracks }) => {
         <DeleteModal
           selection={selection}
           setShowModal={setShowModal}
-          message={`Track ID #${selection.id} on Album ${selection.vinyl.name}`}
+          message={`Track ID #${selection.id} on Album ${selection.vinyl?.name}`}
         />
       )}
     </div>

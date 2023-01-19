@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Header,
@@ -11,6 +11,7 @@ import {
   UsersTable,
   OrdersTable,
   TracksTable,
+  Drawer,
 } from "../../components";
 
 import { SpinnerLoader } from "../../components/assets";
@@ -18,8 +19,10 @@ import { getAdminContent } from "../../redux/features/adminSlice";
 
 const Admin = () => {
   const dispatch = useDispatch();
-  const { users, vinyls, artists, orders, lineItems, tracks, isLoading } =
+  const { artists, lineItems, orders, tracks, users, vinyls, isLoading } =
     useSelector((state) => state.adminReducer);
+
+  const [edit, setEdit] = useState(false);
 
   useEffect(() => {
     if (!users.length || !vinyls.length || !artists.length || !orders.length) {
@@ -41,7 +44,7 @@ const Admin = () => {
             <Accordion
               name="Artists"
               amount={artists.length}
-              element={<ArtistsTable artists={artists} />}
+              element={<ArtistsTable artists={artists} edit={setEdit} />}
             />
             <Accordion
               name="Line Items"
@@ -71,6 +74,7 @@ const Admin = () => {
           </div>
         )}
       </div>
+      <Drawer edit={edit} setEdit={setEdit} />
       <Footer twClass={"p-5 text-white flex justify-center bg-shade-9"} />
     </div>
   );

@@ -44,7 +44,7 @@ const VinylsTable = ({ vinyls }) => {
                   className="px-6 py-4 text-shade-8 whitespace-nowrap">
                   {vinyl.name}
                 </td>
-                <td className="px-6 py-4 text-shade-8">{vinyl.artist.name}</td>
+                <td className="px-6 py-4 text-shade-8">{vinyl.artist?.name}</td>
                 <td className="px-6 py-4 text-shade-8">
                   {`$${formatToUSD(vinyl.price)}`}
                 </td>
@@ -74,7 +74,7 @@ const VinylsTable = ({ vinyls }) => {
         <DeleteModal
           selection={selection}
           setShowModal={setShowModal}
-          message={`Vinyl ID #${selection.id} ${selection.name} by ${selection.artist.name}`}
+          message={`Vinyl ID #${selection.id} ${selection.name} by ${selection.artist?.name}`}
         />
       )}
     </div>

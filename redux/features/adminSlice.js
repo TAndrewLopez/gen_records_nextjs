@@ -23,7 +23,14 @@ const adminSlice = createSlice({
     builder.addCase(getAdminContent.pending, (state) => {
       state.isLoading = true;
     });
+    builder.addCase(deleteVinyl.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(updateVinyl.pending, (state) => {
+      state.isLoading = true;
+    });
 
+    //FULFILLED
     builder.addCase(getAdminContent.fulfilled, (state, action) => {
       const { users, vinyls, artists, tracks, orders, lineItems } =
         action.payload;
@@ -35,21 +42,12 @@ const adminSlice = createSlice({
       state.lineItems = lineItems;
       state.isLoading = false;
     });
-
-    builder.addCase(deleteVinyl.pending, (state) => {
-      state.isLoading = true;
-    });
-
     builder.addCase(deleteVinyl.fulfilled, (state, { payload }) => {
       const filteredVinyls = state.vinyls.filter(
         (vinyl) => vinyl.id !== payload.vinyl.id
       );
       state.vinyls = filteredVinyls;
       state.isLoading = false;
-    });
-
-    builder.addCase(updateVinyl.pending, (state) => {
-      state.isLoading = true;
     });
 
     builder.addCase(updateVinyl.fulfilled, (state, { payload }) => {
@@ -94,6 +92,72 @@ export const updateVinyl = createAsyncThunk("updateVinyl", async (form) => {
   return response;
 });
 
+//DELETE
+export const deleteArtist = createAsyncThunk("deleteArtist", async (id) => {
+  const authorization = localStorage.getItem("authorization");
+  const response = await fetch(`/api/admin/artists/${id}`, {
+    method: "DELETE",
+    headers: {
+      authorization,
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
+  return response;
+});
+
+export const deleteLineItem = createAsyncThunk("deleteLineItem", async (id) => {
+  const authorization = localStorage.getItem("authorization");
+  const response = await fetch(`/api/admin/lineItems/${id}`, {
+    method: "DELETE",
+    headers: {
+      authorization,
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
+  return response;
+});
+
+export const deleteOrder = createAsyncThunk("deleteOrder", async (id) => {
+  const authorization = localStorage.getItem("authorization");
+  const response = await fetch(`/api/admin/orders/${id}`, {
+    method: "DELETE",
+    headers: {
+      authorization,
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
+  return response;
+});
+
+export const deleteTrack = createAsyncThunk("deleteTrack", async (id) => {
+  const authorization = localStorage.getItem("authorization");
+  const response = await fetch(`/api/admin/tracks/${id}`, {
+    method: "DELETE",
+    headers: {
+      authorization,
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
+  return response;
+});
+
+export const deleteUser = createAsyncThunk("deleteUser", async (id) => {
+  const authorization = localStorage.getItem("authorization");
+  const response = await fetch(`/api/admin/users/${id}`, {
+    method: "DELETE",
+    headers: {
+      authorization,
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
+  return response;
+});
+
 export const deleteVinyl = createAsyncThunk("deleteVinyl", async (id) => {
   const authorization = localStorage.getItem("authorization");
   const response = await fetch(`/api/admin/vinyls/${id}`, {
@@ -106,5 +170,20 @@ export const deleteVinyl = createAsyncThunk("deleteVinyl", async (id) => {
     .catch((err) => console.error(err));
   return response;
 });
+
+// export const updateSomething = createAsyncThunk("updateSomething", async (form) => {
+//   const authorization = localStorage.getItem("authorization");
+//   const response = await fetch(`/api/admin/vinyls/${form.id}`, {
+//     method: "PUT",
+//     headers: {
+//       authorization,
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(form),
+//   })
+//     .then((res) => res.json())
+//     .catch((err) => console.error(err));
+//   return response;
+// });
 
 export default adminSlice.reducer;

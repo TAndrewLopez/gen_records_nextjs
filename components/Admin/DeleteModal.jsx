@@ -2,14 +2,14 @@ import { ExclamationIcon } from "../assets";
 import { useDispatch } from "react-redux";
 import { deleteVinyl } from "../../redux/features/adminSlice";
 
-const DeleteModal = ({ setShowModal, message }) => {
+const DeleteModal = ({ setShowModal, message, delItem }) => {
   const dispatch = useDispatch();
   return (
     <div
       id="popup-modal"
       tabIndex="-1"
-      className="fixed top-0 left-0 right-0 z-50 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
-      <div className="relative left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-md md:h-auto">
+      className="fixed top-0 left-0 right-0 bottom-0 z-50 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
+      <div className="relative left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full sm:h-full max-w-md md:h-auto">
         <div className="relative bg-shade-9 rounded-lg shadow">
           <button
             onClick={() => setShowModal(false)}
@@ -38,7 +38,7 @@ const DeleteModal = ({ setShowModal, message }) => {
 
             <button
               onClick={() => {
-                // dispatch(deleteVinyl(vinyl.id));
+                delItem();
                 setShowModal(false);
               }}
               data-modal-hide="popup-modal"

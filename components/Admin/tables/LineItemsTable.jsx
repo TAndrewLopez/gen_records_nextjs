@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { DeleteModal } from "../../../components";
+import { deleteLineItem } from "../../../redux/features/adminSlice";
 import { EditIcon, TrashIcon } from "../../assets";
 
 const LineItemsTable = ({ lineItems }) => {
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [selID, setSelID] = useState(-1);
   const selection = lineItems?.find((item) => item.id === selID);
@@ -61,9 +64,9 @@ const LineItemsTable = ({ lineItems }) => {
 
       {showModal && (
         <DeleteModal
-          selection={selection}
           setShowModal={setShowModal}
           message={`Line Item ID #${selection.id} for Order #${selection.order.id}`}
+          delItem={() => dispatch(deleteLineItem(selection.id))}
         />
       )}
     </div>

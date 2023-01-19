@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { DeleteModal } from "../../../components";
+import { deleteOrder } from "../../../redux/features/adminSlice";
 import { EditIcon, TrashIcon } from "../../assets";
 
 const OrdersTable = ({ orders }) => {
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [selID, setSelID] = useState(-1);
   const selection = orders.find((order) => order.id === selID);
@@ -63,11 +66,11 @@ const OrdersTable = ({ orders }) => {
 
       {showModal && (
         <DeleteModal
-          selection={selection}
           setShowModal={setShowModal}
           message={`Order ID #${selection.id} for ${
             selection.user?.username || "guest account"
           }`}
+          delItem={() => dispatch(deleteOrder(selection.id))}
         />
       )}
     </div>

@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { DeleteModal } from "../../../components";
 import { EditIcon, TrashIcon } from "../../assets";
+import { deleteArtist } from "../../../redux/features/adminSlice";
 
-const ArtistsTable = ({ artists }) => {
+const ArtistsTable = ({ artists, edit }) => {
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [selID, setSelID] = useState(-1);
   const selection = artists.find((artist) => artist.id === selID);
@@ -40,7 +43,10 @@ const ArtistsTable = ({ artists }) => {
                 <td className="px-6 py-4 text-shade-8">{artist.spotifyId}</td>
                 <td className="text-center text-shade-8">
                   <button
-                    onClick={() => console.log(artist)}
+                    onClick={() => {
+                      edit(true);
+                      console.log(artist);
+                    }}
                     className="p-3 group ">
                     <EditIcon twClass="w-4 fill-shade-7 group-hover:fill-highlight" />
                   </button>
@@ -61,9 +67,9 @@ const ArtistsTable = ({ artists }) => {
 
       {showModal && (
         <DeleteModal
-          selection={selection}
           setShowModal={setShowModal}
           message={`Artist ID #${selection.id} named ${selection.name}`}
+          delItem={() => dispatch(deleteArtist(selection.id))}
         />
       )}
     </div>

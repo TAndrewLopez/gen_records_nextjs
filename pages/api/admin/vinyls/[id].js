@@ -1,5 +1,5 @@
-import { isAdmin, requireToken } from "../../../../customMiddleware";
 import { Artist, Track, Vinyl } from "../../../../server";
+import { isAdmin, requireToken } from "../../../../customMiddleware";
 
 const handler = async (req, res) => {
   if (req.method === "PUT") {

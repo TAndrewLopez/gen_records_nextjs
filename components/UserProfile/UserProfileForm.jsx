@@ -1,41 +1,38 @@
-import { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { updateUser } from "../../redux/features/authSlice";
 
 const UserProfileForm = () => {
   const dispatch = useDispatch();
-  const { id } = useSelector((state) => state.authReducer);
 
-  //FORM STATES
-  const firstNameRef = useRef();
-  const lastNameRef = useRef();
-  const emailRef = useRef();
-  const usernameRef = useRef();
-  const passwordRef = useRef();
-  const confirmRef = useRef();
-  const imgURLRef = useRef();
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    username: "",
+    password: "",
+    confirm: "",
+    img: "",
+  });
 
   const handleSubmit = (evt) => {
-    const form = {
-      id,
-      firstName: firstNameRef.current.value,
-      lastName: lastNameRef.current.value,
-      email: emailRef.current.value,
-      username: usernameRef.current.value,
-      password: passwordRef.current.value,
-      img: imgURLRef.current.value,
-    };
-
     evt.preventDefault();
-
-    if (passwordRef.current.value !== confirmRef.current.value) {
+    if (form.password !== form.confirm) {
       console.error("passwords don't match");
       return;
     }
-
     dispatch(updateUser(form));
-    evt.target.reset();
+    setForm({
+      firstName: "",
+      lastName: "",
+      email: "",
+      username: "",
+      password: "",
+      confirm: "",
+      img: "",
+    });
   };
+
   return (
     <div className="w-full max-w-md p-10 bg-shade-9 rounded-lg shadow-md sm:p-8">
       <h5 className="text-xl font-semibold leading-none text-shade-1 mb-5">
@@ -45,11 +42,14 @@ const UserProfileForm = () => {
         <div className="grid md:grid-cols-2 md:gap-6">
           <div className="relative z-0 mb-6 w-full group">
             <input
-              ref={firstNameRef}
+              onChange={(evt) =>
+                setForm({ ...form, firstName: evt.target.value })
+              }
               name="floating_first_name"
               id="floating_first_name"
               className="block py-2.5 px-0 w-full text-sm text-shade-1 bg-transparent border-0 border-b-2 border-shade-1 appearance-none focus:outline-none focus:ring-0 focus:border-accent peer"
               placeholder=" "
+              value={form.firstName}
             />
             <label
               htmlFor="floating_first_name"
@@ -59,11 +59,14 @@ const UserProfileForm = () => {
           </div>
           <div className="relative z-0 mb-6 w-full group">
             <input
-              ref={lastNameRef}
+              onChange={(evt) =>
+                setForm({ ...form, lastName: evt.target.value })
+              }
               name="floating_last_name"
               id="floating_last_name"
               className="block py-2.5 px-0 w-full text-sm text-shade-1 bg-transparent border-0 border-b-2 border-shade-1 appearance-none focus:outline-none focus:ring-0 focus:border-accent peer"
               placeholder=" "
+              value={form.lastName}
             />
             <label
               htmlFor="floating_last_name"
@@ -74,12 +77,13 @@ const UserProfileForm = () => {
         </div>
         <div className="relative z-0 mb-6 w-full group">
           <input
-            ref={emailRef}
+            onChange={(evt) => setForm({ ...form, email: evt.target.value })}
             type="email"
             name="floating_email"
             id="floating_email"
             className="block py-2.5 px-0 w-full text-sm text-shade-1 bg-transparent border-0 border-b-2 border-shade-1 appearance-none focus:outline-none focus:ring-0 focus:border-accent peer"
             placeholder=" "
+            value={form.email}
           />
           <label
             htmlFor="floating_email"
@@ -89,11 +93,12 @@ const UserProfileForm = () => {
         </div>
         <div className="relative z-0 mb-6 w-full group">
           <input
-            ref={usernameRef}
+            onChange={(evt) => setForm({ ...form, username: evt.target.value })}
             name="floating_username"
             id="floating_username"
             className="block py-2.5 px-0 w-full text-sm text-shade-1 bg-transparent border-0 border-b-2 border-shade-1 appearance-none focus:outline-none focus:ring-0 focus:border-accent peer"
             placeholder=" "
+            value={form.username}
           />
           <label
             htmlFor="floating_username"
@@ -101,14 +106,17 @@ const UserProfileForm = () => {
             Username
           </label>
         </div>
-        <div className="grid md:grid-cols-2 md:gap-6">
+        {/* <div className="grid md:grid-cols-2 md:gap-6">
           <div className="relative z-0 mb-6 w-full group">
             <input
-              ref={passwordRef}
+              onChange={(evt) =>
+                setForm({ ...form, password: evt.target.value })
+              }
               name="floating_password"
               id="floating_password"
               className="block py-2.5 px-0 w-full text-sm text-shade-1 bg-transparent border-0 border-b-2 border-shade-1 appearance-none focus:outline-none focus:ring-0 focus:border-accent peer"
               placeholder=" "
+              value={form.password}
             />
             <label
               htmlFor="floating_password"
@@ -118,11 +126,14 @@ const UserProfileForm = () => {
           </div>
           <div className="relative z-0 mb-6 w-full group">
             <input
-              ref={confirmRef}
+              onChange={(evt) =>
+                setForm({ ...form, confirm: evt.target.value })
+              }
               name="floating_confirm"
               id="floating_confirm"
               className="block py-2.5 px-0 w-full text-sm text-shade-1 bg-transparent border-0 border-b-2 border-shade-1 appearance-none focus:outline-none focus:ring-0 focus:border-accent peer"
               placeholder=" "
+              value={form.confirm}
             />
             <label
               htmlFor="floating_confirm"
@@ -130,17 +141,18 @@ const UserProfileForm = () => {
               Confirm password
             </label>
           </div>
-        </div>
+        </div> */}
         <div className="relative z-0 mb-6 w-full group">
           <input
-            ref={imgURLRef}
-            name="floating_username"
-            id="floating_username"
+            onChange={(evt) => setForm({ ...form, img: evt.target.value })}
+            name="floating_img_url"
+            id="floating_img_url"
             className="block py-2.5 px-0 w-full text-sm text-shade-1 bg-transparent border-0 border-b-2 border-shade-1 appearance-none focus:outline-none focus:ring-0 focus:border-accent peer"
             placeholder=" "
+            value={form.img}
           />
           <label
-            htmlFor="floating_username"
+            htmlFor="floating_img_url"
             className="peer-focus:font-medium absolute text-sm text-shade-5 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-accent peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
             Image Url
           </label>
