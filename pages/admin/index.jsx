@@ -25,9 +25,7 @@ const Admin = () => {
   const [edit, setEdit] = useState(false);
 
   useEffect(() => {
-    if (!users.length || !vinyls.length || !artists.length || !orders.length) {
-      dispatch(getAdminContent());
-    }
+    dispatch(getAdminContent());
   }, []);
 
   return (
@@ -44,7 +42,7 @@ const Admin = () => {
             <Accordion
               name="Artists"
               amount={artists.length}
-              element={<ArtistsTable artists={artists} edit={setEdit} />}
+              element={<ArtistsTable artists={artists} />}
             />
             <Accordion
               name="Line Items"
@@ -74,7 +72,7 @@ const Admin = () => {
           </div>
         )}
       </div>
-      <Drawer edit={edit} setEdit={setEdit} />
+
       <Footer twClass={"p-5 text-white flex justify-center bg-shade-9"} />
     </div>
   );

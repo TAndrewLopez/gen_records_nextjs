@@ -47,6 +47,8 @@ const User = conn.define("user", {
 
 //INSTANCE METHODS
 User.prototype.correctPassword = function (password) {
+  console.log(this.password, this, "what is this");
+
   return bcrypt.compare(password, this.password);
 };
 

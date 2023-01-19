@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { DeleteModal } from "../../../components";
+import { DeleteModal, Drawer, LineItemForm } from "../../../components";
 import { deleteLineItem } from "../../../redux/features/adminSlice";
 import { EditIcon, TrashIcon } from "../../assets";
 
@@ -9,6 +9,7 @@ const LineItemsTable = ({ lineItems }) => {
   const [showModal, setShowModal] = useState(false);
   const [selID, setSelID] = useState(-1);
   const selection = lineItems?.find((item) => item.id === selID);
+  const [edit, setEdit] = useState(false);
 
   return (
     <div className="relative overflow-x-auto shadow-md border-t border-shade-6">
@@ -43,7 +44,10 @@ const LineItemsTable = ({ lineItems }) => {
                 <td className="px-6 py-4 text-shade-8">{item.order.id}</td>
                 <td className="text-center text-shade-8">
                   <button
-                    onClick={() => console.log(item)}
+                    onClick={() => {
+                      setSelID(item.id);
+                      setEdit(true);
+                    }}
                     className="p-3 group ">
                     <EditIcon twClass="w-4 fill-shade-7 group-hover:fill-highlight" />
                   </button>
@@ -69,6 +73,13 @@ const LineItemsTable = ({ lineItems }) => {
           delItem={() => dispatch(deleteLineItem(selection.id))}
         />
       )}
+
+      <Drawer
+        formName={"Line Item Form"}
+        edit={edit}
+        setEdit={setEdit}
+        element={<LineItemForm lineItem={selection} />}
+      />
     </div>
   );
 };

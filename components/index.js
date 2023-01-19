@@ -5,7 +5,13 @@ export { default as AdminSubHeader } from "./Admin/AdminSubHeader";
 export { default as DeleteModal } from "./Admin/DeleteModal";
 export { default as Drawer } from "./Admin/Drawer";
 export { default as Selections } from "./Admin/Selections";
-export { default as VinylForm } from "./Admin/VinylForm";
+
+export { default as ArtistForm } from "./Admin/forms/ArtistForm";
+export { default as LineItemForm } from "./Admin/forms/LineItemForm";
+export { default as OrderForm } from "./Admin/forms/OrderForm";
+export { default as TrackForm } from "./Admin/forms/TrackForm";
+export { default as UserForm } from "./Admin/forms/UserForm";
+export { default as VinylForm } from "./Admin/forms/VinylForm";
 
 export { default as ArtistsTable } from "./Admin/tables/ArtistsTable";
 export { default as LineItemsTable } from "./Admin/tables/LineItemsTable";

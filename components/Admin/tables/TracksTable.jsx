@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { DeleteModal } from "../../../components";
+import { DeleteModal, Drawer, TrackForm } from "../../../components";
 import { EditIcon, TrashIcon } from "../../assets";
 
 const TracksTable = ({ tracks }) => {
   const [showModal, setShowModal] = useState(false);
   const [selID, setSelID] = useState(-1);
   const selection = tracks?.find((track) => track.id === selID);
+  const [edit, setEdit] = useState(false);
 
   return (
     <div className="relative overflow-x-auto shadow-md border-t border-shade-6">
@@ -53,7 +54,10 @@ const TracksTable = ({ tracks }) => {
 
                 <td className="text-center text-shade-8">
                   <button
-                    onClick={() => console.log(track)}
+                    onClick={() => {
+                      setSelID(track.id);
+                      setEdit(true);
+                    }}
                     className="p-3 group ">
                     <EditIcon twClass="w-4 fill-shade-7 group-hover:fill-highlight" />
                   </button>
@@ -79,6 +83,13 @@ const TracksTable = ({ tracks }) => {
           message={`Track ID #${selection.id} on Album ${selection.vinyl?.name}`}
         />
       )}
+
+      <Drawer
+        formName={"Track Form"}
+        edit={edit}
+        setEdit={setEdit}
+        element={<TrackForm track={selection} />}
+      />
     </div>
   );
 };

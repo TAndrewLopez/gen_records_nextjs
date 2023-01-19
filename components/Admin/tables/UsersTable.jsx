@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { DeleteModal } from "../../../components";
+import { DeleteModal, Drawer, UserForm } from "../../../components";
 import { EditIcon, TrashIcon } from "../../assets";
 
 const UsersTable = ({ users }) => {
   const [showModal, setShowModal] = useState(false);
   const [selID, setSelID] = useState(-1);
   const selection = users.find((user) => user.id === selID);
+  const [edit, setEdit] = useState(false);
 
   return (
     <div className="relative overflow-x-auto shadow-md border-t border-shade-6">
@@ -54,7 +55,10 @@ const UsersTable = ({ users }) => {
                 </td>
                 <td className="text-center text-shade-8">
                   <button
-                    onClick={() => console.log(user)}
+                    onClick={() => {
+                      setSelID(user.id);
+                      setEdit(true);
+                    }}
                     className="p-3 group ">
                     <EditIcon twClass="w-4 fill-shade-7 group-hover:fill-highlight" />
                   </button>
@@ -80,6 +84,12 @@ const UsersTable = ({ users }) => {
           message={`User ID #${selection.id} named ${selection.firstName} ${selection.lastName}`}
         />
       )}
+      <Drawer
+        formName={"User Form"}
+        edit={edit}
+        setEdit={setEdit}
+        element={<UserForm user={selection} />}
+      />
     </div>
   );
 };

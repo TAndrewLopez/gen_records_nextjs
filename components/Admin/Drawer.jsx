@@ -1,8 +1,8 @@
-const Drawer = ({ edit, setEdit }) => {
+const Drawer = ({ edit, setEdit, element, formName }) => {
   return (
     <div
       className={`
-      fixed w-full h-full z-40
+      fixed w-full sm:w-80 h-full z-40
     bg-shade-9 p-4
       overflow-y-auto
       transition-transform left-0 top-0 
@@ -19,7 +19,7 @@ const Drawer = ({ edit, setEdit }) => {
             d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
             clipRule="evenodd"></path>
         </svg>
-        FORM NAME
+        {formName}
       </h5>
       <button
         type="button"
@@ -40,6 +40,8 @@ const Drawer = ({ edit, setEdit }) => {
         </svg>
         <span className="sr-only">Close menu</span>
       </button>
+
+      {element}
     </div>
   );
 };

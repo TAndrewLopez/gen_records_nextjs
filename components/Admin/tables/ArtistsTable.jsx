@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { DeleteModal } from "../../../components";
+import { DeleteModal, Drawer, ArtistForm } from "../../../components";
 import { EditIcon, TrashIcon } from "../../assets";
 import { deleteArtist } from "../../../redux/features/adminSlice";
 
-const ArtistsTable = ({ artists, edit }) => {
+const ArtistsTable = ({ artists }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [selID, setSelID] = useState(-1);
   const selection = artists.find((artist) => artist.id === selID);
+  const [edit, setEdit] = useState(false);
 
   return (
     <div className="relative overflow-x-auto shadow-md border-t border-shade-6">
@@ -44,8 +45,8 @@ const ArtistsTable = ({ artists, edit }) => {
                 <td className="text-center text-shade-8">
                   <button
                     onClick={() => {
-                      edit(true);
-                      console.log(artist);
+                      setSelID(artist.id);
+                      setEdit(true);
                     }}
                     className="p-3 group ">
                     <EditIcon twClass="w-4 fill-shade-7 group-hover:fill-highlight" />
@@ -72,6 +73,13 @@ const ArtistsTable = ({ artists, edit }) => {
           delItem={() => dispatch(deleteArtist(selection.id))}
         />
       )}
+
+      <Drawer
+        formName={"Artist Form"}
+        edit={edit}
+        setEdit={setEdit}
+        element={<ArtistForm artist={selection} />}
+      />
     </div>
   );
 };

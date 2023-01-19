@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { DeleteModal } from "../../../components";
+import { DeleteModal, Drawer, VinylForm } from "../../../components";
 import { EditIcon, TrashIcon } from "../../assets";
 import { formatToUSD } from "../../helperFuncs";
 
@@ -7,6 +7,7 @@ const VinylsTable = ({ vinyls }) => {
   const [showModal, setShowModal] = useState(false);
   const [delID, setDelID] = useState(-1);
   const selection = vinyls.find((item) => item.id === delID);
+  const [edit, setEdit] = useState(false);
 
   return (
     <div className="relative overflow-x-auto shadow-md border-t border-shade-6">
@@ -51,7 +52,10 @@ const VinylsTable = ({ vinyls }) => {
                 <td className="px-6 py-4 text-shade-8">{vinyl.stock}</td>
                 <td className="text-center text-shade-8">
                   <button
-                    onClick={() => console.log(vinyl)}
+                    onClick={() => {
+                      setDelID(vinyl.id);
+                      setEdit(true);
+                    }}
                     className="p-3 group ">
                     <EditIcon twClass="w-4 fill-shade-7 group-hover:fill-highlight" />
                   </button>
@@ -77,6 +81,13 @@ const VinylsTable = ({ vinyls }) => {
           message={`Vinyl ID #${selection.id} ${selection.name} by ${selection.artist?.name}`}
         />
       )}
+
+      <Drawer
+        formName={"User Form"}
+        edit={edit}
+        setEdit={setEdit}
+        element={<VinylForm vinyl={selection} />}
+      />
     </div>
   );
 };

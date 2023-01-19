@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { DeleteModal } from "../../../components";
+import { DeleteModal, Drawer, OrderForm } from "../../../components";
 import { deleteOrder } from "../../../redux/features/adminSlice";
 import { EditIcon, TrashIcon } from "../../assets";
 
@@ -9,6 +9,7 @@ const OrdersTable = ({ orders }) => {
   const [showModal, setShowModal] = useState(false);
   const [selID, setSelID] = useState(-1);
   const selection = orders.find((order) => order.id === selID);
+  const [edit, setEdit] = useState(false);
 
   return (
     <div className="relative overflow-x-auto shadow-md border-t border-shade-6">
@@ -45,7 +46,10 @@ const OrdersTable = ({ orders }) => {
                 </td>
                 <td className="text-center text-shade-8">
                   <button
-                    onClick={() => console.log(order)}
+                    onClick={() => {
+                      setSelID(order.id);
+                      setEdit(true);
+                    }}
                     className="p-3 group ">
                     <EditIcon twClass="w-4 fill-shade-7 group-hover:fill-highlight" />
                   </button>
@@ -73,6 +77,13 @@ const OrdersTable = ({ orders }) => {
           delItem={() => dispatch(deleteOrder(selection.id))}
         />
       )}
+
+      <Drawer
+        formName={"Order Form"}
+        edit={edit}
+        setEdit={setEdit}
+        element={<OrderForm order={selection} />}
+      />
     </div>
   );
 };
