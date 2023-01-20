@@ -43,7 +43,7 @@ const TrackForm = ({ track, setEdit }) => {
   };
 
   return (
-    <form action="#" className="mb-6">
+    <form onSubmit={handleSubmit} className="mb-6">
       <div className="mb-6">
         <label
           htmlFor="artist_name"
@@ -110,7 +110,6 @@ const TrackForm = ({ track, setEdit }) => {
           type="url"
           className="bg-shade-1 border border-shade-5 text-shade-9 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           placeholder="Preview URL"
-          required
           value={form.preview}
           onChange={(evt) => {
             setForm({ ...form, preview: evt.target.value });

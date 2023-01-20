@@ -1,15 +1,21 @@
-import { Order } from "../../../../server";
+import { Order, User } from "../../../../server";
 import { isAdmin, requireToken } from "../../../../customMiddleware";
 
 const handler = async (req, res) => {
   if (req.method === "PUT") {
     try {
-      const {} = req.body;
       const order = await Order.findByPk(req.query.id);
-      await order.update({});
-
-      const updatedOrder = await Order.findByPk(req.query.id, {});
-      res.status(200).json({ success: true, updatedOrder });
+      await order.update(req.body);
+      if (req.body.complete === "true") {
+        await Order.create({
+          userId: req.body.userId,
+        });
+      }
+      const orders = await Order.findAll({
+        include: User,
+      });
+      orders.sort((a, b) => a.id - b.id);
+      res.status(200).json({ success: true, orders });
     } catch (error) {
       console.log(error);
       res.status(500).json({ success: false, message: error.message });

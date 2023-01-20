@@ -1,14 +1,15 @@
-import { LineItem } from "../../../../server";
+import { LineItem, Order, Vinyl } from "../../../../server";
 import { isAdmin, requireToken } from "../../../../customMiddleware";
 
 const handler = async (req, res) => {
   if (req.method === "PUT") {
     try {
-      const {} = req.body;
+      console.log(req.body);
       const lineItem = await LineItem.findByPk(req.query.id);
-      await lineItem.update({});
-
-      const updatedLineItem = await LineItem.findByPk(req.query.id, {});
+      await lineItem.update(req.body);
+      const updatedLineItem = await LineItem.findByPk(req.query.id, {
+        include: [Order, Vinyl],
+      });
       res.status(200).json({ success: true, updatedLineItem });
     } catch (error) {
       console.log(error);

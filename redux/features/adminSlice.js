@@ -60,7 +60,7 @@ const adminSlice = createSlice({
 
     builder.addCase(deleteLineItem.fulfilled, (state, { payload }) => {
       const filteredLineItems = state.lineItems.filter(
-        (artist) => artist.id !== payload.artist.id
+        (lineItem) => lineItem.id !== payload.lineItem.id
       );
       if (payload) {
         state.lineItems = filteredLineItems;
@@ -82,25 +82,18 @@ const adminSlice = createSlice({
     });
 
     builder.addCase(deleteOrder.fulfilled, (state, { payload }) => {
-      const filteredLineItems = state.lineItems.filter(
-        (artist) => artist.id !== payload.artist.id
+      const filteredOrders = state.orders.filter(
+        (order) => order.id !== payload.order.id
       );
       if (payload) {
-        state.lineItems = filteredLineItems;
-        state.message = "Line item has been deleted.";
+        state.orders = filteredOrders;
+        state.message = "Order has been deleted.";
       }
     });
     builder.addCase(updateOrder.fulfilled, (state, { payload }) => {
-      const { updatedLineItem } = payload;
-      const updatedLineItems = state.lineItems.map((lineItem) => {
-        if (lineItem.id === updatedLineItem.id) {
-          lineItem = { ...updatedLineItem };
-        }
-        return lineItem;
-      });
       if (payload) {
-        state.lineItems = updatedLineItems;
-        state.message = "Line item has been updated.";
+        state.orders = payload.orders;
+        state.message = "Order has been updated.";
       }
     });
 
@@ -122,7 +115,7 @@ const adminSlice = createSlice({
         return track;
       });
       if (payload) {
-        state.lineItems = updatedTracks;
+        state.tracks = updatedTracks;
         state.message = "Track has been updated.";
       }
     });

@@ -41,7 +41,7 @@ const LineItemsTable = ({ lineItems }) => {
                 <th className="px-6 py-4 text-shade-8">{item.id}</th>
                 <td className="px-6 py-4 text-shade-8">{item.vinyl?.name}</td>
                 <td className="px-6 py-4 text-shade-8">{item.qty}</td>
-                <td className="px-6 py-4 text-shade-8">{item.order.id}</td>
+                <td className="px-6 py-4 text-shade-8">{item.order?.id}</td>
                 <td className="text-center text-shade-8">
                   <button
                     onClick={() => {

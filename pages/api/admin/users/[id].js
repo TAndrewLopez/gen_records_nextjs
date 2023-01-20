@@ -6,7 +6,6 @@ const handler = async (req, res) => {
     try {
       const user = await User.findByPk(req.query.id);
       await user.update(req.body);
-
       const updatedUser = await User.findByPk(req.query.id, { include: Order });
       res.status(200).json({ success: true, updatedUser });
     } catch (error) {
