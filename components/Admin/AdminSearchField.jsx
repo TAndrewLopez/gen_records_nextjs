@@ -36,12 +36,12 @@ const AdminSearchField = () => {
         }}
         className={`flex items-center justify-center px-4 bg-shade-9 rounded-r group ${
           search
-            ? "cursor-pointer border-l border-shade-1 border-opacity-30"
+            ? "cursor-pointer border-l border-shade-1 border-opacity-30 hover:bg-errorRed ease-iun-out duration-300"
             : ""
         }`}>
         <svg
           aria-hidden="true"
-          className={`w-4 fill-shade-1 group-hover:fill-errorRed ${
+          className={`w-4 fill-shade-1 group-hover:fill-shade-1 ${
             search ? "opacity-100" : "opacity-0"
           }`}
           viewBox="0 0 20 20"

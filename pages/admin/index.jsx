@@ -32,8 +32,6 @@ const Admin = () => {
     message,
   } = useSelector((state) => state.adminReducer);
 
-  const [edit, setEdit] = useState(false);
-
   useEffect(() => {
     if (message) {
       dispatch(clearToast());
