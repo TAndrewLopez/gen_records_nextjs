@@ -114,7 +114,6 @@ const adminSlice = createSlice({
       }
     });
     builder.addCase(updateVinyl.fulfilled, (state, { payload }) => {
-      console.log(payload);
       const { updatedVinyl } = payload;
       const updatedVinyls = state.vinyls.map((vinyl) => {
         if (vinyl.id === updatedVinyl.id) {
