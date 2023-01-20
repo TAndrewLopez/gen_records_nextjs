@@ -35,9 +35,6 @@ const User = conn.define("user", {
   },
   img: {
     type: STRING,
-    validate: {
-      isUrl: true,
-    },
   },
   isAdmin: {
     type: BOOLEAN,

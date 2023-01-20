@@ -32,9 +32,7 @@ export default function Shop() {
   const currSlice = filteredVinyls.slice(indexOfFirstPost, indexOfLastPost);
 
   useEffect(() => {
-    if (!allVinyls.length) {
-      dispatch(getShopVinyls());
-    }
+    dispatch(getShopVinyls());
     if (message) {
       dispatch(clearToast());
     }

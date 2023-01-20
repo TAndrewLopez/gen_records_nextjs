@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateTrack } from "../../../redux/features/adminSlice";
 
-const TrackForm = ({ track }) => {
+const TrackForm = ({ track, setEdit }) => {
+  const dispatch = useDispatch();
   const { vinyls } = useSelector((state) => state.adminReducer);
 
   const [form, setForm] = useState({
@@ -25,6 +27,21 @@ const TrackForm = ({ track }) => {
       });
     }
   }, [track]);
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    dispatch(updateTrack(form));
+    setEdit(false);
+    setForm({
+      id: "",
+      name: "",
+      spotifyId: "",
+      explicit: "",
+      preview: "",
+      vinylId: "",
+    });
+  };
+
   return (
     <form action="#" className="mb-6">
       <div className="mb-6">

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import {
   Header,
@@ -9,9 +9,13 @@ import {
   StripeSuccess,
 } from "../../components";
 import { SpinnerLoader } from "../../components/assets";
+import { clearToast } from "../../redux/features/authSlice";
 
 const Checkout = () => {
-  const { cart, orders, loading } = useSelector((state) => state.authReducer);
+  const dispatch = useDispatch();
+  const { cart, orders, message, loading } = useSelector(
+    (state) => state.authReducer
+  );
   const [paid, setPaid] = useState(false);
 
   if (loading) {
@@ -30,6 +34,12 @@ const Checkout = () => {
       </div>
     );
   }
+
+  useEffect(() => {
+    if (message) {
+      dispatch(clearToast());
+    }
+  }, []);
 
   return (
     <div className="h-screen w-full flex flex-col">

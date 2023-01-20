@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../../redux/features/adminSlice";
 
-const UserForm = ({ user }) => {
+const UserForm = ({ user, setEdit }) => {
+  const dispatch = useDispatch();
+
   const [form, setForm] = useState({
     id: "",
     firstName: "",
@@ -25,8 +29,23 @@ const UserForm = ({ user }) => {
     }
   }, [user]);
 
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    dispatch(updateUser(form));
+    setEdit(false);
+    setForm({
+      id: "",
+      firstName: "",
+      lastName: "",
+      username: "",
+      email: "",
+      img: "",
+      isAdmin: "",
+    });
+  };
+
   return (
-    <form action="#" className="mb-6">
+    <form onSubmit={handleSubmit} className="mb-6">
       <div className="mb-6">
         <label
           htmlFor="first_name"
@@ -110,7 +129,6 @@ const UserForm = ({ user }) => {
           type="url"
           className="bg-shade-1 border border-shade-5 text-shade-9 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           placeholder="Image URL"
-          required
           value={form.img}
           onChange={(evt) => {
             setForm({ ...form, img: evt.target.value });
@@ -122,7 +140,7 @@ const UserForm = ({ user }) => {
         <label
           htmlFor="privileges"
           className="block mb-2 text-sm font-medium text-shade-5">
-          Image URL
+          Privileges
         </label>
         <select
           id="privileges"

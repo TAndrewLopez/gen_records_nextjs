@@ -104,6 +104,52 @@ const adminSlice = createSlice({
       }
     });
 
+    builder.addCase(deleteTrack.fulfilled, (state, { payload }) => {
+      const filteredTracks = state.tracks.filter(
+        (track) => track.id !== payload.track.id
+      );
+      if (payload) {
+        state.tracks = filteredTracks;
+        state.message = "Track has been deleted.";
+      }
+    });
+    builder.addCase(updateTrack.fulfilled, (state, { payload }) => {
+      const { updatedTrack } = payload;
+      const updatedTracks = state.tracks.map((track) => {
+        if (track.id === updatedTrack.id) {
+          track = { ...updatedTrack };
+        }
+        return track;
+      });
+      if (payload) {
+        state.lineItems = updatedTracks;
+        state.message = "Track has been updated.";
+      }
+    });
+
+    builder.addCase(deleteUser.fulfilled, (state, { payload }) => {
+      const filteredUsers = state.users.filter(
+        (user) => user.id !== payload.user.id
+      );
+      if (payload) {
+        state.users = filteredUsers;
+        state.message = "User has been deleted.";
+      }
+    });
+    builder.addCase(updateUser.fulfilled, (state, { payload }) => {
+      const { updatedUser } = payload;
+      const updatedUsers = state.users.map((user) => {
+        if (user.id === updatedUser.id) {
+          user = { ...updatedUser };
+        }
+        return user;
+      });
+      if (payload) {
+        state.users = updatedUsers;
+        state.message = "User has been updated.";
+      }
+    });
+
     builder.addCase(deleteVinyl.fulfilled, (state, { payload }) => {
       const filteredVinyls = state.vinyls.filter(
         (vinyl) => vinyl.id !== payload.vinyl.id

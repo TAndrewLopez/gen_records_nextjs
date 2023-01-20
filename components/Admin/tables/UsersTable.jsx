@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { DeleteModal, Drawer, UserForm } from "../../../components";
 import { deleteUser } from "../../../redux/features/adminSlice";
 import { EditIcon, TrashIcon } from "../../assets";
 
 const UsersTable = ({ users }) => {
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [selID, setSelID] = useState(-1);
   const selection = users.find((user) => user.id === selID);

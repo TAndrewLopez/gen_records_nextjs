@@ -1,19 +1,24 @@
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Header,
   CreateAccountForm,
   DemoLoginButtons,
   LoginForm,
 } from "../../components";
+import { clearToast } from "../../redux/features/authSlice";
 
 const Auth = () => {
+  const dispatch = useDispatch();
   const [form, setForm] = useState(false);
-  const { loggedIn } = useSelector((state) => state.authReducer);
+  const { loggedIn, message } = useSelector((state) => state.authReducer);
   const router = useRouter();
 
   useEffect(() => {
+    if (message) {
+      dispatch(clearToast());
+    }
     if (loggedIn) {
       router.push("/profilePage");
     }

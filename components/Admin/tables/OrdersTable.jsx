@@ -82,7 +82,7 @@ const OrdersTable = ({ orders }) => {
         formName={"Order Form"}
         edit={edit}
         setEdit={setEdit}
-        element={<OrderForm order={selection} />}
+        element={<OrderForm setEdit={setEdit} order={selection} />}
       />
     </div>
   );

@@ -35,6 +35,9 @@ const Admin = () => {
   const [edit, setEdit] = useState(false);
 
   useEffect(() => {
+    if (message) {
+      dispatch(clearToast());
+    }
     dispatch(getAdminContent());
   }, []);
 

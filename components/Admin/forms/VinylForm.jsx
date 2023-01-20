@@ -56,6 +56,7 @@ const VinylForm = ({ vinyl, setEdit }) => {
       artistId: "",
     });
   };
+
   return (
     <form onSubmit={handleSubmit} className="mb-6">
       <div className="mb-6">

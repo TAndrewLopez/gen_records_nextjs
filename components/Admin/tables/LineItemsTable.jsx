@@ -78,7 +78,7 @@ const LineItemsTable = ({ lineItems }) => {
         formName={"Line Item Form"}
         edit={edit}
         setEdit={setEdit}
-        element={<LineItemForm lineItem={selection} />}
+        element={<LineItemForm setEdit={setEdit} lineItem={selection} />}
       />
     </div>
   );

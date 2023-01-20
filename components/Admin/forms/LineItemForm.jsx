@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateLineItem } from "../../../redux/features/adminSlice";
 
-const LineItemForm = ({ lineItem }) => {
+const LineItemForm = ({ lineItem, setEdit }) => {
+  const dispatch = useDispatch();
   const { vinyls, orders } = useSelector((state) => state.adminReducer);
 
   const [form, setForm] = useState({
@@ -22,8 +24,20 @@ const LineItemForm = ({ lineItem }) => {
     }
   }, [lineItem]);
 
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    dispatch(updateLineItem(form));
+    setEdit(false);
+    setForm({
+      id: "",
+      qty: "",
+      orderId: "",
+      vinylId: "",
+    });
+  };
+
   return (
-    <form action="#" className="mb-6">
+    <form onSubmit={handleSubmit} className="mb-6">
       <div className="mb-6">
         <label
           htmlFor="quantity"

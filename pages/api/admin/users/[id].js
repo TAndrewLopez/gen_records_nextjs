@@ -4,9 +4,8 @@ import { isAdmin, requireToken } from "../../../../customMiddleware";
 const handler = async (req, res) => {
   if (req.method === "PUT") {
     try {
-      const {} = req.body;
       const user = await User.findByPk(req.query.id);
-      await user.update({});
+      await user.update(req.body);
 
       const updatedUser = await User.findByPk(req.query.id, { include: Order });
       res.status(200).json({ success: true, updatedUser });

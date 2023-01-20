@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { DeleteModal, Drawer, TrackForm } from "../../../components";
+import { deleteTrack } from "../../../redux/features/adminSlice";
 import { EditIcon, TrashIcon } from "../../assets";
 
 const TracksTable = ({ tracks }) => {
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [selID, setSelID] = useState(-1);
   const selection = tracks?.find((track) => track.id === selID);
@@ -78,9 +81,9 @@ const TracksTable = ({ tracks }) => {
 
       {showModal && (
         <DeleteModal
-          selection={selection}
           setShowModal={setShowModal}
           message={`Track ID #${selection.id} on Album ${selection.vinyl?.name}`}
+          delItem={() => dispatch(deleteTrack(selection.id))}
         />
       )}
 
@@ -88,7 +91,7 @@ const TracksTable = ({ tracks }) => {
         formName={"Track Form"}
         edit={edit}
         setEdit={setEdit}
-        element={<TrackForm track={selection} />}
+        element={<TrackForm setEdit={setEdit} track={selection} />}
       />
     </div>
   );

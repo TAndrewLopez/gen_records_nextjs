@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -30,6 +31,12 @@ const ProfilePage = () => {
   if (!loggedIn) {
     router.push("/auth");
   }
+
+  useEffect(() => {
+    if (message) {
+      dispatch(clearToast());
+    }
+  }, []);
 
   return (
     <div className="h-screen w-full flex flex-col">

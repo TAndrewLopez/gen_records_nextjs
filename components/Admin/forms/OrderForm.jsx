@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateOrder } from "../../../redux/features/adminSlice";
 
-const OrderForm = ({ order }) => {
+const OrderForm = ({ order, setEdit }) => {
+  const dispatch = useDispatch();
   const { users } = useSelector((state) => state.adminReducer);
   const [form, setForm] = useState({
     id: "",
@@ -19,8 +21,19 @@ const OrderForm = ({ order }) => {
     }
   }, [order]);
 
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    dispatch(updateOrder(form));
+    setEdit(false);
+    setForm({
+      id: "",
+      complete: "",
+      userId: "",
+    });
+  };
+
   return (
-    <form action="#" className="mb-6">
+    <form onSubmit={handleSubmit} className="mb-6">
       <div className="mb-6">
         <label
           htmlFor="complete_status"
