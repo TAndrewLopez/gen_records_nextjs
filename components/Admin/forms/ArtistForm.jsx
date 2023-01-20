@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { updateArtist } from "../../../redux/features/adminSlice";
 
-const ArtistForm = ({ artist }) => {
+const ArtistForm = ({ artist, setEdit }) => {
+  const dispatch = useDispatch();
   const [form, setForm] = useState({
     id: "",
     name: "",
@@ -19,8 +22,20 @@ const ArtistForm = ({ artist }) => {
     }
   }, [artist]);
 
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    dispatch(updateArtist(form));
+    setEdit(false);
+    setForm({
+      id: "",
+      name: "",
+      spotifyId: "",
+      genre: "",
+    });
+  };
+
   return (
-    <form action="#" className="mb-6">
+    <form onSubmit={handleSubmit} className="mb-6">
       <div className="mb-6">
         <label
           htmlFor="artist_name"
@@ -67,7 +82,6 @@ const ArtistForm = ({ artist }) => {
           id="genre"
           className="bg-shade-1 border border-shade-5 text-shade-9 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           placeholder="Genre"
-          required
           value={form.genre}
           onChange={(evt) => {
             setForm({ ...form, genre: evt.target.value });

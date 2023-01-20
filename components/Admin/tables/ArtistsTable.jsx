@@ -78,7 +78,7 @@ const ArtistsTable = ({ artists }) => {
         formName={"Artist Form"}
         edit={edit}
         setEdit={setEdit}
-        element={<ArtistForm artist={selection} />}
+        element={<ArtistForm setEdit={setEdit} artist={selection} />}
       />
     </div>
   );

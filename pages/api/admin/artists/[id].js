@@ -4,10 +4,9 @@ import { isAdmin, requireToken } from "../../../../customMiddleware";
 const handler = async (req, res) => {
   if (req.method === "PUT") {
     try {
-      const {} = req.body;
-      const artist = await Artist.findByPk(req.query.id);
-      await artist.update({});
-
+      const { id, name, genre, spotifyId } = req.body;
+      const artist = await Artist.findByPk(id);
+      await artist.update({ name, genre, spotifyId });
       const updatedArtist = await Artist.findByPk(req.query.id, {});
       res.status(200).json({ success: true, updatedArtist });
     } catch (error) {

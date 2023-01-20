@@ -12,15 +12,25 @@ import {
   OrdersTable,
   TracksTable,
   Drawer,
+  ToastNotification,
 } from "../../components";
 
 import { SpinnerLoader } from "../../components/assets";
-import { getAdminContent } from "../../redux/features/adminSlice";
+import { getAdminContent, clearToast } from "../../redux/features/adminSlice";
 
 const Admin = () => {
   const dispatch = useDispatch();
-  const { artists, lineItems, orders, tracks, users, vinyls, isLoading } =
-    useSelector((state) => state.adminReducer);
+  const {
+    artists,
+    lineItems,
+    orders,
+    tracks,
+    users,
+    vinyls,
+    isLoading,
+    error,
+    message,
+  } = useSelector((state) => state.adminReducer);
 
   const [edit, setEdit] = useState(false);
 
@@ -72,7 +82,20 @@ const Admin = () => {
           </div>
         )}
       </div>
-
+      {message && (
+        <ToastNotification
+          type={"success"}
+          toastMessage={message}
+          clear={() => dispatch(clearToast())}
+        />
+      )}
+      {error && message && (
+        <ToastNotification
+          clear={() => dispatch(clearToast())}
+          type="error"
+          toastMessage={message}
+        />
+      )}
       <Footer twClass={"p-5 text-white flex justify-center bg-shade-9"} />
     </div>
   );

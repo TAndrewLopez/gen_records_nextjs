@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { DeleteModal, Drawer, VinylForm } from "../../../components";
+import { deleteVinyl } from "../../../redux/features/adminSlice";
 import { EditIcon, TrashIcon } from "../../assets";
 import { formatToUSD } from "../../helperFuncs";
 
 const VinylsTable = ({ vinyls }) => {
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [delID, setDelID] = useState(-1);
   const selection = vinyls.find((item) => item.id === delID);
@@ -76,9 +79,9 @@ const VinylsTable = ({ vinyls }) => {
 
       {showModal && (
         <DeleteModal
-          selection={selection}
           setShowModal={setShowModal}
           message={`Vinyl ID #${selection.id} ${selection.name} by ${selection.artist?.name}`}
+          delItem={() => dispatch(deleteVinyl(selection.id))}
         />
       )}
 
@@ -86,7 +89,7 @@ const VinylsTable = ({ vinyls }) => {
         formName={"User Form"}
         edit={edit}
         setEdit={setEdit}
-        element={<VinylForm vinyl={selection} />}
+        element={<VinylForm setEdit={setEdit} vinyl={selection} />}
       />
     </div>
   );

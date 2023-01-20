@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateVinyl } from "../../../redux/features/adminSlice";
 
-const VinylForm = ({ vinyl }) => {
+const VinylForm = ({ vinyl, setEdit }) => {
+  const dispatch = useDispatch();
   const { artists } = useSelector((state) => state.adminReducer);
 
   const [form, setForm] = useState({
@@ -35,8 +37,27 @@ const VinylForm = ({ vinyl }) => {
       });
     }
   }, [vinyl]);
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    dispatch(updateVinyl(form));
+    setEdit(false);
+    setForm({
+      id: "",
+      name: "",
+      price: "",
+      stock: "",
+      popularity: "",
+      img: "",
+      releaseDate: "",
+      label: "",
+      totalTrack: "",
+      spotifyId: "",
+      artistId: "",
+    });
+  };
   return (
-    <form action="#" className="mb-6">
+    <form onSubmit={handleSubmit} className="mb-6">
       <div className="mb-6">
         <label
           htmlFor="artist_name"

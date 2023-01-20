@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { DeleteModal, Drawer, UserForm } from "../../../components";
+import { deleteUser } from "../../../redux/features/adminSlice";
 import { EditIcon, TrashIcon } from "../../assets";
 
 const UsersTable = ({ users }) => {
@@ -79,16 +80,16 @@ const UsersTable = ({ users }) => {
 
       {showModal && (
         <DeleteModal
-          selection={selection}
           setShowModal={setShowModal}
           message={`User ID #${selection.id} named ${selection.firstName} ${selection.lastName}`}
+          delItem={() => dispatch(deleteUser(selection.id))}
         />
       )}
       <Drawer
         formName={"User Form"}
         edit={edit}
         setEdit={setEdit}
-        element={<UserForm user={selection} />}
+        element={<UserForm setEdit={setEdit} user={selection} />}
       />
     </div>
   );
