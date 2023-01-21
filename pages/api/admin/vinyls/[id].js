@@ -4,6 +4,7 @@ import { isAdmin, requireToken } from "../../../../customMiddleware";
 const handler = async (req, res) => {
   if (req.method === "PUT") {
     try {
+      console.log(req.body, req.query.id);
       const vinyl = await Vinyl.findByPk(req.query.id);
       await vinyl.update(req.body);
       const updatedVinyl = await Vinyl.findByPk(req.query.id, {

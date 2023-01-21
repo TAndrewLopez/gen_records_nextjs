@@ -15,7 +15,7 @@ const Footer = ({ twClass }) => {
         />
       </a>
       <div className="flex flex-col justify-center items-center text-xs sm:text-base mx-10">
-        <p>&copy; 2017–2022 Generational Records</p>
+        <p>&copy; 2019–2023 Generational Records</p>
         {/* <a className="hover:text-sec" href="#">
           Privacy
         </a>

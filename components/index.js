@@ -36,11 +36,11 @@ export { default as SubHeader } from "./Navigation/SubHeader";
 
 export { default as ToastNotification } from "./Toast/ToastNotification";
 
-export { default as OrderHistory } from "./UserProfile/OrderHistory";
-export { default as UserCart } from "./UserProfile/UserCart";
-export { default as UserCartDropDown } from "./UserProfile/UserCartDropDown";
-export { default as UserProfileCard } from "./UserProfile/UserProfileCard";
-export { default as UserProfileForm } from "./UserProfile/UserProfileForm";
+export { default as OrderHistory } from "./User/OrderHistory";
+export { default as UserCart } from "./User/UserCart";
+export { default as UserCartDropDown } from "./User/UserCartDropDown";
+export { default as UserProfileCard } from "./User/UserProfileCard";
+export { default as UserProfileForm } from "./User/UserProfileForm";
 
 export { default as DropDown } from "./Utils/DropDown";
 export { default as Layout } from "./Utils/Layout";

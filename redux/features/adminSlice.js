@@ -35,15 +35,15 @@ const adminSlice = createSlice({
       state.isLoading = false;
     });
     //ADMIN ACTIONS
-    builder.addCase(deleteArtist.fulfilled, (state, { payload }) => {
-      const filteredArtist = state.artists.filter(
-        (artist) => artist.id !== payload.artist.id
-      );
-      if (payload) {
-        state.artists = filteredArtist;
-        state.message = "Artist has been deleted.";
-      }
-    });
+    // builder.addCase(deleteArtist.fulfilled, (state, { payload }) => {
+    //   const filteredArtist = state.artists.filter(
+    //     (artist) => artist.id !== payload.artist.id
+    //   );
+    //   if (payload) {
+    //     state.artists = filteredArtist;
+    //     state.message = "Artist has been deleted.";
+    //   }
+    // });
     builder.addCase(updateArtist.fulfilled, (state, { payload }) => {
       const { updatedArtist } = payload;
       const updatedArtists = state.artists.map((artist) => {
@@ -58,15 +58,15 @@ const adminSlice = createSlice({
       }
     });
 
-    builder.addCase(deleteLineItem.fulfilled, (state, { payload }) => {
-      const filteredLineItems = state.lineItems.filter(
-        (lineItem) => lineItem.id !== payload.lineItem.id
-      );
-      if (payload) {
-        state.lineItems = filteredLineItems;
-        state.message = "Line item has been deleted.";
-      }
-    });
+    // builder.addCase(deleteLineItem.fulfilled, (state, { payload }) => {
+    //   const filteredLineItems = state.lineItems.filter(
+    //     (lineItem) => lineItem.id !== payload.lineItem.id
+    //   );
+    //   if (payload) {
+    //     state.lineItems = filteredLineItems;
+    //     state.message = "Line item has been deleted.";
+    //   }
+    // });
     builder.addCase(updateLineItem.fulfilled, (state, { payload }) => {
       const { updatedLineItem } = payload;
       const updatedLineItems = state.lineItems.map((lineItem) => {
@@ -81,15 +81,15 @@ const adminSlice = createSlice({
       }
     });
 
-    builder.addCase(deleteOrder.fulfilled, (state, { payload }) => {
-      const filteredOrders = state.orders.filter(
-        (order) => order.id !== payload.order.id
-      );
-      if (payload) {
-        state.orders = filteredOrders;
-        state.message = "Order has been deleted.";
-      }
-    });
+    // builder.addCase(deleteOrder.fulfilled, (state, { payload }) => {
+    //   const filteredOrders = state.orders.filter(
+    //     (order) => order.id !== payload.order.id
+    //   );
+    //   if (payload) {
+    //     state.orders = filteredOrders;
+    //     state.message = "Order has been deleted.";
+    //   }
+    // });
     builder.addCase(updateOrder.fulfilled, (state, { payload }) => {
       if (payload) {
         state.orders = payload.orders;
@@ -97,15 +97,15 @@ const adminSlice = createSlice({
       }
     });
 
-    builder.addCase(deleteTrack.fulfilled, (state, { payload }) => {
-      const filteredTracks = state.tracks.filter(
-        (track) => track.id !== payload.track.id
-      );
-      if (payload) {
-        state.tracks = filteredTracks;
-        state.message = "Track has been deleted.";
-      }
-    });
+    // builder.addCase(deleteTrack.fulfilled, (state, { payload }) => {
+    //   const filteredTracks = state.tracks.filter(
+    //     (track) => track.id !== payload.track.id
+    //   );
+    //   if (payload) {
+    //     state.tracks = filteredTracks;
+    //     state.message = "Track has been deleted.";
+    //   }
+    // });
     builder.addCase(updateTrack.fulfilled, (state, { payload }) => {
       const { updatedTrack } = payload;
       const updatedTracks = state.tracks.map((track) => {
@@ -120,15 +120,15 @@ const adminSlice = createSlice({
       }
     });
 
-    builder.addCase(deleteUser.fulfilled, (state, { payload }) => {
-      const filteredUsers = state.users.filter(
-        (user) => user.id !== payload.user.id
-      );
-      if (payload) {
-        state.users = filteredUsers;
-        state.message = "User has been deleted.";
-      }
-    });
+    // builder.addCase(deleteUser.fulfilled, (state, { payload }) => {
+    //   const filteredUsers = state.users.filter(
+    //     (user) => user.id !== payload.user.id
+    //   );
+    //   if (payload) {
+    //     state.users = filteredUsers;
+    //     state.message = "User has been deleted.";
+    //   }
+    // });
     builder.addCase(updateUser.fulfilled, (state, { payload }) => {
       const { updatedUser } = payload;
       const updatedUsers = state.users.map((user) => {
@@ -143,17 +143,18 @@ const adminSlice = createSlice({
       }
     });
 
-    builder.addCase(deleteVinyl.fulfilled, (state, { payload }) => {
-      const filteredVinyls = state.vinyls.filter(
-        (vinyl) => vinyl.id !== payload.vinyl.id
-      );
-      if (payload) {
-        state.vinyls = filteredVinyls;
-        state.message = "Vinyl has been deleted.";
-      }
-    });
+    // builder.addCase(deleteVinyl.fulfilled, (state, { payload }) => {
+    //   const filteredVinyls = state.vinyls.filter(
+    //     (vinyl) => vinyl.id !== payload.vinyl.id
+    //   );
+    //   if (payload) {
+    //     state.vinyls = filteredVinyls;
+    //     state.message = "Vinyl has been deleted.";
+    //   }
+    // });
     builder.addCase(updateVinyl.fulfilled, (state, { payload }) => {
       const { updatedVinyl } = payload;
+      console.log(payload);
       const updatedVinyls = state.vinyls.map((vinyl) => {
         if (vinyl.id === updatedVinyl.id) {
           vinyl = { ...updatedVinyl };
@@ -271,21 +272,27 @@ export const updateVinyl = createAsyncThunk("updateVinyl", async (form) => {
 });
 
 //DELETE
-export const deleteArtist = createAsyncThunk("deleteArtist", async (id) => {
-  const authorization = localStorage.getItem("authorization");
-  const response = await fetch(`/api/admin/artists/${id}`, {
-    method: "DELETE",
-    headers: {
-      authorization,
-    },
-  })
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
-  return response;
-});
+export const deleteArtist = createAsyncThunk(
+  "deleteArtist",
+  async (id, thunkAPI) => {
+    const authorization = localStorage.getItem("authorization");
+    const { success } = await fetch(`/api/admin/artists/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization,
+      },
+    })
+      .then((res) => res.json())
+      .catch((err) => console.error(err));
+    if (success) {
+      thunkAPI.dispatch(getAdminContent());
+    }
+    return success;
+  }
+);
 export const deleteLineItem = createAsyncThunk("deleteLineItem", async (id) => {
   const authorization = localStorage.getItem("authorization");
-  const response = await fetch(`/api/admin/lineItems/${id}`, {
+  const { success } = await fetch(`/api/admin/lineItems/${id}`, {
     method: "DELETE",
     headers: {
       authorization,
@@ -293,11 +300,14 @@ export const deleteLineItem = createAsyncThunk("deleteLineItem", async (id) => {
   })
     .then((res) => res.json())
     .catch((err) => console.error(err));
-  return response;
+  if (success) {
+    thunkAPI.dispatch(getAdminContent());
+  }
+  return success;
 });
 export const deleteOrder = createAsyncThunk("deleteOrder", async (id) => {
   const authorization = localStorage.getItem("authorization");
-  const response = await fetch(`/api/admin/orders/${id}`, {
+  const { success } = await fetch(`/api/admin/orders/${id}`, {
     method: "DELETE",
     headers: {
       authorization,
@@ -305,11 +315,14 @@ export const deleteOrder = createAsyncThunk("deleteOrder", async (id) => {
   })
     .then((res) => res.json())
     .catch((err) => console.error(err));
-  return response;
+  if (success) {
+    thunkAPI.dispatch(getAdminContent());
+  }
+  return success;
 });
 export const deleteTrack = createAsyncThunk("deleteTrack", async (id) => {
   const authorization = localStorage.getItem("authorization");
-  const response = await fetch(`/api/admin/tracks/${id}`, {
+  const { success } = await fetch(`/api/admin/tracks/${id}`, {
     method: "DELETE",
     headers: {
       authorization,
@@ -317,11 +330,14 @@ export const deleteTrack = createAsyncThunk("deleteTrack", async (id) => {
   })
     .then((res) => res.json())
     .catch((err) => console.error(err));
-  return response;
+  if (success) {
+    thunkAPI.dispatch(getAdminContent());
+  }
+  return success;
 });
 export const deleteUser = createAsyncThunk("deleteUser", async (id) => {
   const authorization = localStorage.getItem("authorization");
-  const response = await fetch(`/api/admin/users/${id}`, {
+  const { success } = await fetch(`/api/admin/users/${id}`, {
     method: "DELETE",
     headers: {
       authorization,
@@ -329,20 +345,29 @@ export const deleteUser = createAsyncThunk("deleteUser", async (id) => {
   })
     .then((res) => res.json())
     .catch((err) => console.error(err));
-  return response;
+  if (success) {
+    thunkAPI.dispatch(getAdminContent());
+  }
+  return success;
 });
-export const deleteVinyl = createAsyncThunk("deleteVinyl", async (id) => {
-  const authorization = localStorage.getItem("authorization");
-  const response = await fetch(`/api/admin/vinyls/${id}`, {
-    method: "DELETE",
-    headers: {
-      authorization,
-    },
-  })
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
-  return response;
-});
+export const deleteVinyl = createAsyncThunk(
+  "deleteVinyl",
+  async (id, thunkAPI) => {
+    const authorization = localStorage.getItem("authorization");
+    const { success } = await fetch(`/api/admin/vinyls/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization,
+      },
+    })
+      .then((res) => res.json())
+      .catch((err) => console.error(err));
+    if (success) {
+      thunkAPI.dispatch(getAdminContent());
+    }
+    return success;
+  }
+);
 
 export const { clearToast } = adminSlice.actions;
 

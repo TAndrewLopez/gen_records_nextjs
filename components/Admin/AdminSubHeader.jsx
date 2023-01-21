@@ -10,7 +10,34 @@ const AdminSubHeader = () => {
         <AdminSelections />
       </li> */}
       <li>
-        <button>Add</button>
+        <button
+          className="px-6
+            py-2.5
+            bg-accent
+            text-white
+            font-medium
+            text-xs
+            leading-tight
+            uppercase
+            rounded
+            shadow-md
+            hover:text-shade-9
+            hover:bg-highlight
+            hover:shadow-lg
+            focus:bg-highlight
+            focus:shadow-lg 
+            focus:outline-none focus:ring-0
+            active:bg-highlight active:shadow-lg active:text-shade-9
+            transition
+            duration-300
+            ease-in-out
+            flex
+            items-center
+            whitespace-nowrap"
+          type="button"
+          id="dropdownMenuButton1">
+          Add Item
+        </button>
       </li>
     </ul>
   );
