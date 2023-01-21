@@ -26,9 +26,7 @@ const AdminSubHeader = () => {
   return (
     <>
       <ul className="p-3 flex flex-col gap-5 sm:gap-0 sm:flex-row justify-between items-center bg-shade-8">
-        <li>
-          <AdminSearchField />
-        </li>
+        <li>{/* <AdminSearchField /> */}</li>
         <li>
           <FormDropDown setEdit={setEdit} setFormID={setFormID} />
         </li>
