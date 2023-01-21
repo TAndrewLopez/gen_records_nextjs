@@ -68,7 +68,7 @@ const VinylsTable = ({ vinyls }) => {
                     <button
                       onClick={() => {
                         setDelID(vinyl.id);
-                        setEdit(true);
+                        setEdit(!edit);
                       }}
                       className="p-3 group ">
                       <EditIcon twClass="w-4 fill-shade-7 group-hover:fill-highlight" />

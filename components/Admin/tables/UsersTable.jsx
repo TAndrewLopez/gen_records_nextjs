@@ -69,7 +69,7 @@ const UsersTable = ({ users }) => {
                     <button
                       onClick={() => {
                         setSelID(user.id);
-                        setEdit(true);
+                        setEdit(!edit);
                       }}
                       className="p-3 group ">
                       <EditIcon twClass="w-4 fill-shade-7 group-hover:fill-highlight" />

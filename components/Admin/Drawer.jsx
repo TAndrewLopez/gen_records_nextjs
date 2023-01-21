@@ -40,7 +40,6 @@ const Drawer = ({ edit, setEdit, element, formName }) => {
         </svg>
         <span className="sr-only">Close menu</span>
       </button>
-
       {element}
     </div>
   );

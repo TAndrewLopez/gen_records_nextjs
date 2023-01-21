@@ -8,11 +8,10 @@ const AdminDropDown = () => {
   return (
     <div className="flex justify-center">
       <div>
-        <div className="dropdown relative">
+        <div className="relative">
           <button
-            onClick={() => setSortDropDown(!sortDropDown)}
-            className="dropdown-toggle
-            px-6
+            onClick={() => {}}
+            className="px-6
             py-2.5
             bg-accent
             text-white
@@ -35,11 +34,8 @@ const AdminDropDown = () => {
             flex
             items-center
             whitespace-nowrap"
-            type="button"
-            id="dropdownMenuButton1"
-            data-bs-toggle="dropdown"
-            aria-expanded="false">
-            Sort Options
+            type="button">
+            Add Item
             <svg
               aria-hidden="true"
               focusable="false"

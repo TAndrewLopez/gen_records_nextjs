@@ -6,9 +6,13 @@ export default function Home() {
   return (
     <div className="h-screen w-full flex flex-col">
       <Head>
-        <title>Gen Records App</title>
+        <meta
+          name="description"
+          content="E-commerce website that fetches album/artist data from Spotify's API to represent Vinyls."
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <title>Gen Records App</title>
       </Head>
       <Header headerClass={"flex text-xl justify-between p-5"} />
       <div className="flex-1 flex justify-center items-center ">

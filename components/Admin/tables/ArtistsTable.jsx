@@ -55,7 +55,7 @@ const ArtistsTable = ({ artists }) => {
                     <button
                       onClick={() => {
                         setSelID(artist.id);
-                        setEdit(true);
+                        setEdit(!edit);
                       }}
                       className="p-3 group ">
                       <EditIcon twClass="w-4 fill-shade-7 group-hover:fill-highlight" />

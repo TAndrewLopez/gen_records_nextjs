@@ -4,7 +4,7 @@ export { default as AdminSearchField } from "./Admin/AdminSearchField";
 export { default as AdminSubHeader } from "./Admin/AdminSubHeader";
 export { default as DeleteModal } from "./Admin/DeleteModal";
 export { default as Drawer } from "./Admin/Drawer";
-export { default as Selections } from "./Admin/Selections";
+export { default as FormDropDown } from "./Admin/FormDropDown";
 
 export { default as ArtistForm } from "./Admin/forms/ArtistForm";
 export { default as LineItemForm } from "./Admin/forms/LineItemForm";
