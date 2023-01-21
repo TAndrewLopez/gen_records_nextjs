@@ -103,7 +103,7 @@ const TrackForm = ({ track, setEdit }) => {
         <label
           htmlFor="preview_url"
           className="block mb-2 text-sm font-medium text-shade-5">
-          Preview URL
+          Preview URL <span className="text-xs">{`(optional)`}</span>
         </label>
         <input
           id="preview_url"

@@ -32,7 +32,7 @@ const Admin = () => {
     <div className="h-screen w-full flex flex-col">
       <Header headerClass={"flex text-xl justify-between p-5 bg-shade-9"} />
       <div className="flex-1 flex flex-col justify-center bg-shade-7">
-        {/* <AdminSubHeader /> */}
+        <AdminSubHeader />
         <div className="flex-1 m-5 space-y-3">
           <Accordion
             name="Artists"

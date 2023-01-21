@@ -76,7 +76,7 @@ const ArtistForm = ({ artist, setEdit }) => {
         <label
           htmlFor="genre"
           className="block mb-2 text-sm font-medium text-shade-5">
-          Genre
+          Genre <span className="text-xs">{`(optional)`}</span>
         </label>
         <input
           id="genre"

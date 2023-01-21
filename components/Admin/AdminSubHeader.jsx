@@ -1,10 +1,27 @@
 import { useState } from "react";
-import { AdminSearchField, Drawer, FormDropDown } from "../../components";
+import {
+  AdminSearchField,
+  Drawer,
+  FormDropDown,
+  ArtistForm,
+  LineItemForm,
+  OrderForm,
+  TrackForm,
+  UserForm,
+  VinylForm,
+} from "../../components";
 
 const AdminSubHeader = () => {
   const [edit, setEdit] = useState(false);
-  const [form, setForm] = useState("");
-  const forms = ["artist", "lineItem", "order", "track", "user", "vinyl"];
+  const [formID, setFormID] = useState(0);
+  const formComponents = [
+    { id: 1, formName: "Add Artist Form", element: <ArtistForm /> },
+    { id: 2, formName: "Add Line Item Form", element: <LineItemForm /> },
+    { id: 3, formName: "Add Order Form", element: <OrderForm /> },
+    { id: 4, formName: "Add Track Form", element: <TrackForm /> },
+    { id: 5, formName: "Add User Form", element: <UserForm /> },
+    { id: 6, formName: "Add Vinyl Form", element: <VinylForm /> },
+  ];
 
   return (
     <>
@@ -13,15 +30,10 @@ const AdminSubHeader = () => {
           <AdminSearchField />
         </li>
         <li>
-          <FormDropDown setEdit={setEdit} />
+          <FormDropDown setEdit={setEdit} setFormID={setFormID} />
         </li>
       </ul>
-      <Drawer
-        formName={"Add Something"}
-        edit={edit}
-        setEdit={setEdit}
-        element={null}
-      />
+      <Drawer edit={edit} setEdit={setEdit} formID={formID} />
     </>
   );
 };

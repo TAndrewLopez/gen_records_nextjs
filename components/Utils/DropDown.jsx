@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { SortDownArrow, SortUpArrow } from "../assets";
 import {
   sortAlbumNames,
   sortArtistName,
@@ -35,7 +34,11 @@ const DropDown = ({ vinyls, setFilterVinyl }) => {
       <div>
         <div className="dropdown relative">
           <button
+            type="button"
             onClick={() => setSortDropDown(!sortDropDown)}
+            onBlur={(evt) => {
+              console.log(evt, evt.relatedTarget);
+            }}
             className="dropdown-toggle
             px-6
             py-2.5
@@ -60,7 +63,6 @@ const DropDown = ({ vinyls, setFilterVinyl }) => {
             flex
             items-center
             whitespace-nowrap"
-            type="button"
             id="dropdownMenuButton1"
             data-bs-toggle="dropdown"
             aria-expanded="false">
@@ -88,7 +90,7 @@ const DropDown = ({ vinyls, setFilterVinyl }) => {
             hidden
             bg-shade-8
             text-base
-            z-50
+            z-40
             float-left
             py-2
             list-none
@@ -110,9 +112,6 @@ const DropDown = ({ vinyls, setFilterVinyl }) => {
                 }}
                 className="cursor-pointer flex items-center"
                 key={option + i}>
-                {/* <div className="pl-2">
-                  <SortUpArrow twClass={"w-3 fill-shade-1"} />
-                </div> */}
                 <a
                   className="
                   hover:bg-shade-2
@@ -129,9 +128,6 @@ const DropDown = ({ vinyls, setFilterVinyl }) => {
                   ">
                   {option.method}
                 </a>
-                {/* <div className="pr-2">
-                  <SortDownArrow twClass={"w-3 fill-shade-1"} />
-                </div> */}
               </li>
             ))}
           </ul>

@@ -1,4 +1,21 @@
-const Drawer = ({ edit, setEdit, element, formName }) => {
+import {
+  ArtistForm,
+  LineItemForm,
+  OrderForm,
+  TrackForm,
+  UserForm,
+  VinylForm,
+} from "../../components";
+
+const Drawer = ({ edit, setEdit, element, formName, formID }) => {
+  const formComponents = [
+    { id: 1, formName: "Add Artist Form", element: <ArtistForm /> },
+    { id: 2, formName: "Add Line Item Form", element: <LineItemForm /> },
+    { id: 3, formName: "Add Order Form", element: <OrderForm /> },
+    { id: 4, formName: "Add Track Form", element: <TrackForm /> },
+    { id: 5, formName: "Add User Form", element: <UserForm /> },
+    { id: 6, formName: "Add Vinyl Form", element: <VinylForm /> },
+  ];
   return (
     <div
       className={`
@@ -20,6 +37,10 @@ const Drawer = ({ edit, setEdit, element, formName }) => {
             clipRule="evenodd"></path>
         </svg>
         {formName}
+        {formID &&
+          formComponents
+            .filter((item) => item.id === formID)
+            .map((item) => item.formName)}
       </h5>
       <button
         type="button"
@@ -41,6 +62,10 @@ const Drawer = ({ edit, setEdit, element, formName }) => {
         <span className="sr-only">Close menu</span>
       </button>
       {element}
+      {formID &&
+        formComponents
+          .filter((item) => item.id === formID)
+          .map((item) => item.element)}
     </div>
   );
 };

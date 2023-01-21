@@ -1,4 +1,4 @@
-import { SearchField, DropDown } from "../../components";
+import { SearchField, DropDown } from "..";
 
 const SubHeader = ({
   setUserInput,

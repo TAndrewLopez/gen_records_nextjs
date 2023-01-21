@@ -47,7 +47,7 @@ const OrderForm = ({ order, setEdit }) => {
           onChange={(evt) => {
             setForm({ ...form, complete: evt.target.value });
           }}>
-          <option value={null}>Choose status</option>
+          <option value={null}>Choose Status</option>
           <option value="true">True</option>
           <option value="false">False</option>
         </select>

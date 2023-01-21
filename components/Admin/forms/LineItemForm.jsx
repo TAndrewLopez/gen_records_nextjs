@@ -91,7 +91,7 @@ const LineItemForm = ({ lineItem, setEdit }) => {
           onChange={(evt) => {
             setForm({ ...form, vinylId: evt.target.value });
           }}>
-          <option value={null}>Choose vinyl</option>
+          <option value={null}>Choose Vinyl</option>
           {vinyls.map((vinyl) => (
             <option
               value={vinyl.id}

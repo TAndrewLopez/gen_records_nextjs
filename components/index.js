@@ -32,7 +32,7 @@ export { default as Footer } from "./Navigation/Footer";
 export { default as Header } from "./Navigation/Header";
 export { default as MobileNavOverlay } from "./Navigation/MobileNavOverlay";
 export { default as NavLinks } from "./Navigation/NavLinks";
-export { default as SubHeader } from "./Navigation/SubHeader";
+export { default as SubHeader } from "./User/SubHeader";
 
 export { default as ToastNotification } from "./Toast/ToastNotification";
 

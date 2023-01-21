@@ -1,5 +1,6 @@
 import { useState } from "react";
-const FormDropDown = ({ setEdit }) => {
+
+const FormDropDown = ({ setEdit, setFormID }) => {
   const [toggle, setToggle] = useState(false);
   return (
     <div className="relative inline-block text-left">
@@ -13,16 +14,14 @@ const FormDropDown = ({ setEdit }) => {
             if (!evt.relatedTarget) {
               setToggle(false);
             } else {
-              if (
-                !evt.relatedTarget.className.includes(
-                  "option cursor-pointer hover:bg-highlight"
-                )
-              ) {
+              const relatedTarget =
+                evt.relatedTarget.className.includes("option");
+              if (!relatedTarget) {
                 setToggle(false);
               }
             }
           }}
-          className="inline-flex w-full justify-center rounded-md bg-accent px-6 py-2.5 text-sm font-medium text-shade-1 shadow-sm hover:bg-highlight hover:text-shade-9 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100 ease-in-out duration-300"
+          className="inline-flex w-full justify-center rounded-md bg-accent px-6 py-2.5 text-sm font-medium text-shade-1 shadow-sm hover:bg-shade-1 hover:text-shade-9 focus:outline-none focus:ring-2 focus:ring-shade-1 focus:ring-offset-2 focus:ring-offset-gray-100 ease-in-out duration-300"
           id="menu-button"
           aria-expanded="true"
           aria-haspopup="true">
@@ -44,22 +43,21 @@ const FormDropDown = ({ setEdit }) => {
 
       <div
         onBlur={() => setToggle(false)}
-        className={`${
-          toggle ? "absolute" : "hidden"
-        } right-0 z-40 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
+        className={`
+        ${toggle ? "absolute" : "hidden"} 
+        right-0 z-40 mt-2 w-56 origin-top-right rounded-md bg-shade-8 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="menu-button"
         tabIndex="-1">
         <div className="py-1" role="none">
-          {/* <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" --> */}
           <a
             onClick={() => {
+              setFormID(1);
               setToggle(false);
               setEdit(true);
-              console.log("Add New Artist");
             }}
-            className="option cursor-pointer hover:bg-highlight text-gray-700 text-center block px-4 py-2 text-sm"
+            className="option cursor-pointer hover:bg-shade-1 hover:text-shade-9 text-shade-1 text-center block px-4 py-2 text-sm"
             role="menuitem"
             tabIndex="-1"
             id="menu-item-0">
@@ -67,11 +65,11 @@ const FormDropDown = ({ setEdit }) => {
           </a>
           <a
             onClick={() => {
+              setFormID(2);
               setToggle(false);
               setEdit(true);
-              console.log("Add New Line Item");
             }}
-            className="option cursor-pointer hover:bg-highlight text-gray-700 text-center block px-4 py-2 text-sm"
+            className="option cursor-pointer hover:bg-shade-1 hover:text-shade-9 text-shade-1 text-center block px-4 py-2 text-sm"
             role="menuitem"
             tabIndex="-1"
             id="menu-item-0">
@@ -79,11 +77,11 @@ const FormDropDown = ({ setEdit }) => {
           </a>
           <a
             onClick={() => {
+              setFormID(3);
               setToggle(false);
               setEdit(true);
-              console.log("Add New Order");
             }}
-            className="option cursor-pointer hover:bg-highlight text-gray-700 text-center block px-4 py-2 text-sm"
+            className="option cursor-pointer hover:bg-shade-1 hover:text-shade-9 text-shade-1 text-center block px-4 py-2 text-sm"
             role="menuitem"
             tabIndex="-1"
             id="menu-item-0">
@@ -91,11 +89,11 @@ const FormDropDown = ({ setEdit }) => {
           </a>
           <a
             onClick={() => {
+              setFormID(4);
               setToggle(false);
               setEdit(true);
-              console.log("Add New Track");
             }}
-            className="option cursor-pointer hover:bg-highlight text-gray-700 text-center block px-4 py-2 text-sm"
+            className="option cursor-pointer hover:bg-shade-1 hover:text-shade-9 text-shade-1 text-center block px-4 py-2 text-sm"
             role="menuitem"
             tabIndex="-1"
             id="menu-item-0">
@@ -103,11 +101,11 @@ const FormDropDown = ({ setEdit }) => {
           </a>
           <a
             onClick={() => {
+              setFormID(5);
               setToggle(false);
               setEdit(true);
-              console.log("Add New User");
             }}
-            className="option cursor-pointer hover:bg-highlight text-gray-700 text-center block px-4 py-2 text-sm"
+            className="option cursor-pointer hover:bg-shade-1 hover:text-shade-9 text-shade-1 text-center block px-4 py-2 text-sm"
             role="menuitem"
             tabIndex="-1"
             id="menu-item-0">
@@ -115,11 +113,11 @@ const FormDropDown = ({ setEdit }) => {
           </a>
           <a
             onClick={() => {
+              setFormID(6);
               setToggle(false);
               setEdit(true);
-              console.log("Add New Vinyl");
             }}
-            className="option cursor-pointer hover:bg-highlight text-gray-700 text-center block px-4 py-2 text-sm"
+            className="option cursor-pointer hover:bg-shade-1 hover:text-shade-9 text-shade-1 text-center block px-4 py-2 text-sm"
             role="menuitem"
             tabIndex="-1"
             id="menu-item-0">

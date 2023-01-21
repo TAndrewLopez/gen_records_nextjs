@@ -122,7 +122,7 @@ const UserForm = ({ user, setEdit }) => {
         <label
           htmlFor="img_url"
           className="block mb-2 text-sm font-medium text-shade-5">
-          Image URL
+          Image URL <span className="text-xs">{`(optional)`}</span>
         </label>
         <input
           id="img_url"
