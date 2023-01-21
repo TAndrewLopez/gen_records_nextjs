@@ -7,10 +7,11 @@ const {
 const Artist = conn.define("artist", {
   name: {
     type: STRING,
-    notNull: true,
+    allowNull: false,
   },
   spotifyId: {
     type: STRING,
+    allowNull: false,
   },
   genre: {
     type: STRING,

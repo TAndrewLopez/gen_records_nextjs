@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateLineItem } from "../../../redux/features/adminSlice";
+import {
+  updateLineItem,
+  createLineItem,
+} from "../../../redux/features/adminSlice";
 
 const LineItemForm = ({ lineItem, setEdit }) => {
   const dispatch = useDispatch();
@@ -26,7 +29,13 @@ const LineItemForm = ({ lineItem, setEdit }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    dispatch(updateLineItem(form));
+
+    if (lineItem) {
+      dispatch(updateLineItem(form));
+    } else {
+      delete form.id;
+      dispatch(createLineItem(form));
+    }
     setEdit(false);
     setForm({
       id: "",
@@ -65,7 +74,7 @@ const LineItemForm = ({ lineItem, setEdit }) => {
         <select
           id="order_id"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          value={form.vinylId}
+          value={form.orderId}
           onChange={(evt) => {
             setForm({ ...form, orderId: evt.target.value });
           }}>

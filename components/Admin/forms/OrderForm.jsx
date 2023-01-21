@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateOrder } from "../../../redux/features/adminSlice";
+import { updateOrder, createOrder } from "../../../redux/features/adminSlice";
 
 const OrderForm = ({ order, setEdit }) => {
   const dispatch = useDispatch();
@@ -23,7 +23,13 @@ const OrderForm = ({ order, setEdit }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    dispatch(updateOrder(form));
+
+    if (order) {
+      dispatch(updateOrder(form));
+    } else {
+      delete form.id;
+      dispatch(createOrder(form));
+    }
     setEdit(false);
     setForm({
       id: "",

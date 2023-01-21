@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateTrack } from "../../../redux/features/adminSlice";
+import { updateTrack, createTrack } from "../../../redux/features/adminSlice";
 
 const TrackForm = ({ track, setEdit }) => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const TrackForm = ({ track, setEdit }) => {
         name: track.name,
         spotifyId: track.spotifyId,
         explicit: track.explicit,
-        preview: track.preview,
+        preview: track.preview || "",
         vinylId: track.vinylId,
       });
     }
@@ -30,7 +30,12 @@ const TrackForm = ({ track, setEdit }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    dispatch(updateTrack(form));
+    if (track) {
+      dispatch(updateTrack(form));
+    } else {
+      delete form.id;
+      dispatch(createTrack(form));
+    }
     setEdit(false);
     setForm({
       id: "",
@@ -46,14 +51,14 @@ const TrackForm = ({ track, setEdit }) => {
     <form onSubmit={handleSubmit} className="mb-6">
       <div className="mb-6">
         <label
-          htmlFor="artist_name"
+          htmlFor="track_name"
           className="block mb-2 text-sm font-medium text-shade-5">
-          Artist Name
+          Track Name
         </label>
         <input
-          id="artist_name"
+          id="track_name"
           className="bg-shade-1 border border-shade-5 text-shade-9 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          placeholder="Artist Name"
+          placeholder="Track Name"
           required
           value={form.name}
           onChange={(evt) => {

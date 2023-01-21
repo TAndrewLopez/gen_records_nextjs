@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { updateArtist } from "../../../redux/features/adminSlice";
+import { createArtist, updateArtist } from "../../../redux/features/adminSlice";
 
 const ArtistForm = ({ artist, setEdit }) => {
   const dispatch = useDispatch();
@@ -24,7 +24,14 @@ const ArtistForm = ({ artist, setEdit }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    dispatch(updateArtist(form));
+
+    if (artist) {
+      dispatch(updateArtist(form));
+    } else {
+      delete form.id;
+      dispatch(createArtist(form));
+    }
+
     setEdit(false);
     setForm({
       id: "",

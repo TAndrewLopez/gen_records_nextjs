@@ -15,7 +15,6 @@ const Track = conn.define("track", {
   },
   length: {
     type: INTEGER,
-    allowNull: false,
   },
   explicit: {
     type: BOOLEAN,
@@ -23,7 +22,7 @@ const Track = conn.define("track", {
   },
   preview: {
     type: STRING,
-    defaultValue: null,
+    defaultValue: "",
   },
 });
 

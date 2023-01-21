@@ -21,7 +21,7 @@ const FormDropDown = ({ setEdit, setFormID }) => {
               }
             }
           }}
-          className="inline-flex w-full justify-center rounded-md bg-accent px-6 py-2.5 text-sm font-medium text-shade-1 shadow-sm hover:bg-shade-1 hover:text-shade-9 focus:outline-none focus:ring-2 focus:ring-shade-1 focus:ring-offset-2 focus:ring-offset-gray-100 ease-in-out duration-300"
+          className="inline-flex w-full justify-center rounded-md bg-accent px-6 py-2.5 text-sm font-medium text-shade-1 shadow-sm hover:bg-highlight hover:text-shade-9 focus:outline-none focus:ring-2 focus:ring-shade-1 focus:ring-offset-2 focus:ring-offset-gray-100 ease-in-out duration-300"
           id="menu-button"
           aria-expanded="true"
           aria-haspopup="true">

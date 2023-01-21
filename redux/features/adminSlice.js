@@ -34,138 +34,6 @@ const adminSlice = createSlice({
       state.lineItems = lineItems;
       state.isLoading = false;
     });
-    //ADMIN ACTIONS
-    // builder.addCase(deleteArtist.fulfilled, (state, { payload }) => {
-    //   const filteredArtist = state.artists.filter(
-    //     (artist) => artist.id !== payload.artist.id
-    //   );
-    //   if (payload) {
-    //     state.artists = filteredArtist;
-    //     state.message = "Artist has been deleted.";
-    //   }
-    // });
-    builder.addCase(updateArtist.fulfilled, (state, { payload }) => {
-      const { updatedArtist } = payload;
-      const updatedArtists = state.artists.map((artist) => {
-        if (artist.id === updatedArtist.id) {
-          artist = { ...updatedArtist };
-        }
-        return artist;
-      });
-      if (payload) {
-        state.artists = updatedArtists;
-        state.message = "Artist has been updated.";
-      }
-    });
-
-    // builder.addCase(deleteLineItem.fulfilled, (state, { payload }) => {
-    //   const filteredLineItems = state.lineItems.filter(
-    //     (lineItem) => lineItem.id !== payload.lineItem.id
-    //   );
-    //   if (payload) {
-    //     state.lineItems = filteredLineItems;
-    //     state.message = "Line item has been deleted.";
-    //   }
-    // });
-    builder.addCase(updateLineItem.fulfilled, (state, { payload }) => {
-      const { updatedLineItem } = payload;
-      const updatedLineItems = state.lineItems.map((lineItem) => {
-        if (lineItem.id === updatedLineItem.id) {
-          lineItem = { ...updatedLineItem };
-        }
-        return lineItem;
-      });
-      if (payload) {
-        state.lineItems = updatedLineItems;
-        state.message = "Line item has been updated.";
-      }
-    });
-
-    // builder.addCase(deleteOrder.fulfilled, (state, { payload }) => {
-    //   const filteredOrders = state.orders.filter(
-    //     (order) => order.id !== payload.order.id
-    //   );
-    //   if (payload) {
-    //     state.orders = filteredOrders;
-    //     state.message = "Order has been deleted.";
-    //   }
-    // });
-    builder.addCase(updateOrder.fulfilled, (state, { payload }) => {
-      if (payload) {
-        state.orders = payload.orders;
-        state.message = "Order has been updated.";
-      }
-    });
-
-    // builder.addCase(deleteTrack.fulfilled, (state, { payload }) => {
-    //   const filteredTracks = state.tracks.filter(
-    //     (track) => track.id !== payload.track.id
-    //   );
-    //   if (payload) {
-    //     state.tracks = filteredTracks;
-    //     state.message = "Track has been deleted.";
-    //   }
-    // });
-    builder.addCase(updateTrack.fulfilled, (state, { payload }) => {
-      const { updatedTrack } = payload;
-      const updatedTracks = state.tracks.map((track) => {
-        if (track.id === updatedTrack.id) {
-          track = { ...updatedTrack };
-        }
-        return track;
-      });
-      if (payload) {
-        state.tracks = updatedTracks;
-        state.message = "Track has been updated.";
-      }
-    });
-
-    // builder.addCase(deleteUser.fulfilled, (state, { payload }) => {
-    //   const filteredUsers = state.users.filter(
-    //     (user) => user.id !== payload.user.id
-    //   );
-    //   if (payload) {
-    //     state.users = filteredUsers;
-    //     state.message = "User has been deleted.";
-    //   }
-    // });
-    builder.addCase(updateUser.fulfilled, (state, { payload }) => {
-      const { updatedUser } = payload;
-      const updatedUsers = state.users.map((user) => {
-        if (user.id === updatedUser.id) {
-          user = { ...updatedUser };
-        }
-        return user;
-      });
-      if (payload) {
-        state.users = updatedUsers;
-        state.message = "User has been updated.";
-      }
-    });
-
-    // builder.addCase(deleteVinyl.fulfilled, (state, { payload }) => {
-    //   const filteredVinyls = state.vinyls.filter(
-    //     (vinyl) => vinyl.id !== payload.vinyl.id
-    //   );
-    //   if (payload) {
-    //     state.vinyls = filteredVinyls;
-    //     state.message = "Vinyl has been deleted.";
-    //   }
-    // });
-    builder.addCase(updateVinyl.fulfilled, (state, { payload }) => {
-      const { updatedVinyl } = payload;
-      console.log(payload);
-      const updatedVinyls = state.vinyls.map((vinyl) => {
-        if (vinyl.id === updatedVinyl.id) {
-          vinyl = { ...updatedVinyl };
-        }
-        return vinyl;
-      });
-      if (payload) {
-        state.vinyls = updatedVinyls;
-        state.message = "Vinyl has been updated.";
-      }
-    });
   },
 });
 
@@ -182,26 +50,134 @@ export const getAdminContent = createAsyncThunk("getAdminContent", async () => {
   return response;
 });
 
-//UPDATE
-export const updateArtist = createAsyncThunk("updateArtist", async (form) => {
-  const authorization = localStorage.getItem("authorization");
-  const response = await fetch(`/api/admin/artists/${form.id}`, {
-    method: "PUT",
-    headers: {
-      authorization,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(form),
-  })
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
-  return response;
-});
-export const updateLineItem = createAsyncThunk(
-  "updateLineItem",
-  async (form) => {
+//CREATE
+export const createArtist = createAsyncThunk(
+  "createArtist",
+  async (form, thunkAPI) => {
     const authorization = localStorage.getItem("authorization");
-    const response = await fetch(`/api/admin/lineItems/${form.id}`, {
+    const { success } = await fetch(`/api/admin/artists`, {
+      method: "POST",
+      headers: {
+        authorization,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.error(err));
+    if (success) {
+      thunkAPI.dispatch(getAdminContent());
+    }
+    return success;
+  }
+);
+export const createLineItem = createAsyncThunk(
+  "createLineItem",
+  async (form, thunkAPI) => {
+    const authorization = localStorage.getItem("authorization");
+    const { success } = await fetch(`/api/admin/lineItems`, {
+      method: "POST",
+      headers: {
+        authorization,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.error(err));
+    if (success) {
+      thunkAPI.dispatch(getAdminContent());
+    }
+    return success;
+  }
+);
+export const createOrder = createAsyncThunk(
+  "createOrder",
+  async (form, thunkAPI) => {
+    const authorization = localStorage.getItem("authorization");
+    const { success } = await fetch(`/api/admin/orders`, {
+      method: "POST",
+      headers: {
+        authorization,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.error(err));
+    if (success) {
+      thunkAPI.dispatch(getAdminContent());
+    }
+    return success;
+  }
+);
+export const createTrack = createAsyncThunk(
+  "createTrack",
+  async (form, thunkAPI) => {
+    const authorization = localStorage.getItem("authorization");
+    const { success } = await fetch(`/api/admin/tracks`, {
+      method: "POST",
+      headers: {
+        authorization,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.error(err));
+    if (success) {
+      thunkAPI.dispatch(getAdminContent());
+    }
+    return success;
+  }
+);
+export const createUser = createAsyncThunk(
+  "createUser",
+  async (form, thunkAPI) => {
+    const authorization = localStorage.getItem("authorization");
+    const { success } = await fetch(`/api/admin/users`, {
+      method: "POST",
+      headers: {
+        authorization,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.error(err));
+    if (success) {
+      thunkAPI.dispatch(getAdminContent());
+    }
+    return success;
+  }
+);
+export const createVinyl = createAsyncThunk(
+  "createVinyl",
+  async (form, thunkAPI) => {
+    const authorization = localStorage.getItem("authorization");
+    const { success } = await fetch(`/api/admin/vinyls`, {
+      method: "POST",
+      headers: {
+        authorization,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.error(err));
+    if (success) {
+      thunkAPI.dispatch(getAdminContent());
+    }
+    return success;
+  }
+);
+
+//UPDATE
+export const updateArtist = createAsyncThunk(
+  "updateArtist",
+  async (form, thunkAPI) => {
+    const authorization = localStorage.getItem("authorization");
+    const { success } = await fetch(`/api/admin/artists/${form.id}`, {
       method: "PUT",
       headers: {
         authorization,
@@ -211,65 +187,112 @@ export const updateLineItem = createAsyncThunk(
     })
       .then((res) => res.json())
       .catch((err) => console.error(err));
-    return response;
+    if (success) {
+      thunkAPI.dispatch(getAdminContent());
+    }
+    return success;
   }
 );
-export const updateOrder = createAsyncThunk("updateOrder", async (form) => {
-  const authorization = localStorage.getItem("authorization");
-  const response = await fetch(`/api/admin/orders/${form.id}`, {
-    method: "PUT",
-    headers: {
-      authorization,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(form),
-  })
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
-  return response;
-});
-export const updateTrack = createAsyncThunk("updateTrack", async (form) => {
-  const authorization = localStorage.getItem("authorization");
-  const response = await fetch(`/api/admin/tracks/${form.id}`, {
-    method: "PUT",
-    headers: {
-      authorization,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(form),
-  })
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
-  return response;
-});
-export const updateUser = createAsyncThunk("updateUser", async (form) => {
-  const authorization = localStorage.getItem("authorization");
-  const response = await fetch(`/api/admin/users/${form.id}`, {
-    method: "PUT",
-    headers: {
-      authorization,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(form),
-  })
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
-  return response;
-});
-export const updateVinyl = createAsyncThunk("updateVinyl", async (form) => {
-  const authorization = localStorage.getItem("authorization");
-  const response = await fetch(`/api/admin/vinyls/${form.id}`, {
-    method: "PUT",
-    headers: {
-      authorization,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(form),
-  })
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
-  return response;
-});
+export const updateLineItem = createAsyncThunk(
+  "updateLineItem",
+  async (form, thunkAPI) => {
+    const authorization = localStorage.getItem("authorization");
+    const { success } = await fetch(`/api/admin/lineItems/${form.id}`, {
+      method: "PUT",
+      headers: {
+        authorization,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.error(err));
+    if (success) {
+      thunkAPI.dispatch(getAdminContent());
+    }
+    return success;
+  }
+);
+export const updateOrder = createAsyncThunk(
+  "updateOrder",
+  async (form, thunkAPI) => {
+    const authorization = localStorage.getItem("authorization");
+    const { success } = await fetch(`/api/admin/orders/${form.id}`, {
+      method: "PUT",
+      headers: {
+        authorization,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.error(err));
+    if (success) {
+      thunkAPI.dispatch(getAdminContent());
+    }
+    return success;
+  }
+);
+export const updateTrack = createAsyncThunk(
+  "updateTrack",
+  async (form, thunkAPI) => {
+    const authorization = localStorage.getItem("authorization");
+    const { success } = await fetch(`/api/admin/tracks/${form.id}`, {
+      method: "PUT",
+      headers: {
+        authorization,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.error(err));
+    if (success) {
+      thunkAPI.dispatch(getAdminContent());
+    }
+    return success;
+  }
+);
+export const updateUser = createAsyncThunk(
+  "updateUser",
+  async (form, thunkAPI) => {
+    const authorization = localStorage.getItem("authorization");
+    const { success } = await fetch(`/api/admin/users/${form.id}`, {
+      method: "PUT",
+      headers: {
+        authorization,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.error(err));
+    if (success) {
+      thunkAPI.dispatch(getAdminContent());
+    }
+    return success;
+  }
+);
+export const updateVinyl = createAsyncThunk(
+  "updateVinyl",
+  async (form, thunkAPI) => {
+    const authorization = localStorage.getItem("authorization");
+    const { success } = await fetch(`/api/admin/vinyls/${form.id}`, {
+      method: "PUT",
+      headers: {
+        authorization,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.error(err));
+    if (success) {
+      thunkAPI.dispatch(getAdminContent());
+    }
+    return success;
+  }
+);
 
 //DELETE
 export const deleteArtist = createAsyncThunk(
@@ -290,66 +313,78 @@ export const deleteArtist = createAsyncThunk(
     return success;
   }
 );
-export const deleteLineItem = createAsyncThunk("deleteLineItem", async (id) => {
-  const authorization = localStorage.getItem("authorization");
-  const { success } = await fetch(`/api/admin/lineItems/${id}`, {
-    method: "DELETE",
-    headers: {
-      authorization,
-    },
-  })
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
-  if (success) {
-    thunkAPI.dispatch(getAdminContent());
+export const deleteLineItem = createAsyncThunk(
+  "deleteLineItem",
+  async (id, thunkAPI) => {
+    const authorization = localStorage.getItem("authorization");
+    const { success } = await fetch(`/api/admin/lineItems/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization,
+      },
+    })
+      .then((res) => res.json())
+      .catch((err) => console.error(err));
+    if (success) {
+      thunkAPI.dispatch(getAdminContent());
+    }
+    return success;
   }
-  return success;
-});
-export const deleteOrder = createAsyncThunk("deleteOrder", async (id) => {
-  const authorization = localStorage.getItem("authorization");
-  const { success } = await fetch(`/api/admin/orders/${id}`, {
-    method: "DELETE",
-    headers: {
-      authorization,
-    },
-  })
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
-  if (success) {
-    thunkAPI.dispatch(getAdminContent());
+);
+export const deleteOrder = createAsyncThunk(
+  "deleteOrder",
+  async (id, thunkAPI) => {
+    const authorization = localStorage.getItem("authorization");
+    const { success } = await fetch(`/api/admin/orders/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization,
+      },
+    })
+      .then((res) => res.json())
+      .catch((err) => console.error(err));
+    if (success) {
+      thunkAPI.dispatch(getAdminContent());
+    }
+    return success;
   }
-  return success;
-});
-export const deleteTrack = createAsyncThunk("deleteTrack", async (id) => {
-  const authorization = localStorage.getItem("authorization");
-  const { success } = await fetch(`/api/admin/tracks/${id}`, {
-    method: "DELETE",
-    headers: {
-      authorization,
-    },
-  })
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
-  if (success) {
-    thunkAPI.dispatch(getAdminContent());
+);
+export const deleteTrack = createAsyncThunk(
+  "deleteTrack",
+  async (id, thunkAPI) => {
+    const authorization = localStorage.getItem("authorization");
+    const { success } = await fetch(`/api/admin/tracks/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization,
+      },
+    })
+      .then((res) => res.json())
+      .catch((err) => console.error(err));
+    if (success) {
+      thunkAPI.dispatch(getAdminContent());
+    }
+    return success;
   }
-  return success;
-});
-export const deleteUser = createAsyncThunk("deleteUser", async (id) => {
-  const authorization = localStorage.getItem("authorization");
-  const { success } = await fetch(`/api/admin/users/${id}`, {
-    method: "DELETE",
-    headers: {
-      authorization,
-    },
-  })
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
-  if (success) {
-    thunkAPI.dispatch(getAdminContent());
+);
+export const deleteUser = createAsyncThunk(
+  "deleteUser",
+  async (id, thunkAPI) => {
+    const authorization = localStorage.getItem("authorization");
+    const { success } = await fetch(`/api/admin/users/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization,
+      },
+    })
+      .then((res) => res.json())
+      .catch((err) => console.error(err));
+    if (success) {
+      thunkAPI.dispatch(getAdminContent());
+    }
+    return success;
   }
-  return success;
-});
+);
 export const deleteVinyl = createAsyncThunk(
   "deleteVinyl",
   async (id, thunkAPI) => {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { updateUser } from "../../../redux/features/adminSlice";
+import { updateUser, createUser } from "../../../redux/features/adminSlice";
 
 const UserForm = ({ user, setEdit }) => {
   const dispatch = useDispatch();
@@ -31,7 +31,12 @@ const UserForm = ({ user, setEdit }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    dispatch(updateUser(form));
+    if (user) {
+      dispatch(updateUser(form));
+    } else {
+      delete form.id;
+      dispatch(createUser(form));
+    }
     setEdit(false);
     setForm({
       id: "",

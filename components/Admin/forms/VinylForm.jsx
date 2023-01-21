@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateVinyl } from "../../../redux/features/adminSlice";
+import { updateVinyl, createVinyl } from "../../../redux/features/adminSlice";
 
 const VinylForm = ({ vinyl, setEdit }) => {
   const dispatch = useDispatch();
@@ -40,7 +40,12 @@ const VinylForm = ({ vinyl, setEdit }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    dispatch(updateVinyl(form));
+    if (vinyl) {
+      dispatch(updateVinyl(form));
+    } else {
+      delete form.id;
+      dispatch(createVinyl(form));
+    }
     setEdit(false);
     setForm({
       id: "",

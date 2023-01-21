@@ -1,11 +1,11 @@
-import { Vinyl } from "../../../../server";
-import { requireToken, isAdmin } from "../../../../customMiddleware";
+import { Order } from "../../../../server";
+import { isAdmin, requireToken } from "../../../../customMiddleware";
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
     try {
-      const vinyl = await Vinyl.create(req.body);
-      res.status(200).json({ success: true, vinyl });
+      const order = await Order.create(req.body);
+      res.status(200).json({ success: true, order });
     } catch (error) {
       console.log(error);
       res.status(500).json({ success: false, message: error.message });
