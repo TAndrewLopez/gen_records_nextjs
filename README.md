@@ -24,11 +24,41 @@ Gen Records is an E-commerce website. It fetches album and artist data from Spot
 </a>
 </div> -->
 
-#### Technology Stack
+<h3>Technology Used:<h3/>
+<div align="center">
+<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+" />
+<img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+" />
+<img src="https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white" />
+<img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
+" />
+<img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white
+" />
+<img src="https://img.shields.io/badge/Stripe-626CD9?style=for-the-badge&logo=Stripe&logoColor=white" />
+<img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white
+" />
 
-[![Javascript][javascript]][javascript-url]
-[![React.js][react.js]][react-url]
-[![Node.js][node.js]][node.js-url]
+</div>
+
+## Features
+
+- User Experiences:
+
+  - Add/Remove items from cart.
+  - User carts' persist and can be access across multiple devices for logged in users.
+  - User information is only accessible with proper credentials.
+  - Checkout system for guest and logged in users.
+  - Logged in users can view order history.
+  - View, sort, and search through inventory.
+  - Preview 30 second clips of music before purchasing. (if available)
+  - Responsive design.
+
+- Admin Experiences:
+  - Access to Admin Dashboard.
+  - SPA experience with managed state.
+  - Protected routes for inventory CRUD operations.
+  - Protected routes for user CRUD operations.
 
 ### Contact
 
@@ -37,11 +67,19 @@ If you are interested in reporting any issues, would like to ask further questio
 **Andrew Dobson**
 | [linkedin.com/in/tandrewlopez](https://linkedin.com/in/tandrewlopez) | [github.com/TAndrewLopez](https://github.com/TAndrewLopez) |
 
-<!-- VARS -->
+## Screenshots
 
-[react.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[react-url]: https://reactjs.org/
-[node.js]: https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white
-[node.js-url]: https://nodejs.org/en/
-[javascript]: https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
-[javascript-url]: https://www.javascript.com/
+Landing Page
+![App Screenshot](public/screenshots/01_landing.png)
+Discover Page
+![App Screenshot](public/screenshots/02_discover.png)
+Single View
+![App Screenshot](public/screenshots/03_singleView.png)
+Profile Page
+![App Screenshot](public/screenshots/04_profile.png)
+Login Page
+![App Screenshot](public/screenshots/05_login.png)
+Admin Form
+![App Screenshot](public/screenshots/07_.adminAddpng)
+Checkout Page
+![App Screenshot](public/screenshots/08_checkout.png)
