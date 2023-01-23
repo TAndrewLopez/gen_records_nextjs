@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
+import Image from "next/image";
 import { Pagination } from "../../components";
 import { PlusIcon, MinusIcon } from "../assets";
 import { formatToUSD } from "../helperFuncs";
@@ -99,17 +100,19 @@ const UserCart = ({ cart, title, images, controls, orders }) => {
           return (
             <li className="py-2" key={item?.id || i}>
               <div className="flex items-center space-x-4">
-                {images ? (
+                {images && (
                   <Link
                     href={`/shop/${item.vinyl.id}`}
                     className="flex-shrink-0 border-highlight border p-1 border-opacity-50 hover:border-opacity-100 rounded-full cursor-pointer ease-in-out duration-300 group">
-                    <img
-                      className="w-8 h-8 rounded-full opacity-50 group-hover:opacity-100 ease-in-out duration-300"
+                    <Image
                       src={item?.vinyl.img}
+                      alt="vinyl-image"
+                      className="w-8 h-8 rounded-full opacity-50 group-hover:opacity-100 ease-in-out duration-300"
+                      width={32}
+                      height={32}
+                      priority
                     />
                   </Link>
-                ) : (
-                  <></>
                 )}
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-shade-1 truncate hover:text-sec ease-in-out duration-300">

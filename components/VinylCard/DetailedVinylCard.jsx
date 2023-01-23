@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { formatToUSD } from "../helperFuncs";
@@ -115,11 +116,13 @@ const DetailedVinylCard = ({ singleVinyl, cart }) => {
           className="absolute top-3 left-0 px-6 py-2 rounded-r text-shade-1 hover:text-shade-9 bg-shade-9 hover:bg-highlight ease-in-out duration-300">
           Back
         </button>
-
-        <img
+        <Image
           className="object-cover w-full sm:max-w-2xl"
           src={singleVinyl?.img}
+          width={400}
+          height={400}
           alt="vinyl-image"
+          priority
         />
       </div>
       <div className="flex-1 flex items-center">

@@ -18,11 +18,10 @@ const UserProfileCard = ({ user: { firstName, lastName, username, img } }) => {
           />
         ) : (
           <Image
-            className="w-24 aspect-square mb-3 rounded-full shadow-lg object-cover"
             src={defaultProfileImage}
             alt="profile-image"
-            loading="eager"
-            priority={true}
+            className="w-24 aspect-square mb-3 rounded-full shadow-lg object-cover"
+            priority
           />
         )}
 
