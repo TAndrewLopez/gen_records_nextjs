@@ -14,7 +14,7 @@ export default function Home() {
           content="Landing page for Generational Records"
         />
       </Head>
-      <div className="h-screen w-full flex flex-col">
+      <div className="h-full w-full flex flex-col">
         <Header headerClass={"flex text-xl justify-between p-5"} />
         <div className="flex-1 flex justify-center items-center ">
           <div
