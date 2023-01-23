@@ -21,7 +21,9 @@ const Footer = ({ twClass }) => {
 
       <a
         className="flex cursor-pointer group"
-        onClick={() => openInNewTab("https://developer.spotify.com/")}>
+        onClick={() =>
+          openInNewTab("https://developer.spotify.com/dashboard/")
+        }>
         <SpotifyIcon
           twClass={
             "w-6 sm:w-8 fill-white group-hover:fill-sec ease-in-out duration-300"
