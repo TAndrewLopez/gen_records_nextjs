@@ -54,7 +54,7 @@ export default function Shop() {
           content="Discover Page for Generational Records"
         />
       </Head>
-      <div className="h-full w-full flex flex-col">
+      <div className="h-screen w-full flex flex-col">
         <Header headerClass={"flex text-xl justify-between p-5 bg-shade-9"} />
         <div className="flex-1 flex flex-col justify-center bg-shade-7">
           <SubHeader

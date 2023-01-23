@@ -37,7 +37,7 @@ const Auth = () => {
           content="Authorization page for Generational Records"
         />
       </Head>
-      <div className="h-screen w-full flex flex-col">
+      <div className="h-full w-full flex flex-col">
         <Header headerClass={"flex text-xl justify-between p-5"} />
         <div
           className={`absolute top-0 left-0 w-full h-full -z-10 bg-recordPlayerClose bg-no-repeat bg-center bg-cover ease-in-out duration-300`}>
