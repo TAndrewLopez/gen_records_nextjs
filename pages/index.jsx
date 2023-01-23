@@ -21,7 +21,7 @@ export default function Home() {
             className={`absolute top-0 left-0 w-full h-full -z-10 bg-shopperBG bg-no-repeat bg-center bg-cover ease-in-out duration-300`}>
             <div className="h-full w-full bg-shade-9 opacity-50"></div>
           </div>
-          <div className="relative text-shade-1 flex flex-col items-center gap-5 p-5">
+          <div className="absolute top-1/2 -translate-y-1/2 text-shade-1 flex flex-col items-center p-5">
             <h1 className="mb-4 text-3xl font-extrabold text-shade-1 md:text-5xl lg:text-6xl">
               The Destination for{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r to-sec from-accent">
