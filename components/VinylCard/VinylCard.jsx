@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
+import Image from "next/image";
 import { formatToUSD, popularityToStart } from "../helperFuncs";
 import { StarIcon } from "../assets";
 import { addLineItem, addItemLocally } from "../../redux/features/authSlice";
@@ -21,7 +22,14 @@ const VinylCard = ({ vinyl }) => {
   return (
     <div className="w-full m-5 max-w-[300px] rounded-lg shadow-md bg-shade-9">
       <Link className="cursor-pointer" href={`/shop/${vinyl.id}`}>
-        <img className="p-5 rounded-t-lg" src={vinyl.img} alt="vinyl-image" />
+        <Image
+          className="p-5 rounded-t-lg"
+          src={vinyl.img}
+          width={400}
+          height={400}
+          alt="vinyl-image"
+          priority
+        />
       </Link>
 
       <div className="px-5 pb-5">
