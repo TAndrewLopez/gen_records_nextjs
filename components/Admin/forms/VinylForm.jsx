@@ -257,12 +257,19 @@ const VinylForm = ({ vinyl, setEdit }) => {
           ))}
         </select>
       </div>
-
-      <button
-        type="submit"
-        className="text-shade-1 bg-accent hover:bg-highlight hover:text-shade-9 w-full focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none block ease-in-out duration-300">
-        {vinyl ? "Update" : "Add"}
-      </button>
+      <div className="flex">
+        <button
+          type="submit"
+          className="text-shade-1 bg-accent hover:bg-highlight hover:text-shade-9 w-full focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none block ease-in-out duration-300">
+          {vinyl ? "Update" : "Add"}
+        </button>
+        <button
+          type="button"
+          className="text-shade-9 bg-shade-1 hover:bg-sec hover:text-shade-1 w-full focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none block ease-in-out duration-300"
+          onClick={() => setEdit(false)}>
+          Cancel
+        </button>
+      </div>
     </form>
   );
 };

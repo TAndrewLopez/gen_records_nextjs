@@ -10,6 +10,7 @@ import {
   UserProfileCard,
   UserProfileForm,
   ToastNotification,
+  Layout,
 } from "../../components";
 import { clearToast } from "../../redux/features/authSlice";
 
@@ -40,11 +41,15 @@ const ProfilePage = () => {
   }, []);
 
   return (
-    <>
+    <Layout>
       <Head>
         <title>Profile Page</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          name="description"
+          content="User profile page for Generational Records users."
+        />
       </Head>
       <div className="h-screen w-full flex flex-col">
         <Header headerClass={"flex text-xl justify-between p-5 bg-shade-9"} />
@@ -80,7 +85,7 @@ const ProfilePage = () => {
           />
         )}
       </div>
-    </>
+    </Layout>
   );
 };
 

@@ -8,6 +8,7 @@ import {
   UserCart,
   StripePayment,
   StripeSuccess,
+  Layout,
 } from "../../components";
 import { SpinnerLoader } from "../../components/icons";
 import { clearToast } from "../../redux/features/authSlice";
@@ -25,11 +26,15 @@ const Checkout = () => {
   }, []);
 
   return (
-    <>
+    <Layout>
       <Head>
         <title>Checkout</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          name="description"
+          content="Checkout page for Generational Records"
+        />
       </Head>
       <div className="h-screen w-full flex flex-col">
         <Header headerClass={"flex text-xl justify-between p-5 bg-shade-9"} />
@@ -89,7 +94,7 @@ const Checkout = () => {
         </div>
         <Footer twClass={"p-5 text-white flex justify-center bg-shade-9 "} />
       </div>
-    </>
+    </Layout>
   );
 };
 

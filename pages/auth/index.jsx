@@ -7,6 +7,7 @@ import {
   CreateAccountForm,
   DemoLoginButtons,
   LoginForm,
+  Layout,
 } from "../../components";
 import { clearToast } from "../../redux/features/authSlice";
 
@@ -26,11 +27,15 @@ const Auth = () => {
   }, [loggedIn]);
 
   return (
-    <>
+    <Layout>
       <Head>
         <title>Create / Login</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          name="description"
+          content="Authorization page for Generational Records"
+        />
       </Head>
       <div className="h-screen w-full flex flex-col">
         <Header headerClass={"flex text-xl justify-between p-5"} />
@@ -47,7 +52,7 @@ const Auth = () => {
         </div>
         <DemoLoginButtons />
       </div>
-    </>
+    </Layout>
   );
 };
 

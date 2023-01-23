@@ -9,6 +9,10 @@ export default function Home() {
         <title>Welcome to Gen Records!</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          name="description"
+          content="Landing page for Generational Records"
+        />
       </Head>
       <div className="h-screen w-full flex flex-col">
         <Header headerClass={"flex text-xl justify-between p-5"} />

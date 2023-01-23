@@ -8,6 +8,7 @@ import {
   DetailedVinylCard,
   TrackList,
   ToastNotification,
+  Layout,
 } from "../../components";
 import { SpinnerLoader } from "../../components/icons";
 import { getSingleVinyl } from "../../redux/features/shopSlice";
@@ -30,11 +31,15 @@ const SingleVinylPage = () => {
   }, [id]);
 
   return (
-    <>
+    <Layout>
       <Head>
         <title>Shop</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          name="description"
+          content="Single Vinyl view for Generational Records"
+        />
       </Head>
       <div className="h-screen w-full flex flex-col">
         <Header headerClass={"flex text-xl justify-between p-5 bg-shade-9"} />
@@ -67,7 +72,7 @@ const SingleVinylPage = () => {
         )}
         <Footer twClass={"p-5 text-white flex justify-center bg-shade-9 "} />
       </div>
-    </>
+    </Layout>
   );
 };
 
