@@ -1,13 +1,10 @@
-import { useRouter } from "next/router";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { ErrorIcon, ProfileIcon, LockIcon } from "../../components/assets";
+import { useDispatch } from "react-redux";
+import { ErrorIcon, ProfileIcon, LockIcon } from "../../components/icons";
 import { login } from "../../redux/features/authSlice";
 
 const LoginForm = ({ toggle }) => {
-  const router = useRouter();
   const dispatch = useDispatch();
-  const { loggedIn } = useSelector((state) => state.authReducer);
 
   //FORM STATE
   const [formError, setFormError] = useState(false);

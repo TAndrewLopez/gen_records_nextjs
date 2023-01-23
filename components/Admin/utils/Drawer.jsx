@@ -5,7 +5,7 @@ import {
   TrackForm,
   UserForm,
   VinylForm,
-} from "../../components";
+} from "../../../components";
 
 const Drawer = ({ edit, setEdit, element, formName, formID }) => {
   const formComponents = [

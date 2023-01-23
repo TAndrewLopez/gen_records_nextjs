@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { AdminIcon, UsersIcon } from "../assets";
+import { AdminIcon, UsersIcon } from "../icons";
 import { demoLogin } from "../../redux/features/authSlice";
-import { useRouter } from "next/router";
 
 const DemoLoginButtons = () => {
   const dispatch = useDispatch();
-  const router = useRouter();
 
   const [adminHover, setAdminHover] = useState(false);
   const [employeeHover, setEmployeeHover] = useState(false);

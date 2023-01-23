@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { createUser } from "../../redux/features/authSlice";
-import { ErrorIcon } from "../assets";
+import { ErrorIcon } from "../icons";
 
 const CreateAccountForm = ({ toggle }) => {
   const dispatch = useDispatch();
-  const { loggedIn } = useSelector((state) => state.authReducer);
 
   const [errMessage, setErrMessage] = useState("");
   const [formError, setFormError] = useState(false);

@@ -28,21 +28,18 @@ const shopSlice = createSlice({
   },
 });
 
-export const getShopVinyls = createAsyncThunk(
-  "getShopVinyls",
-  async (thunkAPI) => {
-    const response = await fetch("/api/shop", {
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .catch((err) => console.error(err));
-    return response;
-  }
-);
+export const getShopVinyls = createAsyncThunk("getShopVinyls", async () => {
+  const response = await fetch("/api/shop", {
+    method: "GET",
+  })
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
+  return response;
+});
 
 export const getSingleVinyl = createAsyncThunk(
   "getSingleVinyl",
-  async (vinylId, thunkAPI) => {
+  async (vinylId) => {
     const response = await fetch(`/api/shop/${vinylId}`, {
       method: "GET",
     })

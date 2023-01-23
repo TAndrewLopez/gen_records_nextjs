@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteModal, Drawer, TrackForm } from "../../../components";
 import { deleteTrack } from "../../../redux/features/adminSlice";
-import { EditIcon, TrashIcon, SpinnerLoader } from "../../assets";
+import { EditIcon, TrashIcon, SpinnerLoader } from "../../icons";
 
 const TracksTable = ({ tracks }) => {
   const dispatch = useDispatch();
@@ -90,7 +90,6 @@ const TracksTable = ({ tracks }) => {
           </tbody>
         </table>
       )}
-
       {showModal && (
         <DeleteModal
           setShowModal={setShowModal}
@@ -98,7 +97,6 @@ const TracksTable = ({ tracks }) => {
           delItem={() => dispatch(deleteTrack(selection.id))}
         />
       )}
-
       <Drawer
         formName={"Track Form"}
         edit={edit}

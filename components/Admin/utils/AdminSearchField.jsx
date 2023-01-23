@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MagnifyingGlassIcon } from "../assets";
+import { MagnifyingGlassIcon } from "../../icons";
 
 const AdminSearchField = () => {
   const [search, setSearch] = useState("");

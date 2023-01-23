@@ -1,10 +1,10 @@
-export { default as Accordion } from "./Admin/Accordion";
-export { default as AdminDropDown } from "./Admin/AdminDropDown";
-export { default as AdminSearchField } from "./Admin/AdminSearchField";
-export { default as AdminSubHeader } from "./Admin/AdminSubHeader";
-export { default as DeleteModal } from "./Admin/DeleteModal";
-export { default as Drawer } from "./Admin/Drawer";
-export { default as FormDropDown } from "./Admin/FormDropDown";
+export { default as Accordion } from "./Admin/utils/Accordion";
+export { default as AdminDropDown } from "./Admin/utils/AdminDropDown";
+export { default as AdminSearchField } from "./Admin/utils/AdminSearchField";
+export { default as AdminSubHeader } from "./Admin/utils/AdminSubHeader";
+export { default as DeleteModal } from "./Admin/utils/DeleteModal";
+export { default as Drawer } from "./Admin/utils/Drawer";
+export { default as FormDropDown } from "./Admin/utils/FormDropDown";
 
 export { default as ArtistForm } from "./Admin/forms/ArtistForm";
 export { default as LineItemForm } from "./Admin/forms/LineItemForm";

@@ -1,4 +1,4 @@
-import { MagnifyingGlassIcon } from "../assets";
+import { MagnifyingGlassIcon } from "../icons";
 
 const SearchField = ({ vinyls, filter, setInput }) => {
   const handleChange = (evt) => {

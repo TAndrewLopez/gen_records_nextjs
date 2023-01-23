@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteModal, Drawer, UserForm } from "../../../components";
 import { deleteUser } from "../../../redux/features/adminSlice";
-import { EditIcon, TrashIcon, SpinnerLoader } from "../../assets";
+import { EditIcon, TrashIcon, SpinnerLoader } from "../../icons";
 
 const UsersTable = ({ users }) => {
   const dispatch = useDispatch();
@@ -89,7 +89,6 @@ const UsersTable = ({ users }) => {
           </tbody>
         </table>
       )}
-
       {showModal && (
         <DeleteModal
           setShowModal={setShowModal}

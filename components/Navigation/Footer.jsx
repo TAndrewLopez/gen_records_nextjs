@@ -1,4 +1,5 @@
-import { GithubIcon, SpotifyIcon } from "../assets";
+import { GithubIcon, SpotifyIcon } from "../icons";
+import { openInNewTab } from "../helperFuncs";
 
 const Footer = ({ twClass }) => {
   return (
@@ -16,15 +17,6 @@ const Footer = ({ twClass }) => {
       </a>
       <div className="flex flex-col justify-center items-center text-xs sm:text-base mx-10">
         <p>&copy; 2019–2023 Generational Records</p>
-        {/* <a className="hover:text-sec" href="#">
-          Privacy
-        </a>
-        <a className="hover:text-sec" href="#">
-          Terms
-        </a>
-        <a className="hover:text-sec" href="#">
-          Support
-        </a> */}
       </div>
 
       <a
@@ -42,7 +34,3 @@ const Footer = ({ twClass }) => {
 };
 
 export default Footer;
-
-const openInNewTab = (url) => {
-  window.open(url, "_black").focus();
-};

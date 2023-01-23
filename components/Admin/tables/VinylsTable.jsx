@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteModal, Drawer, VinylForm } from "../../../components";
 import { deleteVinyl } from "../../../redux/features/adminSlice";
-import { EditIcon, TrashIcon, SpinnerLoader } from "../../assets";
+import { EditIcon, TrashIcon, SpinnerLoader } from "../../icons";
 import { formatToUSD } from "../../helperFuncs";
 
 const VinylsTable = ({ vinyls }) => {
@@ -88,7 +88,6 @@ const VinylsTable = ({ vinyls }) => {
           </tbody>
         </table>
       )}
-
       {showModal && (
         <DeleteModal
           setShowModal={setShowModal}
@@ -96,7 +95,6 @@ const VinylsTable = ({ vinyls }) => {
           delItem={() => dispatch(deleteVinyl(selection.id))}
         />
       )}
-
       <Drawer
         formName={"User Form"}
         edit={edit}

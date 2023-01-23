@@ -1,9 +1,6 @@
-import { ExclamationIcon } from "../assets";
-import { useDispatch } from "react-redux";
-import { deleteVinyl } from "../../redux/features/adminSlice";
+import { ExclamationIcon } from "../../icons";
 
 const DeleteModal = ({ setShowModal, message, delItem }) => {
-  const dispatch = useDispatch();
   return (
     <div
       id="popup-modal"

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PlayIcon, StopIcon } from "../../components/assets";
+import { PlayIcon, StopIcon } from "../../components/icons";
 
 const TrackList = ({ vinyl }) => {
   const [currTrackPlaying, setCurrTrackPlaying] = useState(-1);

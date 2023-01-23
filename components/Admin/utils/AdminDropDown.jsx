@@ -97,9 +97,6 @@ const AdminDropDown = () => {
               ">
                   {option.method}
                 </a>
-                {/* <div className="pr-2">
-              <SortDownArrow twClass={"w-3 fill-shade-1"} />
-            </div> */}
               </li>
             ))}
           </ul>

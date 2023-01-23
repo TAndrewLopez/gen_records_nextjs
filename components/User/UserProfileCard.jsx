@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 
 const UserProfileCard = ({ user: { firstName, lastName, username, img } }) => {
   const router = useRouter();
-  // console.log(img);
   const dispatch = useDispatch();
   return (
     <div className="w-full max-w-sm bg-shade-9 rounded-lg shadow-md">

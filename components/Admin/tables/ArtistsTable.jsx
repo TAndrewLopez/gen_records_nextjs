@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteModal, Drawer, ArtistForm } from "../../../components";
-import { EditIcon, TrashIcon, SpinnerLoader } from "../../assets";
+import { EditIcon, TrashIcon, SpinnerLoader } from "../../icons";
 import { deleteArtist } from "../../../redux/features/adminSlice";
 
 const ArtistsTable = ({ artists }) => {
@@ -75,7 +75,6 @@ const ArtistsTable = ({ artists }) => {
           </tbody>
         </table>
       )}
-
       {showModal && (
         <DeleteModal
           setShowModal={setShowModal}
@@ -83,7 +82,6 @@ const ArtistsTable = ({ artists }) => {
           delItem={() => dispatch(deleteArtist(selection.id))}
         />
       )}
-
       <Drawer
         formName={"Artist Form"}
         edit={edit}

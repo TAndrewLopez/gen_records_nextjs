@@ -176,7 +176,7 @@ const authSlice = createSlice({
 });
 
 //AUTH
-export const me = createAsyncThunk("me", async (thunkAPI) => {
+export const me = createAsyncThunk("me", async () => {
   const authorization = localStorage.getItem("authorization");
   const response = await fetch("/api/auth/me", {
     method: "GET",
@@ -203,7 +203,7 @@ export const login = createAsyncThunk("login", async (form, thunkAPI) => {
   return response.authorization;
 });
 
-export const logout = createAsyncThunk("logout", async (thunkAPI) => {
+export const logout = createAsyncThunk("logout", async () => {
   const response = await fetch("/api/auth/logout", {
     method: "GET",
   })

@@ -106,42 +106,6 @@ const UserProfileForm = () => {
             Username
           </label>
         </div>
-        {/* <div className="grid md:grid-cols-2 md:gap-6">
-          <div className="relative z-0 mb-6 w-full group">
-            <input
-              onChange={(evt) =>
-                setForm({ ...form, password: evt.target.value })
-              }
-              name="floating_password"
-              id="floating_password"
-              className="block py-2.5 px-0 w-full text-sm text-shade-1 bg-transparent border-0 border-b-2 border-shade-1 appearance-none focus:outline-none focus:ring-0 focus:border-accent peer"
-              placeholder=" "
-              value={form.password}
-            />
-            <label
-              htmlFor="floating_password"
-              className="peer-focus:font-medium absolute text-sm text-shade-5 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-accent peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-              Password
-            </label>
-          </div>
-          <div className="relative z-0 mb-6 w-full group">
-            <input
-              onChange={(evt) =>
-                setForm({ ...form, confirm: evt.target.value })
-              }
-              name="floating_confirm"
-              id="floating_confirm"
-              className="block py-2.5 px-0 w-full text-sm text-shade-1 bg-transparent border-0 border-b-2 border-shade-1 appearance-none focus:outline-none focus:ring-0 focus:border-accent peer"
-              placeholder=" "
-              value={form.confirm}
-            />
-            <label
-              htmlFor="floating_confirm"
-              className="peer-focus:font-medium absolute text-sm text-shade-5 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-accent peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-              Confirm password
-            </label>
-          </div>
-        </div> */}
         <div className="relative z-0 mb-6 w-full group">
           <input
             onChange={(evt) => setForm({ ...form, img: evt.target.value })}

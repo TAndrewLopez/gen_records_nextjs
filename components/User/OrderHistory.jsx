@@ -1,6 +1,9 @@
 import { useSelector } from "react-redux";
-import { CartSuccess, CartFailure } from "../assets";
-import { formatToUSD } from "../helperFuncs";
+import { CartSuccess, CartFailure } from "../icons";
+import {
+  getLocalDateFromOrderDbCreatedDate,
+  totalOrderLineItems,
+} from "../helperFuncs";
 
 const OrderHistory = () => {
   const { orders } = useSelector((state) => state.authReducer);
@@ -54,37 +57,3 @@ const OrderHistory = () => {
 };
 
 export default OrderHistory;
-
-const totalOrderLineItems = (arr) => {
-  const total = arr.lineItems.reduce(
-    (acc, lineItem) => (acc += lineItem.vinyl.price * lineItem.qty),
-    0
-  );
-
-  return `$${total ? formatToUSD(total) : "0.00"}`;
-};
-
-const getLocalDateFromOrderDbCreatedDate = (str) => {
-  const months = [
-    null,
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sept",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  const year = str.slice(0, 4);
-  let month = str.slice(5, 7);
-  if (Number(month[0]) === 0) {
-    month = month[1];
-  }
-  const day = str.slice(8, 10);
-  return `${months[month]} ${day}, ${year}`;
-};

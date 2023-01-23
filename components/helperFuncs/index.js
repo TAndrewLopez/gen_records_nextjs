@@ -1,3 +1,7 @@
+export const openInNewTab = (url) => {
+  window.open(url, "_black").focus();
+};
+
 export const formatToUSD = (num) => {
   const numString = `${num}`;
   const dollars = numString.slice(0, numString.length - 2);
@@ -91,4 +95,38 @@ export const sortPriceAmount = (inputArray, dir) => {
     return 0;
   });
   return arr;
+};
+
+export const totalOrderLineItems = (arr) => {
+  const total = arr.lineItems.reduce(
+    (acc, lineItem) => (acc += lineItem.vinyl.price * lineItem.qty),
+    0
+  );
+
+  return `$${total ? formatToUSD(total) : "0.00"}`;
+};
+
+export const getLocalDateFromOrderDbCreatedDate = (str) => {
+  const months = [
+    null,
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sept",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const year = str.slice(0, 4);
+  let month = str.slice(5, 7);
+  if (Number(month[0]) === 0) {
+    month = month[1];
+  }
+  const day = str.slice(8, 10);
+  return `${months[month]} ${day}, ${year}`;
 };

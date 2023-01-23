@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Pagination } from "../../components";
-import { PlusIcon, MinusIcon } from "../assets";
+import { PlusIcon, MinusIcon } from "../icons";
 import { formatToUSD } from "../helperFuncs";
 import {
   changeLineItemQty,

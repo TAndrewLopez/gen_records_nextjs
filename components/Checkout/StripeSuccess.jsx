@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { CheckIcon } from "../assets";
+import { CheckIcon } from "../icons";
 
 const StripeSuccess = () => {
   const router = useRouter();
@@ -13,10 +13,6 @@ const StripeSuccess = () => {
       <p className="font-light">
         A receipt for the transaction has been sent via email for your records.
       </p>
-      {/* <span className="h-5 sm:h-10"></span>
-      <p className="font-semibold">Total Payment Amount</p>
-      <span className="h-2"></span>
-      <p className="font-normal text-3xl">{`$${total}`}</p> */}
       <span className="h-2"></span>
       <button
         onClick={() => router.push("/shop")}

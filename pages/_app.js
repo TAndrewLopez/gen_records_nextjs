@@ -1,5 +1,5 @@
 import "@stripe/stripe-js";
-import { Provider, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 import { store, persistor } from "../redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import { Layout } from "../components";

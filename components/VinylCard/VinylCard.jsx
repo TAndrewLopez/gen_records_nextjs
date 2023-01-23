@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { formatToUSD, popularityToStart } from "../helperFuncs";
-import { StarIcon } from "../assets";
+import { StarIcon } from "../icons";
 import { addLineItem, addItemLocally } from "../../redux/features/authSlice";
 
 const VinylCard = ({ vinyl }) => {

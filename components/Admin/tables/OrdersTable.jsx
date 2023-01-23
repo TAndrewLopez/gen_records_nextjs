@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteModal, Drawer, OrderForm } from "../../../components";
 import { deleteOrder } from "../../../redux/features/adminSlice";
-import { EditIcon, TrashIcon, SpinnerLoader } from "../../assets";
+import { EditIcon, TrashIcon, SpinnerLoader } from "../../icons";
 
 const OrdersTable = ({ orders }) => {
   const dispatch = useDispatch();
@@ -77,7 +77,6 @@ const OrdersTable = ({ orders }) => {
           </tbody>
         </table>
       )}
-
       {showModal && (
         <DeleteModal
           setShowModal={setShowModal}
@@ -87,7 +86,6 @@ const OrdersTable = ({ orders }) => {
           delItem={() => dispatch(deleteOrder(selection.id))}
         />
       )}
-
       <Drawer
         formName={"Order Form"}
         edit={edit}

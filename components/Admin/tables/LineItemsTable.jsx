@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteModal, Drawer, LineItemForm } from "../../../components";
 import { deleteLineItem } from "../../../redux/features/adminSlice";
-import { EditIcon, TrashIcon, SpinnerLoader } from "../../assets";
+import { EditIcon, TrashIcon, SpinnerLoader } from "../../icons";
 
 const LineItemsTable = ({ lineItems }) => {
   const dispatch = useDispatch();
@@ -75,7 +75,6 @@ const LineItemsTable = ({ lineItems }) => {
           </tbody>
         </table>
       )}
-
       {showModal && (
         <DeleteModal
           setShowModal={setShowModal}
@@ -83,7 +82,6 @@ const LineItemsTable = ({ lineItems }) => {
           delItem={() => dispatch(deleteLineItem(selection.id))}
         />
       )}
-
       <Drawer
         formName={"Line Item Form"}
         edit={edit}

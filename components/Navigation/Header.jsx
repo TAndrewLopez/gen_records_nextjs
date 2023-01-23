@@ -1,10 +1,8 @@
+import Link from "next/link";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import Link from "next/link";
-
-//COMPONENTS
 import { NavLinks, UserCartDropDown, MobileNavOverlay } from "../../components";
-import { CartIcon, ProfileIcon, Hamburger } from "../assets";
+import { CartIcon, ProfileIcon, Hamburger } from "../icons";
 
 const Header = ({ headerClass }) => {
   const { isAdmin, cart } = useSelector((state) => state.authReducer);

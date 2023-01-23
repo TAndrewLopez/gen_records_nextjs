@@ -1,4 +1,4 @@
-import { SortDownArrow } from "../assets";
+import { SortDownArrow } from "../../icons";
 
 const Accordion = ({ name, amount, element }) => {
   return (
