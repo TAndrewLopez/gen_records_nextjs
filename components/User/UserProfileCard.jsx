@@ -36,9 +36,9 @@ const UserProfileCard = ({ user: { firstName, lastName, username, img } }) => {
           </a>
 
           <a
-            onClick={(evt) => {
+            onClick={async (evt) => {
               evt.preventDefault();
-              dispatch(logout());
+              await dispatch(logout());
               router.push("/auth");
             }}
             href="#"

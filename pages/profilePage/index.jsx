@@ -30,9 +30,9 @@ const ProfilePage = () => {
     loggedIn,
   } = useSelector((state) => state.authReducer);
 
-  if (!loggedIn) {
-    router.push("/auth");
-  }
+  // if (!loggedIn) {
+  //   router.push("/auth");
+  // }
 
   useEffect(() => {
     if (message) {

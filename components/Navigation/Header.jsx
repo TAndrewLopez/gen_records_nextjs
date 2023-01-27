@@ -33,14 +33,12 @@ const Header = ({ headerClass }) => {
       <nav className="hidden sm:block">
         <ul className="flex gap-8">
           <NavLinks links={linkInfo} />
-          {isAdmin ? (
+          {isAdmin && (
             <Link
               className="text-white hover:text-sec ease-in-out duration-300"
               href={"/admin"}>
               Admin Dashboard
             </Link>
-          ) : (
-            ""
           )}
           <div className="flex" onClick={() => setToggleCart(!toggleCart)}>
             <CartIcon
@@ -62,8 +60,8 @@ const Header = ({ headerClass }) => {
         className="relative z-30 text-white sm:hidden flex">
         <Hamburger visible={overlay} />
       </div>
-      {toggleCart ? <UserCartDropDown cart={cart} /> : <></>}
-      {overlay ? <MobileNavOverlay links={linkInfo} /> : <></>}
+      {toggleCart && <UserCartDropDown cart={cart} />}
+      {overlay && <MobileNavOverlay links={linkInfo} />}
     </header>
   );
 };

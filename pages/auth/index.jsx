@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Header,
@@ -14,17 +13,13 @@ import { clearToast } from "../../redux/features/authSlice";
 const Auth = () => {
   const dispatch = useDispatch();
   const [form, setForm] = useState(false);
-  const { loggedIn, message } = useSelector((state) => state.authReducer);
-  const router = useRouter();
+  const { message } = useSelector((state) => state.authReducer);
 
   useEffect(() => {
     if (message) {
       dispatch(clearToast());
     }
-    if (loggedIn) {
-      router.push("/profilePage");
-    }
-  }, [loggedIn]);
+  }, []);
 
   return (
     <Layout>
