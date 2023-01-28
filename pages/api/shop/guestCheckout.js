@@ -23,7 +23,9 @@ const handler = async (req, res) => {
       });
     } catch (error) {
       console.log(error);
-      res.status(500).json({ success: false, message: error.message });
+      res
+        .status(error.statusCode || 500)
+        .json({ success: false, message: error.message });
     }
   }
 };

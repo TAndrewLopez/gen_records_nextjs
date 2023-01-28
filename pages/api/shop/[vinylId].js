@@ -8,10 +8,9 @@ const handler = async (req, res) => {
     res.json({ success: true, vinyl });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
+    res
+      .status(error.statusCode || 500)
+      .json({ success: false, message: error.message });
   }
 };
 

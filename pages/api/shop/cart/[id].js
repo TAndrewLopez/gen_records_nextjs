@@ -75,10 +75,9 @@ const handler = async (req, res) => {
       res.json({ success: true, lineItem: Number(req.query.id) });
     } catch (error) {
       console.log(error);
-      res.status(500).json({
-        success: false,
-        message: error.message,
-      });
+      res
+        .status(error.statusCode || 500)
+        .json({ success: false, message: error.message });
     }
   }
 };
