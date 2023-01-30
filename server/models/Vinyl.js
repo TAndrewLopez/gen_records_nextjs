@@ -41,6 +41,9 @@ const Vinyl = conn.define(
     spotifyId: {
       type: STRING,
     },
+    stripeId: {
+      type: STRING,
+    },
   },
   {
     hooks: {

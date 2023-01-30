@@ -33,10 +33,8 @@ export default function Shop() {
   const currSlice = filteredVinyls.slice(indexOfFirstPost, indexOfLastPost);
 
   useEffect(() => {
-    dispatch(getShopVinyls());
-    if (message) {
-      dispatch(clearToast());
-    }
+    if (!allVinyls.length) dispatch(getShopVinyls());
+    if (message) dispatch(clearToast());
   }, []);
 
   useEffect(() => {

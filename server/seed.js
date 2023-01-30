@@ -1,7 +1,6 @@
 require("dotenv").config();
-
 const conn = require("./conn");
-const { User, Artist, Track, Vinyl, Order, LineItem } = require("../server");
+const { User, Artist, Track, Vinyl } = require("../server");
 const { randomUsers, specificUsers } = require("./helpers/dummyData.json");
 const { getAlbumData } = require("./helpers/spotifyAPI");
 
@@ -32,6 +31,7 @@ const seed = async () => {
             genre: spotifyArtist.genres[0],
           });
         }
+
         //create the product and give it the artist ID
         let prod = await Vinyl.create({
           name: album.name,
@@ -45,6 +45,7 @@ const seed = async () => {
           label: album.label,
           artistId: art.id,
         });
+
         //create the tracks and give it the product ID
         album.tracks.items.map(async (track) => {
           await Track.create({

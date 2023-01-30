@@ -1,15 +1,27 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+import { Vinyl } from "../../../server";
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
     try {
+      //GUEST CHECKOUT => GRAB PRICE ID FROM DB
+      const { cart } = req.body;
+      const lineItems = await Promise.all(
+        cart.map(async (item) => {
+          const vinyl = await Vinyl.findByPk(item.vinyl.id);
+          const stripeProduct = await stripe.products.retrieve(
+            String(vinyl.stripeId)
+          );
+          return { price: stripeProduct.default_price, quantity: item.qty };
+        })
+      );
       const session = await stripe.checkout.sessions.create({
-        line_items: [{ price: "{{PRICE_ID}}", quantity: 1 }],
+        line_items: lineItems,
         mode: "payment",
-        success_url: `${req.headers.origin}/?success=true`,
+        success_url: `https://gen-records.vercel.app/`,
         cancel_url: req.headers.origin,
       });
-      res.status(200).json({ success: true, session });
+      res.redirect(303, session.url);
     } catch (error) {
       console.log(error);
       res

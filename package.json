@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "node server/seed.js"
+    "seed": "node server/seed.js",
+    "stripeSeed": "node server/stripeSeed.js"
   },
   "dependencies": {
     "@next/font": "13.1.1",
