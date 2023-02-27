@@ -10,12 +10,12 @@ const OrderHistory = () => {
   return (
     <div
       id="orderHistory"
-      className="w-full max-w-md p-10 bg-shade-9 rounded-lg shadow-md sm:p-8">
+      className="w-full max-w-md p-10 rounded-lg shadow-md bg-shade-9 sm:p-8">
       <div className="flex items-center justify-between mb-4">
         <h5 className="text-xl font-bold leading-none text-shade-1">
           Order History
         </h5>
-        <a className="text-sm font-medium text-accent hover:text-highlight hover:underline ease-in-out duration-300">
+        <a className="text-sm font-medium duration-300 ease-in-out text-accent hover:text-highlight hover:underline">
           View all
         </a>
       </div>
@@ -32,7 +32,7 @@ const OrderHistory = () => {
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-shade-4 truncate">
+                  <p className="text-sm font-medium truncate text-shade-4">
                     {`Order #${order.id}`}
                     <span className="ml-2 text-xs">
                       {order.lineItems.length > 1
@@ -40,7 +40,7 @@ const OrderHistory = () => {
                         : `(${order.lineItems.length} item)`}
                     </span>
                   </p>
-                  <p className="text-sm text-shade-4 truncate">
+                  <p className="text-sm truncate text-shade-4">
                     {getLocalDateFromOrderDbCreatedDate(order.createdAt)}
                   </p>
                 </div>

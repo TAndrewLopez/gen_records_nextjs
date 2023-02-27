@@ -32,6 +32,7 @@ export { default as LoginForm } from "./Auth/LoginForm";
 export { default as StripeCheckoutForm } from "./Checkout/StripeCheckoutForm";
 export { default as StripePayment } from "./Checkout/StripePayment";
 export { default as StripeSuccess } from "./Checkout/StripeSuccess";
+export { default as Invoice } from "./Checkout/prebuilt/Invoice";
 
 //NAVIGATION
 export { default as Footer } from "./Navigation/Footer";

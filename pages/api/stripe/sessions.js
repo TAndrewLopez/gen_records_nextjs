@@ -18,10 +18,13 @@ const handler = async (req, res) => {
       const session = await stripe.checkout.sessions.create({
         line_items: lineItems,
         mode: "payment",
-        success_url: `https://gen-records.vercel.app/`,
-        cancel_url: req.headers.origin,
+        success_url: "http://localhost:3000/checkout/success",
+        cancel_url: "http://localhost:3000/",
+        customer_email: "someUser@email.com",
       });
-      res.redirect(303, session.url);
+
+      res.json({ session });
+      // res.redirect(303, session.url);
     } catch (error) {
       console.log(error);
       res
